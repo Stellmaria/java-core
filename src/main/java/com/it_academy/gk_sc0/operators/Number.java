@@ -10,10 +10,8 @@ import java.util.Arrays;
  */
 public class Number {
     /**
-     * RU:
-     * <p>Напишите программу, которая считывает три числа и выводит их сумму.</p>
-     * <p>EN:</p>
-     * <p>Write a program that reads three numbers and prints their sum.</p>
+     * <p>RU: Напишите программу, которая считывает три числа и выводит их сумму.</p>
+     * <p>EN: Write a program that reads three numbers and prints their sum.</p>
      *
      * @param values numbers.
      * @return sum of numbers.

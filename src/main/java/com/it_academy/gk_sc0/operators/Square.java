@@ -8,11 +8,9 @@ package com.it_academy.gk_sc0.operators;
  */
 public class Square {
     /**
-     * RU:
-     * <p>Напишите программу, которая считывает длины двух катетов
+     * <p>RU: Напишите программу, которая считывает длины двух катетов
      * в прямоугольном треугольнике и выводит его площадь.</p>
-     * <p>EN:</p>
-     * <p>Write a program that reads the lengths of two side in a right triangle and prints its area.</p>
+     * <p>EN: Write a program that reads the lengths of two side in a right triangle and prints its area.</p>
      *
      * @param a первый катет/first side.
      * @param b второй катет/second side.

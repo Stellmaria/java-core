@@ -16,11 +16,9 @@ public class Version {
     }
 
     /**
-     * RU:
-     * <p>Разработайте программу с помощью Intellij IDEA и запустите с помощью Intellij IDEA.
+     * <p>RU: Разработайте программу с помощью Intellij IDEA и запустите с помощью Intellij IDEA.
      * Программа выводит в Standard Output (консоль) предложение:</p>
-     * <p>EN:</p>
-     * <p>Develop a program with Intellij IDEA and run it with Intellij IDEA.
+     * <p>EN: Develop a program with Intellij IDEA and run it with Intellij IDEA.
      * The program prints to the standard output (console) the sentence:</p>
      * <li>Java: version: 11.</li>
      */
@@ -29,14 +27,18 @@ public class Version {
     }
 
     /**
-     * RU:
-     * <p>Разработайте программу, которая выводит в Standard Output следующие предложения
+     * <p>RU: Разработайте программу, которая выводит в Standard Output следующие предложения
      * (каждое предложение в новой строке):</p>
-     * <p>EN:</p>
-     * <p>Write a program that outputs the following sentences to Standard Output
+     * <ul>
+     *     <li> Java: version 11.</li>
+     *     <li> JVM: HotSpot.</li>
+     * </ul>
+     * <p>EN: Write a program that outputs the following sentences to Standard Output
      * (each sentence on a new line):</p>
-     * <li> Java: version 11.</li>
-     * <li> JVM: HotSpot.</li>
+     * <ul>
+     *     <li> Java: version 11.</li>
+     *     <li> JVM: HotSpot.</li>
+     * </ul>
      */
     public String getJavaDescription() {
         return format("%s%n%s", getJavaVersion(), "JVM: HotSpot.");
