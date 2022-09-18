@@ -1,5 +1,7 @@
 package com.it.academy.md.jc1.operators;
 
+import com.it.academy.md.jc1.operators.util.Const;
+
 /**
  * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
  * <p>EN: Data types. Variables. Operators. Methods.</p>
@@ -7,12 +9,6 @@ package com.it.academy.md.jc1.operators;
  * @author Anastasia Melnikova.
  */
 public class Weight {
-    /**
-     * <p>RU: Значение индекса для измерения избыточности веса.</p>
-     * <p>EN: Index value for measuring overweight.</p>
-     */
-    private static final int INDEX = 110;
-
     /**
      * RU:
      * <p>Рассчитывает избыточность веса пользователя.</p>
@@ -37,6 +33,6 @@ public class Weight {
      */
     public int calculateDeviationStandardWeight(final int height,
                                                 final int weight) {
-        return weight - (height - INDEX);
+        return weight - (height - Const.BROCKS_INDEX);
     }
 }

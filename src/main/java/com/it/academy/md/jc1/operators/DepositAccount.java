@@ -1,5 +1,7 @@
 package com.it.academy.md.jc1.operators;
 
+import com.it.academy.md.jc1.operators.util.Const;
+
 /**
  * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
  * <p>EN: Data types. Variables. Operators. Methods.</p>
@@ -7,12 +9,6 @@ package com.it.academy.md.jc1.operators;
  * @author Anastasia Melnikova.
  */
 public class DepositAccount {
-    /**
-     * <p>RU: Значение процента.</p>
-     * <p>EN: Percentage value.</p>
-     */
-    private static final float PERCENTAGE = 100.0f;
-
     /**
      * <p>RU: Высчитывает итоговую сумму на депозитном счете, при условии:</p>
      * <ul>
@@ -39,6 +35,6 @@ public class DepositAccount {
                                        final int depositYears,
                                        final int depositAnnualPercentage) {
         return depositAmount + depositYears
-                * depositAmount * depositAnnualPercentage / PERCENTAGE;
+                * depositAmount * depositAnnualPercentage / Const.PERCENTAGE;
     }
 }

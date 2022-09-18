@@ -1,5 +1,7 @@
 package com.it.academy.md.jc1.operators;
 
+import com.it.academy.md.jc1.operators.util.Const;
+
 /**
  * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
  * <p>EN: Data types. Variables. Operators. Methods.</p>
@@ -7,12 +9,6 @@ package com.it.academy.md.jc1.operators;
  * @author Anastasia Melnikova.
  */
 public class SoundSpeed {
-    /**
-     * <p>RU: Значение скорости звука.</p>
-     * <p>EN: The value of the speed of sound..</p>
-     */
-    private static final float SOUND_SPEED = 1191.6f;
-
     /**
      * <p>RU: Высчитывает расстояние (в метрах) до ближайшего
      * места удара молнии. Расстояние = скорость * время,
@@ -27,6 +23,6 @@ public class SoundSpeed {
      * @return дистанцию/distance.
      */
     public float getDistance(final float milliseconds) {
-        return SOUND_SPEED * milliseconds / GameSessionTime.SECONDS_TO_HOURS;
+        return Const.SOUND_SPEED * milliseconds / Const.SECONDS_TO_HOURS;
     }
 }
