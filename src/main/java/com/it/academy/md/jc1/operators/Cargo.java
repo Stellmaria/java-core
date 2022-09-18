@@ -9,11 +9,9 @@ package com.it.academy.md.jc1.operators;
 public class Cargo {
 
     /**
-     * RU:
-     * <p>Рассчитывает количество полностью загруженных грузовиков,
+     * <p>RU: Рассчитывает количество полностью загруженных грузовиков,
      * необходимых для перевозки некоторого груза.</p>
-     * <p>EN:</p>
-     * <p>Calculates the number of fully loaded trucks needed to carry
+     * <p>EN: Calculates the number of fully loaded trucks needed to carry
      * a given load.</p>
      *
      * @param cargo            вес всего груза/the weight of the entire load..
