@@ -16,29 +16,37 @@ public class Version {
     }
 
     /**
-     * <p>RU: Разработайте программу с помощью Intellij IDEA и запустите с помощью Intellij IDEA.
+     * <p>RU: Разработайте программу с помощью Intellij IDEA
+     * и запустите с помощью Intellij IDEA.
      * Программа выводит в Standard Output (консоль) предложение:</p>
-     * <p>EN: Develop a program with Intellij IDEA and run it with Intellij IDEA.
+     * <p>EN: Develop a program with Intellij IDEA
+     * and run it with Intellij IDEA.
      * The program prints to the standard output (console) the sentence:</p>
      * <li>Java: version: 11.</li>
+     *
+     * @return версия Java/Java version.
      */
     public String getJavaVersion() {
-        return "Java version: " + getProperty("java.vm.specification.version") + ".";
+        return "Java version: "
+                + getProperty("java.vm.specification.version")
+                + ".";
     }
 
     /**
-     * <p>RU: Разработайте программу, которая выводит в Standard Output следующие предложения
-     * (каждое предложение в новой строке):</p>
+     * <p>RU: Разработайте программу, которая выводит в Standard Output
+     * следующие предложения (каждое предложение в новой строке):</p>
      * <ul>
      *     <li> Java: version 11.</li>
      *     <li> JVM: HotSpot.</li>
      * </ul>
-     * <p>EN: Write a program that outputs the following sentences to Standard Output
-     * (each sentence on a new line):</p>
+     * <p>EN: Write a program that outputs the following sentences to
+     * Standard Output (each sentence on a new line):</p>
      * <ul>
      *     <li> Java: version 11.</li>
      *     <li> JVM: HotSpot.</li>
      * </ul>
+     *
+     * @return версия Java с описанием/Java version with description.
      */
     public String getJavaDescription() {
         return format("%s%n%s", getJavaVersion(), "JVM: HotSpot.");

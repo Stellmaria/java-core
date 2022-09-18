@@ -10,13 +10,14 @@ import java.util.Arrays;
  */
 public class Number {
     /**
-     * <p>RU: Напишите программу, которая считывает три числа и выводит их сумму.</p>
+     * <p>RU: Напишите программу, которая считывает три числа
+     * и выводит их сумму.</p>
      * <p>EN: Write a program that reads three numbers and prints their sum.</p>
      *
-     * @param values numbers.
-     * @return sum of numbers.
+     * @param values числа/numbers.
+     * @return сумма чисел/sum of numbers.
      */
-    public int getSum(int... values) {
+    public int getSum(final int... values) {
         return Arrays.stream(values).sum();
     }
 }

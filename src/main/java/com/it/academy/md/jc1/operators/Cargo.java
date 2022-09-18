@@ -10,29 +10,37 @@ public class Cargo {
 
     /**
      * RU:
-     * <p>Рассчитывает количество полностью загруженных грузовиков, необходимых для перевозки некоторого груза.</p>
+     * <p>Рассчитывает количество полностью загруженных грузовиков,
+     * необходимых для перевозки некоторого груза.</p>
      * <p>EN:</p>
-     * <p>Calculates the number of fully loaded trucks needed to carry a given load.</p>
+     * <p>Calculates the number of fully loaded trucks needed to carry
+     * a given load.</p>
      *
      * @param cargo            вес всего груза/the weight of the entire load..
      * @param carryingCapacity грузоподъемность грузовиков/truck capacity.
+     * @return количество грузовиков/number of trucks.
      */
-    public int getNumberFullTrucks(int cargo, int carryingCapacity) {
+    public int getNumberFullTrucks(final int cargo,
+                                   final int carryingCapacity) {
         return cargo / carryingCapacity;
     }
 
     /**
      * RU:
-     * <p>Рассчитывает количество некоторого груза, который останется на складе, после полной загрузки его в грузовики,
-     * т.е. грузовики должны быть загружены полностью.</p>
+     * <p>Рассчитывает количество некоторого груза, который останется на складе,
+     * после полной загрузки его в грузовики, т.е. грузовики должны
+     * быть загружены полностью.</p>
      * <p>EN:</p>
-     * <p>Calculates the amount of some cargo that will remain in the warehouse after it is fully loaded into trucks,
+     * <p>Calculates the amount of some cargo that will remain in the warehouse
+     * after it is fully loaded into trucks,
      * i.e. trucks must be fully loaded</p>
      *
      * @param cargo            вес всего груза/the weight of the entire load..
      * @param carryingCapacity грузоподъемность грузовиков/truck capacity.
+     * @return количество груза/amount of cargo.
      */
-    public int getAmountRemainingCargo(int cargo, int carryingCapacity) {
+    public int getAmountRemainingCargo(final int cargo,
+                                       final int carryingCapacity) {
         return cargo % carryingCapacity;
     }
 }
