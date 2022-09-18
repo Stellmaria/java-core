@@ -7,28 +7,36 @@ package com.it.academy.md.jc1.operators;
  * @author Anastasia Melnikova.
  */
 public class Weight {
+    /**
+     * <p>RU: Значение индекса для измерения избыточности веса.</p>
+     * <p>EN: Index value for measuring overweight.</p>
+     */
     private static final int INDEX = 110;
 
     /**
      * RU:
      * <p>Рассчитывает избыточность веса пользователя.</p>
      * <ul>
-     *     <li>Под избыточность веса понимается разница между текущим весом и стандартным весом для текущего роста
-     * (стандартный вес = текущий рост - 110), т.н. индекс Брока.</li>
+     *     <li>Под избыточность веса понимается разница между текущим весом
+     *     и стандартным весом для текущего роста
+     *     (стандартный вес = текущий рост - 110), т.н. индекс Брока.</li>
      *     <li>Может быть как положительной, так и отрицательной.</li>
      * </ul>
      * <p>EN:</p>
      * <p>Calculates the excess weight of the user.</p>
      * <ul>
-     *      <li>Weight overweight refers to the difference between current weight and standard weight for current height
-     * (standard weight = current height - 110), so-called. Brock's index.</li>
+     *      <li>Weight overweight refers to the difference between current
+     *      weight and standard weight for current height (standard weight
+     *      = current height - 110), so-called. Brock's index.</li>
      *       <li>Can be either positive or negative.</li>
      * </ul>
      *
      * @param height рост/height.
      * @param weight вес/weight.
+     * @return избыточность веса/overweight.
      */
-    public int calculateDeviationStandardWeight(int height, int weight) {
+    public int calculateDeviationStandardWeight(final int height,
+                                                final int weight) {
         return weight - (height - INDEX);
     }
 }

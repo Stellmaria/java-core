@@ -38,7 +38,7 @@ public class DepositAccount {
     public float getTotalDepositAmount(final int depositAmount,
                                        final int depositYears,
                                        final int depositAnnualPercentage) {
-        return depositAmount + depositYears *
-                depositAmount * depositAnnualPercentage / PERCENTAGE;
+        return depositAmount + depositYears
+                * depositAmount * depositAnnualPercentage / PERCENTAGE;
     }
 }
