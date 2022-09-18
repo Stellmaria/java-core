@@ -21,7 +21,7 @@ public class Text {
      * <p>EN: Type the above HelloWorld.java example,
      * compile it, and run it.</p>
      *
-     * @return string with text.
+     * @return line with text/string with text.
      */
     public String getHelloWorld() {
         string = "Hello World!";
@@ -36,7 +36,7 @@ public class Text {
      * change the message to “Hello Belarus!”.
      * Compile the example and run.</p>
      *
-     * @return string with text.
+     * @return line with text/string with text.
      */
     public String getHelloBelarus() {
         string = "Hello Belarus!";
@@ -51,7 +51,7 @@ public class Text {
      * add an additional “I like Java!” to the main message.
      * Compile the example and run.</p>
      *
-     * @return string with text.
+     * @return line with text/string with text.
      */
     public String getLikeJava() {
         string = format("%s%n%s", getHelloBelarus(), "I like Java!");
