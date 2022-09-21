@@ -1,5 +1,7 @@
 package com.it.academy.gk.sc0.operators;
 
+import com.it.academy.gk.sc0.operators.util.Const;
+
 /**
  * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
  * <p>EN: Data types. Variables. Operators. Methods.</p>
@@ -16,11 +18,13 @@ public class SumNumbers {
      * @param value число/number.
      * @return сумма цифр числа/sum of digits.
      */
-    public int getSumNumbers(int value) {
+    public int getSumNumbers(final int value) {
         int sum = 0;
-        while (value != 0) {
-            sum += (value % 10);
-            value /= 10;
+        int digit = value;
+
+        while (digit != 0) {
+            sum += (digit % Const.MINIMAL_TWO_DIGITAL_NUMBER);
+            digit /= Const.MINIMAL_TWO_DIGITAL_NUMBER;
         }
         return sum;
     }
@@ -34,11 +38,13 @@ public class SumNumbers {
      * @param value число/number.
      * @return произведение цифр числа/product of digits.
      */
-    public int getMultiplicationNumber(int value) {
+    public int getMultiplicationNumber(final int value) {
         int sum = 1;
-        while (value != 0) {
-            sum *= (value % 10);
-            value /= 10;
+        int digit = value;
+
+        while (digit != 0) {
+            sum *= (digit % Const.MINIMAL_TWO_DIGITAL_NUMBER);
+            digit /= Const.MINIMAL_TWO_DIGITAL_NUMBER;
         }
         return sum;
     }

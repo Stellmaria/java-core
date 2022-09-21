@@ -21,7 +21,7 @@ class SumNumberTest {
         sumNumbers = new SumNumbers();
     }
 
-    static @NotNull Stream<Arguments> getSumNumbersProviderArguments() {
+    static @NotNull Stream<Arguments> sumNumbersProviderArguments() {
         return of(
                 Arguments.of(1, 1),
                 Arguments.of(2, 11),
@@ -34,11 +34,33 @@ class SumNumberTest {
         );
     }
 
-    @MethodSource("getSumNumbersProviderArguments")
+    @MethodSource("sumNumbersProviderArguments")
     @DisplayName("Test for method getSumNumbers() from class SumNumber.")
     @ParameterizedTest(name = "Sum: {0}")
     void testSumNumbers(int expected, int value) {
         var actual = sumNumbers.getSumNumbers(value);
+
+        assertEquals(expected, actual);
+    }
+
+    static @NotNull Stream<Arguments> multiplicationNumberProviderArguments() {
+        return of(
+                Arguments.of(1, 1),
+                Arguments.of(1, 11),
+                Arguments.of(0, 10),
+                Arguments.of(56, 78),
+                Arguments.of(0, 690),
+                Arguments.of(0, 700),
+                Arguments.of(343, 777),
+                Arguments.of(0, 1000)
+        );
+    }
+
+    @MethodSource("multiplicationNumberProviderArguments")
+    @DisplayName("Test for method getMultiplicationNumber() from class SumNumber.")
+    @ParameterizedTest(name = "Sum: {0}")
+    void testMultiplicationNumber(int expected, int value) {
+        var actual = sumNumbers.getMultiplicationNumber(value);
 
         assertEquals(expected, actual);
     }
