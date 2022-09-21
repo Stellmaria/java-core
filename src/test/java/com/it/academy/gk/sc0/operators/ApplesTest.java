@@ -20,7 +20,7 @@ class ApplesTest {
 
     static @NotNull Stream<Arguments> applesProviderArguments() {
         return Stream.of(
-                Arguments.of("", 15, 50)
+                Arguments.of(String.format("Students will receive: 3%nThe basket will contain: 5"), 15, 50)
         );
     }
 
