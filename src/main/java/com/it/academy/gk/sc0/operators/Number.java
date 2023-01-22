@@ -19,8 +19,8 @@ public class Number {
      * <h4>EN: Task 1.</h4>
      * <p>Write a program that reads three numbers and prints their sum.</p><br>
      *
-     * @param values числа/numbers.
-     * @return сумма чисел/sum of numbers.
+     * @param values числа / numbers.
+     * @return сумма чисел / sum of numbers.
      */
     public Integer getSum(final int... values) {
         return Arrays.stream(values).sum();
@@ -33,7 +33,7 @@ public class Number {
      * <h4>EN: Task 4.</h4>
      * <p>Given a two-digit and a three-digit number. For each print the sum and the product of the digits.</p><br>
      *
-     * @param value число/number.
+     * @param value число / number.
      * @return сумма цифр числа/sum of digits.
      */
     public Integer getSumNumbers(final Integer value) {
@@ -54,7 +54,7 @@ public class Number {
      * <h4>EN: Task 4.</h4>
      * <p>Given a two-digit and a three-digit number. For each print the product of numbers.</p><br>
      *
-     * @param value число/number.
+     * @param value число / number.
      * @return произведение цифр числа/product of digits.
      */
     public Integer getMultiplicationNumber(final Integer value) {

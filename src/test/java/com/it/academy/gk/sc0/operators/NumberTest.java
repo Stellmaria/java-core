@@ -1,6 +1,7 @@
 package com.it.academy.gk.sc0.operators;
 
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,7 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Number.")
 class NumberTest {
-    private final Number number = new Number();
+    private Number number;
+
+    @BeforeEach
+    void init() {
+        number = new Number();
+    }
 
     static @NotNull Stream<Arguments> sumProviderArguments() {
         return Stream.of(

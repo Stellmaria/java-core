@@ -1,14 +1,19 @@
 package com.it.academy.gd.jc1.intro;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Text.")
 class TextTest {
-    private final Text text = new Text();
+    private Text text;
+
+    @BeforeEach
+    void init() {
+        text = new Text();
+    }
 
     @Test
     @DisplayName("Test for method getHelloWorld() from class Text.")
@@ -33,7 +38,7 @@ class TextTest {
     @Test
     @DisplayName("Test for method getLikeJava() from class Text.")
     void getLikeJava() {
-        var expected = format("Hello Belarus!%nI like Java!");
+        var expected = String.format("Hello Belarus!%nI like Java!");
 
         var actual = text.getLikeJava();
 

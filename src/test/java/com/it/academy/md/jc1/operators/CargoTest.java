@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Cargo.")
 class CargoTest {
-    private static Cargo c;
+    private static Cargo cargo;
 
     @BeforeAll
     static void init() {
-        c = new Cargo();
+        cargo = new Cargo();
     }
 
     static @NotNull Stream<Arguments> numberFullTrucksProvideArguments() {
@@ -34,7 +34,7 @@ class CargoTest {
     @MethodSource("numberFullTrucksProvideArguments")
     @ParameterizedTest(name = "Cargo: {0}. Carrying capacity: {1}.")
     void testNumberFullTrucks(int cargo, int carryingCapacity, int expected) {
-        var actual = c.getNumberFullTrucks(cargo, carryingCapacity);
+        var actual = CargoTest.cargo.getNumberFullTrucks(cargo, carryingCapacity);
 
         assertEquals(expected, actual);
     }
@@ -52,7 +52,7 @@ class CargoTest {
     @MethodSource("amountRemainingCargoProvideArguments")
     @ParameterizedTest(name = "Cargo: {0}. Carrying capacity: {1}.")
     void testAmountRemainingCargo(int cargo, int carryingCapacity, int expected) {
-        var actual = c.getAmountRemainingCargo(cargo, carryingCapacity);
+        var actual = CargoTest.cargo.getAmountRemainingCargo(cargo, carryingCapacity);
 
         assertEquals(expected, actual);
     }

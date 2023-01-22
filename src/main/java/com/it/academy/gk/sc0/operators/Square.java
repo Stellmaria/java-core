@@ -16,8 +16,8 @@ public class Square {
      * <h4>EN: Task 2.</h4>
      * <p>Write a program that reads the lengths of two side in a right triangle and prints its area.</p><br>
      *
-     * @param a первый катет/first side.
-     * @param b второй катет/second side.
+     * @param a первый катет / first side.
+     * @param b второй катет / second side.
      * @return площадь прямоугольного треугольника.
      */
     public double getSquare(final double a, final double b) {

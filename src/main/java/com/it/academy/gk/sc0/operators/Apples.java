@@ -11,6 +11,9 @@ import org.jetbrains.annotations.NotNull;
  * @author Anastasia Melnikova.
  */
 public class Apples {
+    public static final String EVERY_STUDENT_HAVE = "Students will receive: ";
+    public static final String IN_THE_BASKET = "The basket will contain: ";
+
     /**
      * <h4>RU: Задание 3.</h4>
      * <p>N школьников делят k яблок поровну, неделящийся остаток остается в корзинке.</p>
@@ -29,13 +32,13 @@ public class Apples {
      * <p>The program receives the numbers n and k as input and should output
      * the desired number of apples (two numbers).</p><br>
      *
-     * @param student количество студентов/number of students.
-     * @param apples  начальное количество яблок/starting number of apples.
-     * @return количество яблок для каждого студента/number of apples for each student.
+     * @param student количество студентов / number of students.
+     * @param apples  начальное количество яблок / starting number of apples.
+     * @return количество яблок для каждого студента / number of apples for each student.
      */
     public String getApples(final Integer student, final Integer apples) {
         return String.format(
-                "Students will receive: %d%nThe basket will contain: %d",
+                EVERY_STUDENT_HAVE + "%d%n" + IN_THE_BASKET + "%d",
                 calculateAppealsForStudent(student, apples),
                 calculateRemainingApples(student, apples));
     }
@@ -45,8 +48,8 @@ public class Apples {
      *
      * <p>EN: Calculates the remaining apples in the basket.</p><br>
      *
-     * @param student количество студентов/number of students.
-     * @param apples  начальное количество яблок/starting number of apples.
+     * @param student количество студентов / number of students.
+     * @param apples  начальное количество яблок / starting number of apples.
      * @return the number of apples.
      */
     @Contract(pure = true)
@@ -59,8 +62,8 @@ public class Apples {
      *
      * <p>EN: Calculates the number of apples for each student.</p><br>
      *
-     * @param student количество студентов/number of students.
-     * @param apples  начальное количество яблок/starting number of apples.
+     * @param student количество студентов / number of students.
+     * @param apples  начальное количество яблок / starting number of apples.
      * @return the number of apples.
      */
     @Contract(pure = true)

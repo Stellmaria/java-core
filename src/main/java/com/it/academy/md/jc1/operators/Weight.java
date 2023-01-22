@@ -27,8 +27,8 @@ public class Weight {
      *       <li>Can be either positive or negative.</li>
      * </ul>
      *
-     * @param height рост/height.
-     * @param weight вес/weight.
+     * @param height рост / height.
+     * @param weight вес / weight.
      * @return избыточность веса/overweight.
      */
     public int calculateDeviationStandardWeight(final int height,

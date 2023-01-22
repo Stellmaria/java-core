@@ -1,6 +1,7 @@
 package com.it.academy.gk.sc0.operators;
 
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,7 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Apples.")
 class ApplesTest {
-    private final Apples apples = new Apples();
+    private Apples apples;
+
+    @BeforeEach
+    void init() {
+        apples = new Apples();
+    }
 
     static @NotNull Stream<Arguments> applesProviderArguments() {
         return Stream.of(

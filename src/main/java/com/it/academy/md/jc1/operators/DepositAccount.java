@@ -23,11 +23,11 @@ public class DepositAccount {
      *      <li>Deposit without the possibility of early withdrawal.</li>
      * </ul>
      *
-     * @param depositAmount           первоначальная сумма на счете/
+     * @param depositAmount           первоначальная сумма на счете /
      *                                initial account balance.
-     * @param depositYears            время вклада в годах/
+     * @param depositYears            время вклада в годах /
      *                                deposit time in years.
-     * @param depositAnnualPercentage ежегодный простой процент/
+     * @param depositAnnualPercentage ежегодный простой процент /
      *                                annual simple interest.
      * @return сумма на счете/account amount.
      */

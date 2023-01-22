@@ -1,7 +1,5 @@
 package com.it.academy.md.jc1.intro;
 
-import static java.lang.String.format;
-
 /**
  * <h3>RU: Вводная лекция.</h3>
  *
@@ -10,8 +8,14 @@ import static java.lang.String.format;
  * @author Anastasia Melnikova.
  */
 public class Version {
+    private static final String JAVA_VERSION = "Java version: ";
+    private static final String JAVA_HOT_SPOT = "JVM: HotSpot.";
+    private static final String PROPERTY_VERSION = "java.vm.specification.version";
+
     static {
-        System.setProperty("java.vm.specification.version", "11");
+        final String javaVersion11 = "11";
+
+        System.setProperty(PROPERTY_VERSION, javaVersion11);
     }
 
     /**
@@ -25,10 +29,10 @@ public class Version {
      * The program is written using preset:<br>
      * <code>System.setProperty("java.vm.specification.version", "11")</p>.<br>
      *
-     * @return версия Java/Java version.
+     * @return версия Java / Java version.
      */
     public String getJavaVersion() {
-        return String.format("Java version: %s.", System.getProperty("java.vm.specification.version"));
+        return String.format(JAVA_VERSION + "%s.", System.getProperty(PROPERTY_VERSION));
     }
 
     /**
@@ -46,9 +50,9 @@ public class Version {
      *     <li> JVM: HotSpot.</li>
      * </ul>
      *
-     * @return версия Java с описанием/Java version with description.
+     * @return версия Java с описанием / Java version with description.
      */
     public String getJavaDescription() {
-        return format("%s%n%s", getJavaVersion(), "JVM: HotSpot.");
+        return String.format("%s%n%s", getJavaVersion(), JAVA_HOT_SPOT);
     }
 }

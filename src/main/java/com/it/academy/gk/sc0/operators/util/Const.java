@@ -17,5 +17,10 @@ public class Const {
      * <p>EN: The value of the minimum two-digit number.</p>
      */
     public static final Integer MINIMAL_TWO_DIGITAL_NUMBER = 10;
+    /**
+     * <p>RU: Максимальное значение процента.</p>
+     *
+     * <p>EN: The maximum percentage value.</p>
+     */
     public static final Integer MAX_PERCENTAGE = 100;
 }

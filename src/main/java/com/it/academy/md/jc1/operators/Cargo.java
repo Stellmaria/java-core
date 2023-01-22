@@ -16,7 +16,7 @@ public class Cargo {
      *
      * @param cargo            вес всего груза/the weight of the entire load..
      * @param carryingCapacity грузоподъемность грузовиков/truck capacity.
-     * @return количество грузовиков/number of trucks.
+     * @return количество грузовиков / number of trucks.
      */
     public int getNumberFullTrucks(final int cargo,
                                    final int carryingCapacity) {
@@ -33,9 +33,9 @@ public class Cargo {
      * after it is fully loaded into trucks,
      * i.e. trucks must be fully loaded</p>
      *
-     * @param cargo            вес всего груза/the weight of the entire load..
-     * @param carryingCapacity грузоподъемность грузовиков/truck capacity.
-     * @return количество груза/amount of cargo.
+     * @param cargo            вес всего груза / the weight of the entire load..
+     * @param carryingCapacity грузоподъемность грузовиков / truck capacity.
+     * @return количество груза / amount of cargo.
      */
     public int getAmountRemainingCargo(final int cargo,
                                        final int carryingCapacity) {
