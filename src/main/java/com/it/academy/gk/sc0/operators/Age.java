@@ -8,8 +8,16 @@ package com.it.academy.gk.sc0.operators;
  * @author Anastasia Melnikova.
  */
 public class Age {
+
     /**
-     * <h4>RU: Задание 7.</h4><br>
+     * <p>RU: Инициализируем переменную если число меньше нуля.</p><br>
+     *
+     * <p>EN: We initialize the variable if the number is less than zero.</p>
+     */
+    public static final String ERROR = "Error.";
+
+    /**
+     * <h4>RU: Задание 7.</h4>
      * <p>Вывести ребенок, взрослый или старик в зависимости от возраста.
      * Ребенок от 0 до 17 лет (включительно). Взрослый от 18 до 69 лет
      * (включительно). Старик от 70 и старше.
@@ -29,7 +37,7 @@ public class Age {
         int adult = 69;
         int older = 120;
 
-        String result = null;
+        String result = ERROR;
 
         if (age > 0 && age <= child) {
             result = "Child.";
@@ -38,7 +46,7 @@ public class Age {
         } else if (age >= adult + 1) {
             result = ("Older.");
             if (age >= older) {
-                result = "Long-liver.";
+                result += "\nLong-liver.";
             }
         }
         return result;

@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Weight.")
 class WeightTest {
-    private static Weight w;
+    private static Weight weight;
 
     @BeforeAll
     static void init() {
-        w = new Weight();
+        weight = new Weight();
     }
 
     static @NotNull Stream<Arguments> calculateDeviationStandardWeightProvideArguments() {
@@ -33,7 +33,7 @@ class WeightTest {
     @MethodSource("calculateDeviationStandardWeightProvideArguments")
     @ParameterizedTest(name = "Cargo: {0}. Carrying capacity: {1}.")
     void testCalculateDeviationStandardWeight(int height, int weight, int expected) {
-        var actual = w.calculateDeviationStandardWeight(height, weight);
+        var actual = WeightTest.weight.calculateDeviationStandardWeight(height, weight);
 
         assertEquals(expected, actual);
     }

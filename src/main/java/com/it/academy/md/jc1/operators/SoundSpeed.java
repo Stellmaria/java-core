@@ -3,8 +3,9 @@ package com.it.academy.md.jc1.operators;
 import com.it.academy.md.jc1.operators.util.Const;
 
 /**
- * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
- * <p>EN: Data types. Variables. Operators. Methods.</p>
+ * <h4>RU: Типы данных. Переменные. Операторы. Методы.</h4>
+ *
+ * <h4>EN: Data types. Variables. Operators. Methods.</h4>
  *
  * @author Anastasia Melnikova.
  */
@@ -12,7 +13,7 @@ public class SoundSpeed {
     /**
      * <p>RU: Высчитывает расстояние (в метрах) до ближайшего
      * места удара молнии. Расстояние = скорость * время,
-     * если используются одинаковые единицы CI.</p>
+     * если используются одинаковые единицы CI.</p><br>
      *
      * <p>EN: Calculates the distance (in meters) to the nearest
      * lightning strike location.

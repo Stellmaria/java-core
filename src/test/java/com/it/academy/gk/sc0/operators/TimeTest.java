@@ -15,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class TimeTest {
     private Time time;
 
+    @BeforeEach
+    void init() {
+        time = new Time();
+    }
+
     static @NotNull Stream<Arguments> hourProviderArguments() {
         return Stream.of(
                 Arguments.of(0, 59),
@@ -26,6 +31,15 @@ class TimeTest {
         );
     }
 
+    @ParameterizedTest(name = "Expected: {0}")
+    @MethodSource("hourProviderArguments")
+    @DisplayName("Test for method getHour() from class Time.")
+    void getHour(Integer expected, Integer value) {
+        var actual = time.getHour(value);
+
+        assertEquals(expected, actual);
+    }
+
     static @NotNull Stream<Arguments> minuteProviderArguments() {
         return Stream.of(
                 Arguments.of(0, 0),
@@ -35,20 +49,6 @@ class TimeTest {
                 Arguments.of(0, 120),
                 Arguments.of(10, 70)
         );
-    }
-
-    @BeforeEach
-    void init() {
-        time = new Time();
-    }
-
-    @ParameterizedTest(name = "Expected: {0}")
-    @MethodSource("hourProviderArguments")
-    @DisplayName("Test for method getHour() from class Time.")
-    void getHour(Integer expected, Integer value) {
-        var actual = time.getHour(value);
-
-        assertEquals(expected, actual);
     }
 
     @ParameterizedTest(name = "Expected: {0}")

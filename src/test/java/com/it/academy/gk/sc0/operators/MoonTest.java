@@ -1,6 +1,6 @@
 package com.it.academy.gk.sc0.operators;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Moon.")
 class MoonTest {
-    private Moon moon;
+    private static Moon moon;
 
-    @BeforeEach
-    void init() {
+    @BeforeAll
+    static void init() {
         moon = new Moon();
     }
 

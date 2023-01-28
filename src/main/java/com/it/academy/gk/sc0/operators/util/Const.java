@@ -12,13 +12,13 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class Const {
     /**
-     * <p>RU: Значение минимального двузначного числа.</p>
+     * <p>RU: Значение минимального двузначного числа.</p><br>
      *
      * <p>EN: The value of the minimum two-digit number.</p>
      */
     public static final Integer MINIMAL_TWO_DIGITAL_NUMBER = 10;
     /**
-     * <p>RU: Максимальное значение процента.</p>
+     * <p>RU: Максимальное значение процента.</p><br>
      *
      * <p>EN: The maximum percentage value.</p>
      */

@@ -3,8 +3,9 @@ package com.it.academy.md.jc1.operators;
 import com.it.academy.md.jc1.operators.util.Const;
 
 /**
- * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
- * <p>EN: Data types. Variables. Operators. Methods.</p>
+ * <h4>RU: Типы данных. Переменные. Операторы. Методы.</h4>
+ *
+ * <h4>EN: Data types. Variables. Operators. Methods.</h4>
  *
  * @author Anastasia Melnikova.
  */
@@ -15,7 +16,8 @@ public class DepositAccount {
      *     <li>Процент простой, т.е. всегда считается
      *     от первоначальной суммы вклада.</li>
      *     <li>Вклад без возможности досрочного снятия.</li>
-     * </ul>
+     * </ul><br>
+     *
      * <p>EN: Calculates the total amount on the deposit account, provided:</p>
      * <ul>
      *      <li>Percentage is simple, i.e. always calculated

@@ -3,14 +3,15 @@ package com.it.academy.md.jc1.operators;
 import com.it.academy.md.jc1.operators.util.Const;
 
 /**
- * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
- * <p>EN: Data types. Variables. Operators. Methods.</p>
+ * <h4>RU: Типы данных. Переменные. Операторы. Методы.</h4>
+ *
+ * <h4>EN: Data types. Variables. Operators. Methods.</h4>
  *
  * @author Anastasia Melnikova.
  */
 public class GameSessionTime {
     /**
-     * <p>RU: Высчитывает сколько времени пользователь провел в игре.</p>
+     * <p>RU: Высчитывает сколько времени пользователь провел в игре.</p><br>
      *
      * <p>EN: Calculates how much time the user spent in the game.</p>
      *

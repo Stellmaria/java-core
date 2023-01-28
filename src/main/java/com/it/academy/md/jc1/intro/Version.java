@@ -27,7 +27,7 @@ public class Version {
      * <p>EN: Develop a program with Intellij IDEA and run it with Intellij IDEA.
      * The program prints to the standard output (console) the sentence: Java: version: 11.
      * The program is written using preset:<br>
-     * <code>System.setProperty("java.vm.specification.version", "11")</p>.<br>
+     * <code>System.setProperty("java.vm.specification.version", "11")</code>.</p><br>
      *
      * @return версия Java / Java version.
      */

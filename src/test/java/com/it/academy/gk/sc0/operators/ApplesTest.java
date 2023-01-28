@@ -1,7 +1,7 @@
 package com.it.academy.gk.sc0.operators;
 
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Apples.")
 class ApplesTest {
-    private Apples apples;
+    private static Apples apples;
 
-    @BeforeEach
-    void init() {
+    @BeforeAll
+    static void init() {
         apples = new Apples();
     }
 
@@ -26,8 +26,9 @@ class ApplesTest {
         );
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Student {1} and Apples {2}.")
     @MethodSource("applesProviderArguments")
+    @DisplayName("Test for method getApples() from class Apples.")
     void getApples(String expected, Integer student, Integer apple) {
         var actual = apples.getApples(student, apple);
 

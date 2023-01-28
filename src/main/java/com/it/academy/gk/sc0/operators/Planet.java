@@ -25,31 +25,31 @@ public class Planet {
 
         switch (number) {
             case 1:
-                result = "Меркурий.";
+                result = "Mercury.";
                 break;
             case 2:
-                result = "Венера.";
+                result = "Venus.";
                 break;
             case 3:
-                result = "Земля.";
+                result = "Earth.";
                 break;
             case 4:
-                result = "Марс.";
+                result = "Mars.";
                 break;
             case 5:
-                result = "Юпитер.";
+                result = "Jupiter.";
                 break;
             case 6:
-                result = "Сатурн.";
+                result = "Saturn.";
                 break;
             case 7:
-                result = "Уран.";
+                result = "Uranium.";
                 break;
             case 8:
-                result = "Нептун.";
+                result = "Neptune.";
                 break;
             default:
-                result = "Планеты с таким номером не существует.";
+                result = "There is no planet with this number.";
                 break;
         }
         return result;

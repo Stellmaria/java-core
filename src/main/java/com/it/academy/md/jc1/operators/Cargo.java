@@ -1,8 +1,9 @@
 package com.it.academy.md.jc1.operators;
 
 /**
- * <p>RU: Типы данных. Переменные. Операторы. Методы.</p>
- * <p>EN: Data types. Variables. Operators. Methods.</p>
+ * <h4>RU: Типы данных. Переменные. Операторы. Методы.</h4>
+ *
+ * <h4>EN: Data types. Variables. Operators. Methods.</h4>
  *
  * @author Anastasia Melnikova.
  */
@@ -10,7 +11,8 @@ public class Cargo {
 
     /**
      * <p>RU: Рассчитывает количество полностью загруженных грузовиков,
-     * необходимых для перевозки некоторого груза.</p>
+     * необходимых для перевозки некоторого груза.</p><br>
+     *
      * <p>EN: Calculates the number of fully loaded trucks needed to carry
      * a given load.</p>
      *
@@ -24,12 +26,11 @@ public class Cargo {
     }
 
     /**
-     * RU:
-     * <p>Рассчитывает количество некоторого груза, который останется на складе,
+     * <p>RU: Рассчитывает количество некоторого груза, который останется на складе,
      * после полной загрузки его в грузовики, т.е. грузовики должны
-     * быть загружены полностью.</p>
-     * <p>EN:</p>
-     * <p>Calculates the amount of some cargo that will remain in the warehouse
+     * быть загружены полностью.</p><br>
+     *
+     * <p>EN: Calculates the amount of some cargo that will remain in the warehouse
      * after it is fully loaded into trucks,
      * i.e. trucks must be fully loaded</p>
      *
