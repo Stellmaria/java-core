@@ -29,6 +29,7 @@ public class GameSessionTime {
 
         return (days + " " + hours % Const.HOURS_IN_DAY
                 + ":" + minutes % Const.MINUTES_IN_HOURS
-                + ":" + playingTimeInSeconds % Const.SECONDS_IN_SECONDS);
+                + ":" + playingTimeInSeconds % Const.SECONDS_IN_SECONDS
+        );
     }
 }

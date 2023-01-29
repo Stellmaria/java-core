@@ -10,6 +10,11 @@ import com.it.academy.gk.sc0.operators.util.Const;
  * @author Anastasia Melnikova.
  */
 public class Moon {
+    /**
+     * <p>RU: Гравитация на луне.</p><br>
+     *
+     * <p>EN: Gravity on the moon.</p>
+     */
     private static final Integer GRAVITY_ON_THE_MOON = 17;
 
     /**
@@ -24,7 +29,7 @@ public class Moon {
      * @param weight земной вес / weight on earth.
      * @return вес на луне / weight on the moon.
      */
-    public Double getWeight(Double weight) {
+    public Double getWeight(final Double weight) {
         return weight - (weight / Const.MAX_PERCENTAGE * GRAVITY_ON_THE_MOON);
     }
 }

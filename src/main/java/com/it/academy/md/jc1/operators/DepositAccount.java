@@ -33,10 +33,8 @@ public class DepositAccount {
      *                                annual simple interest.
      * @return сумма на счете/account amount.
      */
-    public float getTotalDepositAmount(final int depositAmount,
-                                       final int depositYears,
+    public float getTotalDepositAmount(final int depositAmount, final int depositYears,
                                        final int depositAnnualPercentage) {
-        return depositAmount + depositYears
-                * depositAmount * depositAnnualPercentage / Const.PERCENTAGE;
+        return depositAmount + depositYears * depositAmount * depositAnnualPercentage / Const.PERCENTAGE;
     }
 }

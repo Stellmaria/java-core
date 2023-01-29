@@ -44,6 +44,7 @@ public class Number {
             sum += (digit % Const.MINIMAL_TWO_DIGITAL_NUMBER);
             digit /= Const.MINIMAL_TWO_DIGITAL_NUMBER;
         }
+
         return sum;
     }
 
@@ -58,8 +59,8 @@ public class Number {
      * @return произведение цифр числа/product of digits.
      */
     public Integer getMultiplicationNumber(final Integer value) {
-        int sum = 1;
-        int digit = value;
+        var sum = 1;
+        var digit = value;
 
         while (digit != 0) {
             sum *= (digit % Const.MINIMAL_TWO_DIGITAL_NUMBER);

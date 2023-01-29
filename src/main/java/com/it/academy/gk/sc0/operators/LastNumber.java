@@ -11,14 +11,26 @@ import com.it.academy.gk.sc0.operators.util.Const;
  */
 public class LastNumber {
     /**
+     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     *
+     * <p>EN: We initialize the variable with the response text.</p>
+     */
+    private static final String NO = "No.";
+
+    /**
+     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     *
+     * <p>EN: We initialize the variable with the response text.</p>
+     */
+    private static final String YES = "Yes.";
+
+    /**
      * <h4>RU: Задание 9.</h4>
-     * <p>Дано число, например, 12345.
-     * Проверьте, что последней цифрой этого числа является цифра 1, 2 или 3.
+     * <p>Дано число, например, 12345. Проверьте, что последней цифрой этого числа является цифра 1, 2 или 3.
      * Если это так - выведите 'да', в противном случае выведите 'нет'.</p><br>
      *
      * <h4>EN: Task 7.</h4>
-     * <p>Given a number, for example 12345.
-     * Check that the last digit of this number is 1, 2 or 3. If so, print 'yes',
+     * <p>Given a number, for example 12345. Check that the last digit of this number is 1, 2 or 3. If so, print 'yes',
      * otherwise print 'no'.</p>
      *
      * @param number получаемое число / received number.
@@ -26,14 +38,12 @@ public class LastNumber {
      * if the last digit is 1 or 2 or 3 then the answer is yes, otherwise no.
      */
     public String checkNumber(final long number) {
-        String result = "No.";
-
         if ((number % Const.MINIMAL_TWO_DIGITAL_NUMBER == 1)
                 || (number % Const.MINIMAL_TWO_DIGITAL_NUMBER == 2)
                 || (number % Const.MINIMAL_TWO_DIGITAL_NUMBER == 3)) {
-            result = "Yes.";
+            return YES;
         }
 
-        return result;
+        return NO;
     }
 }

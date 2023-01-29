@@ -11,7 +11,18 @@ import org.jetbrains.annotations.NotNull;
  * @author Anastasia Melnikova.
  */
 public class Apples {
+    /**
+     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     *
+     * <p>EN: We initialize the variable with the response text.</p>
+     */
     public static final String EVERY_STUDENT_HAVE = "Students will receive: ";
+
+    /**
+     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     *
+     * <p>EN: We initialize the variable with the response text.</p>
+     */
     public static final String IN_THE_BASKET = "The basket will contain: ";
 
     /**
@@ -40,7 +51,8 @@ public class Apples {
         return String.format(
                 EVERY_STUDENT_HAVE + "%d%n" + IN_THE_BASKET + "%d",
                 calculateAppealsForStudent(student, apples),
-                calculateRemainingApples(student, apples));
+                calculateRemainingApples(student, apples)
+        );
     }
 
     /**

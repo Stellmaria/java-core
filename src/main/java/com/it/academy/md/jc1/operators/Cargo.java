@@ -8,7 +8,6 @@ package com.it.academy.md.jc1.operators;
  * @author Anastasia Melnikova.
  */
 public class Cargo {
-
     /**
      * <p>RU: Рассчитывает количество полностью загруженных грузовиков,
      * необходимых для перевозки некоторого груза.</p><br>
@@ -20,8 +19,7 @@ public class Cargo {
      * @param carryingCapacity грузоподъемность грузовиков/truck capacity.
      * @return количество грузовиков / number of trucks.
      */
-    public int getNumberFullTrucks(final int cargo,
-                                   final int carryingCapacity) {
+    public int getNumberFullTrucks(final int cargo, final int carryingCapacity) {
         return cargo / carryingCapacity;
     }
 
@@ -38,8 +36,7 @@ public class Cargo {
      * @param carryingCapacity грузоподъемность грузовиков / truck capacity.
      * @return количество груза / amount of cargo.
      */
-    public int getAmountRemainingCargo(final int cargo,
-                                       final int carryingCapacity) {
+    public int getAmountRemainingCargo(final int cargo, final int carryingCapacity) {
         return cargo % carryingCapacity;
     }
 }

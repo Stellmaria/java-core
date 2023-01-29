@@ -31,8 +31,7 @@ public class Weight {
      * @param weight вес / weight.
      * @return избыточность веса/overweight.
      */
-    public int calculateDeviationStandardWeight(final int height,
-                                                final int weight) {
+    public int calculateDeviationStandardWeight(final int height, final int weight) {
         return weight - (height - Const.BROCKS_INDEX);
     }
 }

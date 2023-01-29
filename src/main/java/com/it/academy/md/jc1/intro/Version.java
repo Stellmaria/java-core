@@ -8,8 +8,25 @@ package com.it.academy.md.jc1.intro;
  * @author Anastasia Melnikova.
  */
 public class Version {
+    /**
+     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     *
+     * <p>EN: We initialize the variable with the response text.</p>
+     */
     private static final String JAVA_VERSION = "Java version: ";
+
+    /**
+     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     *
+     * <p>EN: We initialize the variable with the response text.</p>
+     */
     private static final String JAVA_HOT_SPOT = "JVM: HotSpot.";
+
+    /**
+     * <p>RU: Инициализируем переменную текстом команды.</p><br>
+     *
+     * <p>EN: We initialize the variable with the text of the command.</p>
+     */
     private static final String PROPERTY_VERSION = "java.vm.specification.version";
 
     static {
