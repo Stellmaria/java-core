@@ -1,7 +1,7 @@
 package com.it.academy.gk.sc0.operators;
 
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Square.")
 class SquareTest {
-    private static Square square;
+    private Square square;
 
-    @BeforeAll
-    static void init() {
+    @BeforeEach
+    void init() {
         square = new Square();
     }
 

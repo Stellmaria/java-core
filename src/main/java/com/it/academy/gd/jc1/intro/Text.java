@@ -11,11 +11,25 @@ import static java.lang.String.format;
  */
 public class Text {
     /**
-     * <p>RU: Строка, которая меняет свое значение в зависимости от запроса.</p><br>
+     * <p>RU: Константа со значением.</p>
      *
-     * <p>EN: A string that changes its value depending on the request.</p>
+     * <p>EN: A constant with a value.</p>
      */
-    private String string;
+    private static final String HELLO_WORLD = "Hello World!";
+
+    /**
+     * <p>RU: Константа со значением.</p>
+     *
+     * <p>EN: A constant with a value.</p>
+     */
+    private static final String HELLO_BELARUS = "Hello Belarus!";
+
+    /**
+     * <p>RU: Константа со значением.</p>
+     *
+     * <p>EN: A constant with a value.</p>
+     */
+    private static final String I_LIKE_JAVA = "I like Java!";
 
     /**
      * <p>RU: Набрать приведенный пример HelloWorld.java, откомпилировать его и запустить.</p><br>
@@ -25,9 +39,7 @@ public class Text {
      * @return line with text / string with text.
      */
     public String getHelloWorld() {
-        string = "Hello World!";
-
-        return string;
+        return HELLO_WORLD;
     }
 
     /**
@@ -40,9 +52,7 @@ public class Text {
      * @return line with text / string with text.
      */
     public String getHelloBelarus() {
-        string = "Hello Belarus!";
-
-        return string;
+        return HELLO_BELARUS;
     }
 
     /**
@@ -55,8 +65,6 @@ public class Text {
      * @return line with text / string with text.
      */
     public String getLikeJava() {
-        string = format("%s%n%s", getHelloBelarus(), "I like Java!");
-
-        return string;
+        return format("%s%n%s", getHelloBelarus(), I_LIKE_JAVA);
     }
 }

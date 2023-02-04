@@ -13,7 +13,7 @@ public class Cargo {
      * необходимых для перевозки некоторого груза.</p><br>
      *
      * <p>EN: Calculates the number of fully loaded trucks needed to carry
-     * a given load.</p>
+     * a given load.</p><br>
      *
      * @param cargo            вес всего груза/the weight of the entire load..
      * @param carryingCapacity грузоподъемность грузовиков/truck capacity.
@@ -30,7 +30,7 @@ public class Cargo {
      *
      * <p>EN: Calculates the amount of some cargo that will remain in the warehouse
      * after it is fully loaded into trucks,
-     * i.e. trucks must be fully loaded</p>
+     * i.e. trucks must be fully loaded</p><br>
      *
      * @param cargo            вес всего груза / the weight of the entire load..
      * @param carryingCapacity грузоподъемность грузовиков / truck capacity.

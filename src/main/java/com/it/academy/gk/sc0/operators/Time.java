@@ -21,7 +21,7 @@ public class Time {
      * @param value минуты / minutes.
      * @return количество часов / number of hours.
      */
-    public Integer getHour(final Integer value) {
+    public int getHour(final int value) {
         return value / Const.MINUTES_IN_HOURS;
     }
 
@@ -37,7 +37,7 @@ public class Time {
      * @param value минуты / minutes.
      * @return количество минут / number of minutes.
      */
-    public Integer getMinute(final Integer value) {
+    public int getMinute(final int value) {
         return value % Const.MINUTES_IN_HOURS;
     }
 }

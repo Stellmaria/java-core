@@ -1,5 +1,7 @@
 package com.it.academy.md.jc1.intro;
 
+import static java.lang.String.format;
+
 /**
  * <h3>RU: Вводная лекция.</h3>
  *
@@ -9,21 +11,21 @@ package com.it.academy.md.jc1.intro;
  */
 public class Version {
     /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа.</p>
      *
      * <p>EN: We initialize the variable with the response text.</p>
      */
     private static final String JAVA_VERSION = "Java version: ";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа.</p>
      *
      * <p>EN: We initialize the variable with the response text.</p>
      */
     private static final String JAVA_HOT_SPOT = "JVM: HotSpot.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом команды.</p><br>
+     * <p>RU: Инициализируем переменную текстом команды.</p>
      *
      * <p>EN: We initialize the variable with the text of the command.</p>
      */
@@ -49,7 +51,7 @@ public class Version {
      * @return версия Java / Java version.
      */
     public String getJavaVersion() {
-        return String.format(JAVA_VERSION + "%s.", System.getProperty(PROPERTY_VERSION));
+        return format(JAVA_VERSION + "%s.", System.getProperty(PROPERTY_VERSION));
     }
 
     /**
@@ -70,6 +72,6 @@ public class Version {
      * @return версия Java с описанием / Java version with description.
      */
     public String getJavaDescription() {
-        return String.format("%s%n%s", getJavaVersion(), JAVA_HOT_SPOT);
+        return format("%s%n%s", getJavaVersion(), JAVA_HOT_SPOT);
     }
 }

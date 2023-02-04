@@ -9,63 +9,63 @@ package com.it.academy.gk.sc0.operators;
  */
 public class Planet {
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 1.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 1.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 1.</p>
      */
     private static final String MERCURY = "Mercury.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 2.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 2.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 2.</p>
      */
     private static final String VENUS = "Venus.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 3.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 3.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 3.</p>
      */
     private static final String EARTH = "Earth.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 4.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 4.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 4.</p>
      */
     private static final String MARS = "Mars.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 5.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 5.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 5.</p>
      */
     private static final String JUPITER = "Jupiter.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 6.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 6.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 6.</p>
      */
     private static final String SATURN = "Saturn.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 7.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 7.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 7.</p>
      */
     private static final String URANIUM = "Uranium.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 8.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 8.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number 8.</p>
      */
     private static final String NEPTUNE = "Neptune.";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером <9.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером <9.</p>
      *
      * <p>EN: We initialize the variable with the response text. Corresponds to planet number <9.</p>
      */
@@ -84,37 +84,25 @@ public class Planet {
      * @return название планеты / planet name.
      */
     public String getNamePlanet(final int number) {
-        String result;
-
         switch (number) {
             case 1:
-                result = MERCURY;
-                break;
+                return MERCURY;
             case 2:
-                result = VENUS;
-                break;
+                return VENUS;
             case 3:
-                result = EARTH;
-                break;
+                return EARTH;
             case 4:
-                result = MARS;
-                break;
+                return MARS;
             case 5:
-                result = JUPITER;
-                break;
+                return JUPITER;
             case 6:
-                result = SATURN;
-                break;
+                return SATURN;
             case 7:
-                result = URANIUM;
-                break;
+                return URANIUM;
             case 8:
-                result = NEPTUNE;
-                break;
+                return NEPTUNE;
             default:
-                result = ERROR;
+                return ERROR;
         }
-
-        return result;
     }
 }

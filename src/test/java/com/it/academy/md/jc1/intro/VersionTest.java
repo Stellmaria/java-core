@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Version.")
@@ -28,7 +29,7 @@ class VersionTest {
     @Test
     @DisplayName("Test for method getJavaDescription() from class Version.")
     void testJavaDescription() {
-        var actual = String.format("%s%n%s", "Java version: 11.", "JVM: HotSpot.");
+        var actual = format("%s%n%s", "Java version: 11.", "JVM: HotSpot.");
 
         var expected = version.getJavaDescription();
 

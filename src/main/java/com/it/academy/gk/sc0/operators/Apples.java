@@ -1,8 +1,5 @@
 package com.it.academy.gk.sc0.operators;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 /**
  * <h3>RU: Типы данных. Переменные. Операторы. Методы.</h3>
  *
@@ -12,14 +9,14 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Apples {
     /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа.</p>
      *
      * <p>EN: We initialize the variable with the response text.</p>
      */
     public static final String EVERY_STUDENT_HAVE = "Students will receive: ";
 
     /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p><br>
+     * <p>RU: Инициализируем переменную текстом ответа.</p>
      *
      * <p>EN: We initialize the variable with the response text.</p>
      */
@@ -47,7 +44,7 @@ public class Apples {
      * @param apples  начальное количество яблок / starting number of apples.
      * @return количество яблок для каждого студента / number of apples for each student.
      */
-    public String getApples(final Integer student, final Integer apples) {
+    public String getApples(final int student, final int apples) {
         return String.format(
                 EVERY_STUDENT_HAVE + "%d%n" + IN_THE_BASKET + "%d",
                 calculateAppealsForStudent(student, apples),
@@ -64,8 +61,7 @@ public class Apples {
      * @param apples  начальное количество яблок / starting number of apples.
      * @return the number of apples.
      */
-    @Contract(pure = true)
-    private @NotNull Integer calculateRemainingApples(final Integer student, final Integer apples) {
+    private int calculateRemainingApples(final int student, final int apples) {
         return apples % student;
     }
 
@@ -78,8 +74,7 @@ public class Apples {
      * @param apples  начальное количество яблок / starting number of apples.
      * @return the number of apples.
      */
-    @Contract(pure = true)
-    private @NotNull Integer calculateAppealsForStudent(final Integer student, final Integer apples) {
+    private int calculateAppealsForStudent(final int student, final int apples) {
         return apples / student;
     }
 }

@@ -13,7 +13,7 @@ public class GameSessionTime {
     /**
      * <p>RU: Высчитывает сколько времени пользователь провел в игре.</p><br>
      *
-     * <p>EN: Calculates how much time the user spent in the game.</p>
+     * <p>EN: Calculates how much time the user spent in the game.</p><br>
      *
      * @param playingTimeInSeconds - количество секунд проведенных пользователем
      *                             в игре / number of seconds spent
@@ -23,9 +23,9 @@ public class GameSessionTime {
      * H - hours, m - minutes, s - seconds.
      */
     public String getPlayingTime(final int playingTimeInSeconds) {
-        int hours = playingTimeInSeconds / Const.SECONDS_TO_HOURS;
-        int minutes = playingTimeInSeconds / Const.SECONDS_TO_MINUTES;
-        int days = playingTimeInSeconds / Const.SECONDS_TO_DAYS;
+        final var hours = playingTimeInSeconds / Const.SECONDS_TO_HOURS;
+        final var minutes = playingTimeInSeconds / Const.SECONDS_TO_MINUTES;
+        final var days = playingTimeInSeconds / Const.SECONDS_TO_DAYS;
 
         return (days + " " + hours % Const.HOURS_IN_DAY
                 + ":" + minutes % Const.MINUTES_IN_HOURS

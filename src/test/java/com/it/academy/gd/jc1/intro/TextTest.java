@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test for class Text.")
@@ -38,7 +39,7 @@ class TextTest {
     @Test
     @DisplayName("Test for method getLikeJava() from class Text.")
     void getLikeJava() {
-        var expected = String.format("Hello Belarus!%nI like Java!");
+        var expected = format("Hello Belarus!%nI like Java!");
 
         var actual = text.getLikeJava();
 

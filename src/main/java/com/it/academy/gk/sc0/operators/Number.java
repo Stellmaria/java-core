@@ -36,7 +36,7 @@ public class Number {
      * @param value число / number.
      * @return сумма цифр числа/sum of digits.
      */
-    public Integer getSumNumbers(final Integer value) {
+    public int getSumNumbers(final int value) {
         var sum = 0;
         var digit = value;
 
@@ -58,7 +58,7 @@ public class Number {
      * @param value число / number.
      * @return произведение цифр числа/product of digits.
      */
-    public Integer getMultiplicationNumber(final Integer value) {
+    public int getMultiplicationNumber(final int value) {
         var sum = 1;
         var digit = value;
 

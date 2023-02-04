@@ -9,35 +9,35 @@ package com.it.academy.gk.sc0.operators;
  */
 public class Age {
     /**
-     * <p>RU: Инициализируем переменную если число меньше 0.</p><br>
+     * <p>RU: Инициализируем переменную если число меньше 0.</p>
      *
      * <p>EN: We initialize the variable if the number is less than 0.</p>
      */
     private static final String ERROR = "Error.";
 
     /**
-     * <p>RU: Инициализируем переменную если число меньше 17 и больше 0.</p><br>
+     * <p>RU: Инициализируем переменную если число меньше 17 и больше 0.</p>
      *
      * <p>EN: We initialize the variable if the number is less than 17 and greater than 0.</p>
      */
     private static final String CHILD = "Child.";
 
     /**
-     * <p>RU: Инициализируем переменную если число меньше 69 и больше 18.</p><br>
+     * <p>RU: Инициализируем переменную если число меньше 69 и больше 18.</p>
      *
      * <p>EN: We initialize the variable if the number is less than 69 and greater than 18.</p>
      */
     private static final String ADULT = "Adult.";
 
     /**
-     * <p>RU: Инициализируем переменную если число меньше 120 и больше 70.</p><br>
+     * <p>RU: Инициализируем переменную если число меньше 120 и больше 70.</p>
      *
      * <p>EN: We initialize the variable if the number is less than 120 and greater than 70.</p>
      */
     private static final String OLDER = "Older.";
 
     /**
-     * <p>RU: Инициализируем переменную если число больше 120.</p><br>
+     * <p>RU: Инициализируем переменную если число больше 120.</p>
      *
      * <p>EN: We initialize the variable if the number is greater than 120.</p>
      */
@@ -61,7 +61,7 @@ public class Age {
         final int adult = 69;
         final int older = 120;
 
-        String result = ERROR;
+        var result = ERROR;
 
         if (age > 0 && age <= child) {
             result = CHILD;

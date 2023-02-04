@@ -11,13 +11,6 @@ import com.it.academy.gk.sc0.operators.util.Const;
  */
 public class Moon {
     /**
-     * <p>RU: Гравитация на луне.</p><br>
-     *
-     * <p>EN: Gravity on the moon.</p>
-     */
-    private static final Integer GRAVITY_ON_THE_MOON = 17;
-
-    /**
      * <h4>RU: Задание 6.</h4>
      * <p>Сила тяжести на Луне составляет около 17% земной.
      * Напишите программу, которая вычислила бы ваш вес на Луне.</p><br>
@@ -29,7 +22,7 @@ public class Moon {
      * @param weight земной вес / weight on earth.
      * @return вес на луне / weight on the moon.
      */
-    public Double getWeight(final Double weight) {
-        return weight - (weight / Const.MAX_PERCENTAGE * GRAVITY_ON_THE_MOON);
+    public double getWeight(final double weight) {
+        return weight - (weight / Const.MAX_PERCENTAGE * Const.GRAVITY_ON_THE_MOON);
     }
 }

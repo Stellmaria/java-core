@@ -17,7 +17,7 @@ public class SoundSpeed {
      *
      * <p>EN: Calculates the distance (in meters) to the nearest
      * lightning strike location.
-     * distance = speed * time if the same CI units are used.</p>
+     * distance = speed * time if the same CI units are used.</p><br>
      *
      * @param milliseconds время (в миллисекундах) между срабатыванием
      *                     датчика света и звука / time (in milliseconds)
