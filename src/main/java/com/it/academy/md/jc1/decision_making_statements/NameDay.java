@@ -9,55 +9,6 @@ package com.it.academy.md.jc1.decision_making_statements;
  */
 public class NameDay {
     /**
-     * <p>RU: Значение дня недели под номером 1.</p>
-     *
-     * <p>EN: The value of the day of the week at number 1</p>
-     */
-    private static final String MONDAY = "MONDAY";
-
-    /**
-     * <p>RU: Значение дня недели под номером 2.</p>
-     *
-     * <p>EN: The value of the day of the week at number 2.</p>
-     */
-    private static final String TUESDAY = "TUESDAY";
-
-    /**
-     * <p>RU: Значение дня недели под номером 3.</p>
-     *
-     * <p>EN: The value of the day of the week at number 3.</p>
-     */
-    private static final String WEDNESDAY = "WEDNESDAY";
-
-    /**
-     * <p>RU: Значение дня недели под номером 4.</p>
-     *
-     * <p>EN: The value of the day of the week at number 4.</p>
-     */
-    private static final String THURSDAY = "THURSDAY";
-
-    /**
-     * <p>RU: Значение дня недели под номером 5.</p>
-     *
-     * <p>EN: The value of the day of the week at number 5.</p>
-     */
-    private static final String FRIDAY = "FRIDAY";
-
-    /**
-     * <p>RU: Значение дня недели под номером 6.</p>
-     *
-     * <p>EN: The value of the day of the week at number 6.</p>
-     */
-    private static final String SATURDAY = "SATURDAY";
-
-    /**
-     * <p>RU: Значение дня недели под номером 7.</p>
-     *
-     * <p>EN: The value of the day of the week at number 7.</p>
-     */
-    private static final String SUNDAY = "SUNDAY";
-
-    /**
      * <h4>RU: Задание 4.</h4>
      * <p>Возвращает название дня недели, в зависимости от его порядкового номера.</p><br>
      * <p>Разработать программу для desktop приложения которая преобразует номер дня недели
@@ -72,21 +23,29 @@ public class NameDay {
      * @return день недели на английском языке (UPPER CASE) / day of the week in English (UPPER CASE).
      */
     public String getDayOfWeekNumber(final int dayOfWeekNumber) {
+        final var monday = "MONDAY";
+        final var tuesday = "TUESDAY";
+        final var wednesday = "WEDNESDAY";
+        final var thursday = "THURSDAY";
+        final var friday = "FRIDAY";
+        final var saturday = "SATURDAY";
+        final var sunday = "SUNDAY";
+
         switch (dayOfWeekNumber) {
             case 1:
-                return MONDAY;
+                return monday;
             case 2:
-                return TUESDAY;
+                return tuesday;
             case 3:
-                return WEDNESDAY;
+                return wednesday;
             case 4:
-                return THURSDAY;
+                return thursday;
             case 5:
-                return FRIDAY;
+                return friday;
             case 6:
-                return SATURDAY;
+                return saturday;
             case 7:
-                return SUNDAY;
+                return sunday;
             default:
                 return null;
         }

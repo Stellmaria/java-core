@@ -32,12 +32,16 @@ public class Fuel {
      */
     public int getNumberStation(final int firstFuelReserves, final int secondFuelReserves,
                                 final int thirdFuelReserves) {
+        final var first = 1;
+        final var second = 2;
+        final var third = 3;
+
         if (firstFuelReserves <= secondFuelReserves && firstFuelReserves <= thirdFuelReserves) {
-            return 1;
+            return first;
         } else if (secondFuelReserves < firstFuelReserves && secondFuelReserves <= thirdFuelReserves) {
-            return 2;
+            return second;
         } else {
-            return 3;
+            return third;
         }
     }
 }

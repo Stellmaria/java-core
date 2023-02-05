@@ -23,7 +23,7 @@ class AgeTest {
     static @NotNull Stream<Arguments> ageProviderArguments() {
         return Stream.of(
                 Arguments.of("Child.", 1),
-                Arguments.of("Error.", -7),
+                Arguments.of(null, -7),
                 Arguments.of("Adult.", 18),
                 Arguments.of("Adult.", 69),
                 Arguments.of("Older.", 70),
@@ -31,7 +31,7 @@ class AgeTest {
                 Arguments.of("Older.\nLong-liver.", 120),
                 Arguments.of("Older.\nLong-liver.", 121),
                 Arguments.of("Child.", 17),
-                Arguments.of("Error.", 0)
+                Arguments.of(null, 0)
         );
     }
 

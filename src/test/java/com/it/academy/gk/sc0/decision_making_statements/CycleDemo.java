@@ -7,8 +7,6 @@ public class CycleDemo {
         var cycle = new Cycle();
         var scanner = new Scanner(System.in);
 
-        while (true) {
-            System.out.println(cycle.guessTheNumber(1, 10, scanner));
-        }
+        System.out.println(cycle.guessTheNumber(1, 10, scanner));
     }
 }

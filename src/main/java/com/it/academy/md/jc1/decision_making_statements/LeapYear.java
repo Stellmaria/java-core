@@ -7,7 +7,7 @@ package com.it.academy.md.jc1.decision_making_statements;
  *
  * @author Anastasia Melnikova.
  */
-class LeapYear {
+public class LeapYear {
     /**
      * <h4>RU: задание 7.</h4>
      * <p>Разработать программу для desktop приложения.</p>

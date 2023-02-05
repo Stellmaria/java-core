@@ -9,34 +9,6 @@ package com.it.academy.md.jc1.decision_making_statements;
  */
 public class PlayerHealth {
     /**
-     * <p>RU: Константа со значением.</p>
-     *
-     * <p>EN: A constant with a value.</p>
-     */
-    private static final String RED = "RED";
-
-    /**
-     * <p>RU: Константа со значением.</p>
-     *
-     * <p>EN: A constant with a value.</p>
-     */
-    private static final String ORANGE = "ORANGE";
-
-    /**
-     * <p>RU: Константа со значением.</p>
-     *
-     * <p>EN: A constant with a value.</p>
-     */
-    private static final String YELLOW = "YELLOW";
-
-    /**
-     * <p>RU: Константа со значением.</p>
-     *
-     * <p>EN: A constant with a value.</p>
-     */
-    private static final String GREEN = "GREEN";
-
-    /**
      * <h4>RU: Задание 3.</h4>
      * <p>Разработать программу для игрового движка.</p>
      * <p>Необходимо окрасить шкалу HP игрока в соответствующий цвет, в зависимости от процентного соотношения
@@ -65,18 +37,23 @@ public class PlayerHealth {
         final var percentageYellow = 75;
         final var percentageGreen = 100;
 
+        final var red = "RED";
+        final var orange = "ORANGE";
+        final var yellow = "YELLOW";
+        final var green = "GREEN";
+
         final var getPercentage = percentage / ((double) maxHealthPoint / (double) currentHealthPoint);
 
         if (getPercentage <= 0) {
             return null;
         } else if (getPercentage < percentageRed) {
-            return RED;
+            return red;
         } else if (getPercentage < percentageOrange) {
-            return ORANGE;
+            return orange;
         } else if (getPercentage < percentageYellow) {
-            return YELLOW;
+            return yellow;
         } else if (getPercentage <= percentageGreen) {
-            return GREEN;
+            return green;
         } else {
             return null;
         }

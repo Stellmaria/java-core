@@ -27,7 +27,8 @@ public class Floor {
     public int getFloorNumber(final int numberFloors, final int numberApartmentsPerFloor, final int apartmentNumber) {
         final byte untilOfMeasurePerFloor = 1;
 
-        return (apartmentNumber - untilOfMeasurePerFloor) % (numberApartmentsPerFloor * numberFloors)
-               / numberApartmentsPerFloor + untilOfMeasurePerFloor;
+        return (apartmentNumber - untilOfMeasurePerFloor) %
+               (numberApartmentsPerFloor * numberFloors) /
+               numberApartmentsPerFloor + untilOfMeasurePerFloor;
     }
 }

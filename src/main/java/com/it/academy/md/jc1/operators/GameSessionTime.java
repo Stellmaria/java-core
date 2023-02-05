@@ -27,9 +27,9 @@ public class GameSessionTime {
         final var minutes = playingTimeInSeconds / Const.SECONDS_TO_MINUTES;
         final var days = playingTimeInSeconds / Const.SECONDS_TO_DAYS;
 
-        return (days + " " + hours % Const.HOURS_IN_DAY
-                + ":" + minutes % Const.MINUTES_IN_HOURS
-                + ":" + playingTimeInSeconds % Const.SECONDS_IN_SECONDS
+        return (days + " " + hours % Const.HOURS_IN_DAY + ":" +
+                minutes % Const.MINUTES_IN_HOURS + ":" +
+                playingTimeInSeconds % Const.SECONDS_IN_SECONDS
         );
     }
 }

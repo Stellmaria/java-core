@@ -55,7 +55,6 @@ public class Damage {
                 damage /= damageAdditionalForSaint;
             }
         }
-
         return damage;
     }
 }

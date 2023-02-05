@@ -22,32 +22,32 @@ class LastNumberTest {
 
     static @NotNull Stream<Arguments> lastNumberProviderArguments() {
         return Stream.of(
-                Arguments.of("Yes.", 1),
-                Arguments.of("Yes.", 3),
-                Arguments.of("Yes.", 11),
-                Arguments.of("Yes.", 112),
-                Arguments.of("Yes.", 1113),
-                Arguments.of("Yes.", 11111),
-                Arguments.of("No.", 0),
-                Arguments.of("No.", 4),
-                Arguments.of("No.", 6),
-                Arguments.of("No.", 9),
-                Arguments.of("No.", 10),
-                Arguments.of("No.", 14),
-                Arguments.of("No.", 16),
-                Arguments.of("No.", 114),
-                Arguments.of("No.", 110),
-                Arguments.of("No.", 116),
-                Arguments.of("No.", 119),
-                Arguments.of("Yes.", 1111111111),
-                Arguments.of("Yes.", 2)
+                Arguments.of(true, 1),
+                Arguments.of(true, 3),
+                Arguments.of(true, 11),
+                Arguments.of(true, 112),
+                Arguments.of(true, 1113),
+                Arguments.of(true, 11111),
+                Arguments.of(false, 0),
+                Arguments.of(false, 4),
+                Arguments.of(false, 6),
+                Arguments.of(false, 9),
+                Arguments.of(false, 10),
+                Arguments.of(false, 14),
+                Arguments.of(false, 16),
+                Arguments.of(false, 114),
+                Arguments.of(false, 110),
+                Arguments.of(false, 116),
+                Arguments.of(false, 119),
+                Arguments.of(true, 1111111111),
+                Arguments.of(true, 2)
         );
     }
 
     @ParameterizedTest(name = "Expected: {0}, number: {1}.")
     @MethodSource("lastNumberProviderArguments")
     @DisplayName("Test for method checkNumber() from class LastNumber.")
-    void checkNumber(String expected, int number) {
+    void checkNumber(boolean expected, int number) {
         var actual = lastNumber.checkNumber(number);
 
         assertEquals(expected, actual);

@@ -25,16 +25,11 @@ public class Text {
     private static final String HELLO_BELARUS = "Hello Belarus!";
 
     /**
-     * <p>RU: Константа со значением.</p>
+     * <h4>RU: Задание 1.</h4>
+     * <p>Набрать приведенный пример HelloWorld.java, откомпилировать его и запустить.</p><br>
      *
-     * <p>EN: A constant with a value.</p>
-     */
-    private static final String I_LIKE_JAVA = "I like Java!";
-
-    /**
-     * <p>RU: Набрать приведенный пример HelloWorld.java, откомпилировать его и запустить.</p><br>
-     *
-     * <p>EN: Type the above HelloWorld.java example, compile it, and run it.</p><br>
+     * <h4>EN: Task 1.</h4>
+     * <p>Type the above HelloWorld.java example, compile it, and run it.</p><br>
      *
      * @return line with text / string with text.
      */
@@ -43,10 +38,12 @@ public class Text {
     }
 
     /**
-     * <p>RU: В набранном из задания 1 примере изменить сообщение на “Hello Belarus!”.
+     * <h4>RU: Задание 2.</h4>
+     * <p>В набранном из задания 1 примере изменить сообщение на “Hello Belarus!”.
      * Откомпилировать пример и запустить.</p><br>
      *
-     * <p>EN: In the example typed from task 1, change the message to “Hello Belarus!”.
+     * <h4>EN: Task 2.</h4>
+     * <p>In the example typed from task 1, change the message to “Hello Belarus!”.
      * Compile the example and run.</p><br>
      *
      * @return line with text / string with text.
@@ -56,15 +53,19 @@ public class Text {
     }
 
     /**
-     * <p>RU: В набранном из задания 2 примере добавить к основному сообщению дополнительное “I like Java!”.
+     * <h4>RU: Задание 3.</h4>
+     * <p>В набранном из задания 2 примере добавить к основному сообщению дополнительное “I like Java!”.
      * Откомпилировать пример и запустить.</p><br>
      *
-     * <p>EN: In the example typed from task 2, add an additional “I like Java!” to the main message.
+     * <h4>EN: Task 3.</h4>
+     * <p>In the example typed from task 2, add an additional “I like Java!” to the main message.
      * Compile the example and run.</p><br>
      *
      * @return line with text / string with text.
      */
     public String getLikeJava() {
-        return format("%s%n%s", getHelloBelarus(), I_LIKE_JAVA);
+        final var iLikeJava = "I like Java!";
+
+        return format("%s%n%s", getHelloBelarus(), iLikeJava);
     }
 }

@@ -44,7 +44,6 @@ public class Number {
             sum += (digit % Const.MINIMAL_TWO_DIGITAL_NUMBER);
             digit /= Const.MINIMAL_TWO_DIGITAL_NUMBER;
         }
-
         return sum;
     }
 
@@ -66,7 +65,6 @@ public class Number {
             sum *= (digit % Const.MINIMAL_TWO_DIGITAL_NUMBER);
             digit /= Const.MINIMAL_TWO_DIGITAL_NUMBER;
         }
-
         return sum;
     }
 }

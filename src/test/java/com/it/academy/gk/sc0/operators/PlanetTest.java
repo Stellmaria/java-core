@@ -30,8 +30,8 @@ class PlanetTest {
                 Arguments.of("Saturn.", 6),
                 Arguments.of("Uranium.", 7),
                 Arguments.of("Neptune.", 8),
-                Arguments.of("There is no planet with this number.", 0),
-                Arguments.of("There is no planet with this number.", -1)
+                Arguments.of(null, 0),
+                Arguments.of(null, -1)
         );
     }
 

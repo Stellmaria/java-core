@@ -9,69 +9,6 @@ package com.it.academy.gk.sc0.operators;
  */
 public class Planet {
     /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 1.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 1.</p>
-     */
-    private static final String MERCURY = "Mercury.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 2.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 2.</p>
-     */
-    private static final String VENUS = "Venus.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 3.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 3.</p>
-     */
-    private static final String EARTH = "Earth.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 4.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 4.</p>
-     */
-    private static final String MARS = "Mars.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 5.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 5.</p>
-     */
-    private static final String JUPITER = "Jupiter.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 6.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 6.</p>
-     */
-    private static final String SATURN = "Saturn.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 7.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 7.</p>
-     */
-    private static final String URANIUM = "Uranium.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером 8.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number 8.</p>
-     */
-    private static final String NEPTUNE = "Neptune.";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа. Соответствует планете с номером <9.</p>
-     *
-     * <p>EN: We initialize the variable with the response text. Corresponds to planet number <9.</p>
-     */
-    private static final String ERROR = "There is no planet with this number.";
-
-    /**
      * <h4>RU: Задание 8.</h4>
      * <p>Выведите название планеты солнечной системы по ее порядковому номеру
      * (первая планета – самая близкая к солнцу).</p><br>
@@ -84,25 +21,34 @@ public class Planet {
      * @return название планеты / planet name.
      */
     public String getNamePlanet(final int number) {
+        final var mercury = "Mercury.";
+        final var venus = "Venus.";
+        final var earth = "Earth.";
+        final var mars = "Mars.";
+        final var jupiter = "Jupiter.";
+        final var saturn = "Saturn.";
+        final var uranium = "Uranium.";
+        final var neptune = "Neptune.";
+
         switch (number) {
             case 1:
-                return MERCURY;
+                return mercury;
             case 2:
-                return VENUS;
+                return venus;
             case 3:
-                return EARTH;
+                return earth;
             case 4:
-                return MARS;
+                return mars;
             case 5:
-                return JUPITER;
+                return jupiter;
             case 6:
-                return SATURN;
+                return saturn;
             case 7:
-                return URANIUM;
+                return uranium;
             case 8:
-                return NEPTUNE;
+                return neptune;
             default:
-                return ERROR;
+                return null;
         }
     }
 }

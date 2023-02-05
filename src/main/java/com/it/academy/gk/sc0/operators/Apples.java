@@ -1,5 +1,7 @@
 package com.it.academy.gk.sc0.operators;
 
+import static java.lang.String.format;
+
 /**
  * <h3>RU: Типы данных. Переменные. Операторы. Методы.</h3>
  *
@@ -8,20 +10,6 @@ package com.it.academy.gk.sc0.operators;
  * @author Anastasia Melnikova.
  */
 public class Apples {
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p>
-     *
-     * <p>EN: We initialize the variable with the response text.</p>
-     */
-    public static final String EVERY_STUDENT_HAVE = "Students will receive: ";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p>
-     *
-     * <p>EN: We initialize the variable with the response text.</p>
-     */
-    public static final String IN_THE_BASKET = "The basket will contain: ";
-
     /**
      * <h4>RU: Задание 3.</h4>
      * <p>N школьников делят k яблок поровну, неделящийся остаток остается в корзинке.</p>
@@ -45,10 +33,12 @@ public class Apples {
      * @return количество яблок для каждого студента / number of apples for each student.
      */
     public String getApples(final int student, final int apples) {
-        return String.format(
-                EVERY_STUDENT_HAVE + "%d%n" + IN_THE_BASKET + "%d",
-                calculateAppealsForStudent(student, apples),
-                calculateRemainingApples(student, apples)
+        final var inTheBasket = "The basket will contain: ";
+        final var everyStudentHave = "Students will receive: ";
+
+        return format(
+                "%s%d%n%s%d", everyStudentHave, calculateAppealsForStudent(student, apples),
+                inTheBasket, calculateRemainingApples(student, apples)
         );
     }
 

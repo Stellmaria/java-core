@@ -47,17 +47,17 @@ public class Cycle {
      * @return заданная последовательность / given sequence.
      */
     public String giveCycleSeven(final int max) {
-        var result = new StringBuilder();
+        final var stringBuilder = new StringBuilder();
 
         var i = 0;
 
         while (i < max) {
             i++;
 
-            result.append(i).append(SPACE);
+            stringBuilder.append(i)
+                    .append(SPACE);
         }
-
-        return result.toString();
+        return stringBuilder.toString();
     }
 
     /**
@@ -73,15 +73,15 @@ public class Cycle {
      * @return заданная последовательность / given sequence.
      */
     public String giveCycleSequence(final int min, int max) {
-        var result = new StringBuilder();
+        final var stringBuilder = new StringBuilder();
 
         while (max >= min) {
-            result.append(max).append(SPACE);
+            stringBuilder.append(max)
+                    .append(SPACE);
 
             max -= min;
         }
-
-        return result.toString();
+        return stringBuilder.toString();
     }
 
     /**
@@ -178,10 +178,19 @@ public class Cycle {
      * @param min минимальное число / minimum number.
      * @return загаданное число / hidden number.
      */
-    public boolean guessTheNumber(final int min, final int max, @NotNull Scanner scanner) {
-        var answer = this.random.nextInt(max - min) + min;
+    public String guessTheNumber(final int min, final int max, @NotNull Scanner scanner) {
+        final var answer = this.random.nextInt(max - min) + min;
 
-        return answer == scanner.nextInt();
+        String result = null;
+        final var stringAnswer = "Answer ";
+
+        while (scanner.hasNextLine()) {
+            if (answer == scanner.nextInt()) {
+                result = stringAnswer + answer;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -238,17 +247,15 @@ public class Cycle {
      * @return результат / result.
      */
     public String getCycle(int max, int firstNumber, int secondNumber) {
-        var result = new StringBuilder();
+        final var result = new StringBuilder();
 
         for (var i = 0; i <= max; i++) {
             if (i == firstNumber || i == secondNumber) {
                 result.append("I'm interested in a high salary!\n");
-
                 continue;
             }
             result.append("I'm learning programming\n");
         }
-
         return result.toString();
     }
 
@@ -293,18 +300,17 @@ public class Cycle {
      * @return суммы цифр / sums of digits.
      */
     public String getSum(final int max) {
-        var result = new StringBuilder();
+        final var result = new StringBuilder();
 
         var sum = 0;
 
         for (var i = 1; i < max; i++) {
             sum += i;
-
             if (sum <= max) {
-                result.append(sum).append(',');
+                result.append(sum)
+                        .append(',');
             }
         }
-
         return result.toString();
     }
 
@@ -328,7 +334,6 @@ public class Cycle {
                 break;
             }
         }
-
         return sum;
     }
 }

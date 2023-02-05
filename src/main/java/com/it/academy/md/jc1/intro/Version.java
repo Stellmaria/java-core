@@ -11,20 +11,6 @@ import static java.lang.String.format;
  */
 public class Version {
     /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p>
-     *
-     * <p>EN: We initialize the variable with the response text.</p>
-     */
-    private static final String JAVA_VERSION = "Java version: ";
-
-    /**
-     * <p>RU: Инициализируем переменную текстом ответа.</p>
-     *
-     * <p>EN: We initialize the variable with the response text.</p>
-     */
-    private static final String JAVA_HOT_SPOT = "JVM: HotSpot.";
-
-    /**
      * <p>RU: Инициализируем переменную текстом команды.</p>
      *
      * <p>EN: We initialize the variable with the text of the command.</p>
@@ -51,7 +37,9 @@ public class Version {
      * @return версия Java / Java version.
      */
     public String getJavaVersion() {
-        return format(JAVA_VERSION + "%s.", System.getProperty(PROPERTY_VERSION));
+        final var javaVersion = "Java version: ";
+
+        return format("%s%s.", javaVersion, System.getProperty(PROPERTY_VERSION));
     }
 
     /**
@@ -72,6 +60,8 @@ public class Version {
      * @return версия Java с описанием / Java version with description.
      */
     public String getJavaDescription() {
-        return format("%s%n%s", getJavaVersion(), JAVA_HOT_SPOT);
+        final var javaHotSpot = "JVM: HotSpot.";
+
+        return format("%s%n%s", getJavaVersion(), javaHotSpot);
     }
 }
