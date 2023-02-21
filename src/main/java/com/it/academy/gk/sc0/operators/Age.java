@@ -22,10 +22,9 @@ public class Age {
      * @return ответ соответственно полученному возрасту / answer according to the received age.
      */
     public String checkAge(final int age) {
-        final int childAge = 17;
-        final int adultAge = 69;
-        final int olderAge = 120;
-
+        final var childAge = 17;
+        final var adultAge = 69;
+        final var olderAge = 120;
         final var longLiver = "\nLong-liver.";
         final var older = "Older.";
         final var adult = "Adult.";
@@ -33,9 +32,9 @@ public class Age {
 
         String result = null;
 
-        if (age > 0 && age <= childAge) {
+        if (0 < age && age <= childAge) {
             result = child;
-        } else if (age >= childAge + 1 && age <= adultAge) {
+        } else if (childAge + 1 <= age && age <= adultAge) {
             result = adult;
         } else if (age >= adultAge + 1) {
             result = older;

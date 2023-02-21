@@ -15,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DepositAccountTest {
     private DepositAccount depositAccount;
 
+    @BeforeEach
+    void init() {
+        depositAccount = new DepositAccount();
+    }
+
     static @NotNull Stream<Arguments> totalDepositAmountProvideArguments() {
         return Stream.of(
                 Arguments.of(1501, 5, 7, 2026.35f),
@@ -22,11 +27,6 @@ class DepositAccountTest {
                 Arguments.of(10000, 5, 0, 10000.0f),
                 Arguments.of(100, 5, 100, 600.0f)
         );
-    }
-
-    @BeforeEach
-    void init() {
-        depositAccount = new DepositAccount();
     }
 
     @MethodSource("totalDepositAmountProvideArguments")

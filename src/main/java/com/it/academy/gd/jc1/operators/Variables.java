@@ -20,13 +20,12 @@ public class Variables {
     public String getVariable() {
         final byte b = 0x55;
         final short s = 0x55ff;
-        final int i = 1_000_000;
-        final long l = 0xffffffffL;
-        final char c = 'a';
-        final float f = 0.25f;
-        final double d = 0.00001234;
-        final boolean boll = true;
-
+        final var i = 1_000_000;
+        final var l = 0xffffffffL;
+        final var c = 'a';
+        final var f = 0.25F;
+        final var d = 0.00001234;
+        final var boll = true;
         final var tb = "\n";
 
         return String.valueOf(b) + tb + s + tb + i + tb + l + tb + c + tb + f + tb + d + tb + boll;

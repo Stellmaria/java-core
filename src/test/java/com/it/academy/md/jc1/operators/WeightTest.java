@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WeightTest {
     private Weight weight;
 
+    @BeforeEach
+    void init() {
+        weight = new Weight();
+    }
+
     static @NotNull Stream<Arguments> calculateDeviationStandardWeightProvideArguments() {
         return Stream.of(
                 Arguments.of(176, 90, 24),
                 Arguments.of(158, 34, -14),
                 Arguments.of(180, 70, 0)
         );
-    }
-
-    @BeforeEach
-    void init() {
-        weight = new Weight();
     }
 
     @DisplayName("Test for method calculateDeviationStandardWeight() from class Weight.")

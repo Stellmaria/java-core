@@ -24,8 +24,8 @@ public class LastNumber {
      * if the last digit is 1 or 2 or 3 then the answer is yes, otherwise no.
      */
     public boolean checkNumber(final long number) {
-        return number % Const.MINIMAL_TWO_DIGITAL_NUMBER == 1
-               || number % Const.MINIMAL_TWO_DIGITAL_NUMBER == 2
-               || number % Const.MINIMAL_TWO_DIGITAL_NUMBER == 3;
+        final var remainder = number % Const.MINIMAL_TWO_DIGITAL_NUMBER;
+
+        return 1 <= remainder && remainder <= 3;
     }
 }

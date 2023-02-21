@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SoundSpeedTest {
     private SoundSpeed soundSpeed;
 
+    @BeforeEach
+    void init() {
+        soundSpeed = new SoundSpeed();
+    }
+
     static @NotNull Stream<Arguments> distanceProvideArguments() {
         return Stream.of(
                 Arguments.of(2000, 662.0),
                 Arguments.of(250, 82.75),
                 Arguments.of(0, 0.0)
         );
-    }
-
-    @BeforeEach
-    void init() {
-        soundSpeed = new SoundSpeed();
     }
 
     @DisplayName("Test for method getDistance() from class SoundSpeed.")

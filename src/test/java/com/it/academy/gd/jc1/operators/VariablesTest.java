@@ -18,14 +18,15 @@ class VariablesTest {
     @Test
     @DisplayName("Test for method sumMul() from class Summation.")
     void getVariable() {
-        var expected = "85\n" +
-                       "22015\n" +
-                       "1000000\n" +
-                       "4294967295\n" +
-                       "a\n" +
-                       "0.25\n" +
-                       "1.234E-5\n" +
-                       "true";
+        var expected = """
+                85
+                22015
+                1000000
+                4294967295
+                a
+                0.25
+                1.234E-5
+                true""";
 
         var actual = variables.getVariable();
 

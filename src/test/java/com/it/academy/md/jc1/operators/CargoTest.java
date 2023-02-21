@@ -15,15 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CargoTest {
     private Cargo cargo;
 
-    static @NotNull Stream<Arguments> numberFullTrucksProvideArguments() {
-        return Stream.of(
-                Arguments.of(2, 2, 1),
-                Arguments.of(9, 1, 9),
-                Arguments.of(5, 2, 2),
-                Arguments.of(20, 50, 0)
-        );
-    }
-
     static @NotNull Stream<Arguments> amountRemainingCargoProvideArguments() {
         return Stream.of(
                 Arguments.of(1, 2, 1),
@@ -33,9 +24,13 @@ class CargoTest {
         );
     }
 
-    @BeforeEach
-    void init() {
-        cargo = new Cargo();
+    static @NotNull Stream<Arguments> numberFullTrucksProvideArguments() {
+        return Stream.of(
+                Arguments.of(2, 2, 1),
+                Arguments.of(9, 1, 9),
+                Arguments.of(5, 2, 2),
+                Arguments.of(20, 50, 0)
+        );
     }
 
     @DisplayName("Test for method getNumberFullTrucks() from class Cargo.")
@@ -45,6 +40,11 @@ class CargoTest {
         var actual = cargo.getNumberFullTrucks(cargos, carryingCapacity);
 
         assertEquals(expected, actual);
+    }
+
+    @BeforeEach
+    void init() {
+        cargo = new Cargo();
     }
 
     @DisplayName("Test for method getAmountRemainingCargo() from class Cargo.")

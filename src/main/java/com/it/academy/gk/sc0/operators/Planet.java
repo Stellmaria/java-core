@@ -30,25 +30,16 @@ public class Planet {
         final var uranium = "Uranium.";
         final var neptune = "Neptune.";
 
-        switch (number) {
-            case 1:
-                return mercury;
-            case 2:
-                return venus;
-            case 3:
-                return earth;
-            case 4:
-                return mars;
-            case 5:
-                return jupiter;
-            case 6:
-                return saturn;
-            case 7:
-                return uranium;
-            case 8:
-                return neptune;
-            default:
-                return null;
-        }
+        return switch (number) {
+            case 1 -> mercury;
+            case 2 -> venus;
+            case 3 -> earth;
+            case 4 -> mars;
+            case 5 -> jupiter;
+            case 6 -> saturn;
+            case 7 -> uranium;
+            case 8 -> neptune;
+            default -> null;
+        };
     }
 }

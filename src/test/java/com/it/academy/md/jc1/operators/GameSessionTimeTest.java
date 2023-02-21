@@ -15,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GameSessionTimeTest {
     private GameSessionTime gameSessionTime;
 
+    @BeforeEach
+    void init() {
+        gameSessionTime = new GameSessionTime();
+    }
+
     static @NotNull Stream<Arguments> playingTimeProvideArguments() {
         return Stream.of(
                 Arguments.of(1, "0 0:0:1"),
@@ -23,11 +28,6 @@ class GameSessionTimeTest {
                 Arguments.of(86401, "1 0:0:1"),
                 Arguments.of(914701, "10 14:5:1")
         );
-    }
-
-    @BeforeEach
-    void init() {
-        gameSessionTime = new GameSessionTime();
     }
 
     @DisplayName("Test for method getPlayingTime() from class GameSessionTime.")
