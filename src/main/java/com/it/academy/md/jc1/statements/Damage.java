@@ -48,7 +48,7 @@ public class Damage {
         final var saint = "SAINT";
 
         if (hasHolyAttribute) {
-            if (undead.equals(typeMob) || zombie.equals(typeMob)) {
+            if ((undead.equals(typeMob)) || (zombie.equals(typeMob))) {
                 damage *= damageAdditional;
             } else if (saint.equals(typeMob)) {
                 damage /= damageAdditionalForSaint;

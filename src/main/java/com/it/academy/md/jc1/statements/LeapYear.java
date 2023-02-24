@@ -35,6 +35,6 @@ public class LeapYear {
      * @return <code>ложь</code>/<code>истина</code> / <code>false</code>/<code>true</code>.
      */
     public boolean isLeapYear(final int year) {
-        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+        return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
     }
 }

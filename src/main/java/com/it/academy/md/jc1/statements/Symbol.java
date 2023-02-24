@@ -53,15 +53,15 @@ public class Symbol {
         final var cyrillic = "cyrillic";
         final var undefined = "undefined";
 
-        if (minDigit <= symbol && symbol <= maxDigit) {
+        if ((minDigit <= symbol) && (symbol <= maxDigit)) {
             return digit;
-        } else if (minLatin <= symbol && symbol <= maxLatin) {
+        } else if ((minLatin <= symbol) && (symbol <= maxLatin)) {
             return latin;
-        } else if (minLatinA <= symbol && symbol <= maxLatinZ) {
+        } else if ((minLatinA <= symbol) && (symbol <= maxLatinZ)) {
             return latin;
-        } else if (minCyrillic <= symbol && symbol <= maxCyrillic) {
+        } else if ((minCyrillic <= symbol) && (symbol <= maxCyrillic)) {
             return cyrillic;
-        } else if (minCyrillicA <= symbol && symbol <= maxCyrillicZ) {
+        } else if ((minCyrillicA <= symbol) && (symbol <= maxCyrillicZ)) {
             return cyrillic;
         } else {
             return undefined;

@@ -28,6 +28,10 @@ public class Variables {
         final var boll = true;
         final var tb = "\n";
 
-        return String.valueOf(b) + tb + s + tb + i + tb + l + tb + c + tb + f + tb + d + tb + boll;
+        return (
+                "%s%s%s%s%d%s%d%s%s%s%s%s%s%s%s".formatted(
+                        String.valueOf(b), tb, s, tb, i, tb, l, tb, c, tb, f, tb, d, tb, boll
+                )
+        );
     }
 }

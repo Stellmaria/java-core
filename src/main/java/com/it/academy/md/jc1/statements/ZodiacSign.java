@@ -216,8 +216,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isPhisherCondition(final int month) {
-        return month == SECOND_MONTH
-               || month == THIRD_MONTH;
+        return (month == SECOND_MONTH) || (month == THIRD_MONTH);
     }
 
     /**
@@ -231,9 +230,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isWaterBearerCondition(final int day, final int month) {
-        return month == FIRST_MONTH
-               || month == SECOND_MONTH
-                  && day <= NINETEENTH_DAY;
+        return month == FIRST_MONTH || month == SECOND_MONTH && day <= NINETEENTH_DAY;
     }
 
     /**
@@ -247,9 +244,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isGoatCondition(final int day, final int month) {
-        return month == TWELFTH_MONTH
-               || month == FIRST_MONTH
-                  && day <= TWENTIETH_DAY;
+        return month == TWELFTH_MONTH || month == FIRST_MONTH && day <= TWENTIETH_DAY;
     }
 
     /**
@@ -263,9 +258,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isArcherCondition(final int day, final int month) {
-        return month == ELEVENTH_MONTH
-               || month == TWELFTH_MONTH
-                  && day <= TWENTY_FIRST_DAY;
+        return month == ELEVENTH_MONTH || month == TWELFTH_MONTH && day <= TWENTY_FIRST_DAY;
     }
 
     /**
@@ -279,9 +272,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isScorpionCondition(final int day, final int month) {
-        return month == TENTH_MONTH
-               || month == ELEVENTH_MONTH
-                  && day <= TWENTY_SECOND_DAY;
+        return month == TENTH_MONTH || month == ELEVENTH_MONTH && day <= TWENTY_SECOND_DAY;
     }
 
     /**
@@ -295,9 +286,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isScalesCondition(final int day, final int month) {
-        return month == NINTH_MONTH
-               || month == TENTH_MONTH
-                  && day <= TWENTY_SECOND_DAY;
+        return month == NINTH_MONTH || month == TENTH_MONTH && day <= TWENTY_SECOND_DAY;
     }
 
     /**
@@ -311,9 +300,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isMaidenCondition(final int day, final int month) {
-        return month == EIGHTH_MONTH
-               || month == NINTH_MONTH
-                  && day <= TWENTY_FIRST_DAY;
+        return month == EIGHTH_MONTH || month == NINTH_MONTH && day <= TWENTY_FIRST_DAY;
     }
 
     /**
@@ -327,9 +314,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isLionCondition(final int day, final int month) {
-        return month == SEVENTH_MONTH
-               || month == EIGHTH_MONTH
-                  && day <= TWENTY_SECOND_DAY;
+        return month == SEVENTH_MONTH || month == EIGHTH_MONTH && day <= TWENTY_SECOND_DAY;
     }
 
     /**
@@ -343,9 +328,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isCrabCondition(final int day, final int month) {
-        return month == SIXTH_MONTH
-               || month == SEVENTH_MONTH
-                  && day <= TWENTY_SECOND_DAY;
+        return month == SIXTH_MONTH || month == SEVENTH_MONTH && day <= TWENTY_SECOND_DAY;
     }
 
     /**
@@ -359,9 +342,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isTwinsCondition(final int day, final int month) {
-        return month == FIFTH_MONTH
-               || month == SIXTH_MONTH
-                  && day <= TWENTY_FIRST_DAY;
+        return month == FIFTH_MONTH || month == SIXTH_MONTH && day <= TWENTY_FIRST_DAY;
     }
 
     /**
@@ -375,9 +356,7 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isBullCondition(final int day, final int month) {
-        return month == FOURTH_MONTH
-               || month == FIFTH_MONTH
-                  && day <= TWENTIETH_DAY;
+        return month == FOURTH_MONTH || month == FIFTH_MONTH && day <= TWENTIETH_DAY;
     }
 
     /**
@@ -391,9 +370,6 @@ public class ZodiacSign {
      * false if the conditions are not met.
      */
     private boolean isRamCondition(final int day, final int month) {
-        return month == THIRD_MONTH
-               && day >= TWENTY_FIRST_DAY
-               || month == FOURTH_MONTH
-                  && day <= TWENTIETH_DAY;
+        return month == THIRD_MONTH && day >= TWENTY_FIRST_DAY || month == FOURTH_MONTH && day <= TWENTIETH_DAY;
     }
 }

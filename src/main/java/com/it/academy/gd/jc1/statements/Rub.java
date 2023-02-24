@@ -34,17 +34,13 @@ public class Rub {
         // TODO:
         if (remainder10 == 0 || (5 <= remainder10 && remainder10 <= 9)
             || (11 <= remainder100 && remainder100 <= 19)) {
-            stringBuilder.append(sum)
-                    .append(rubles);
+            stringBuilder.append(sum).append(rubles);
         } else if (remainder100 == 1) {
-            stringBuilder.append(sum)
-                    .append(rubel);
+            stringBuilder.append(sum).append(rubel);
         } else if (2 <= remainder100 && remainder100 <= 4) {
-            stringBuilder.append(sum)
-                    .append(rubel1);
+            stringBuilder.append(sum).append(rubel1);
         } else {
-            stringBuilder.append(error)
-                    .append(sum);
+            stringBuilder.append(error).append(sum);
         }
         return stringBuilder.toString();
     }

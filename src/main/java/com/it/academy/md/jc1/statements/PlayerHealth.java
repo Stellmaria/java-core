@@ -27,7 +27,7 @@ public class PlayerHealth {
      *
      * @param currentHealthPoint текущее количество HP игрока / player's current HP.
      * @param maxHealthPoint     максимальное количество HP игрока / player's maximum HP.
-     * @return null'КРАСНЫЙ''ОРАНЖЕВЫЙ''ЖЕЛТЫЙ''ЗЕЛЕНЫЙ' / null/'RED'/'ORANGE'/'YELLOW'/'GREEN'.
+     * @return null 'КРАСНЫЙ''ОРАНЖЕВЫЙ''ЖЕЛТЫЙ''ЗЕЛЕНЫЙ' / null/'RED'/'ORANGE'/'YELLOW'/'GREEN'.
      */
     public String getColorHealthPoint(final int currentHealthPoint, final int maxHealthPoint) {
         final var percentage = 100f;

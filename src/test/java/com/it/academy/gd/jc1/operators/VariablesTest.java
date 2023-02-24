@@ -16,7 +16,7 @@ class VariablesTest {
     }
 
     @Test
-    @DisplayName("Test for method sumMul() from class Summation.")
+    @DisplayName("Test for method getVariable() from class Variables.")
     void getVariable() {
         var expected = """
                 85

@@ -34,6 +34,9 @@ public class Cycle {
      */
     private final Random random;
 
+    /**
+     * Instantiates a new Cycle.
+     */
     public Cycle() {
         try {
             random = SecureRandom.getInstanceStrong();
@@ -61,8 +64,7 @@ public class Cycle {
         while (i < max) {
             i++;
 
-            stringBuilder.append(i)
-                    .append(SPACE);
+            stringBuilder.append(i).append(SPACE);
         }
         return stringBuilder.toString();
     }
@@ -75,16 +77,15 @@ public class Cycle {
      * <p>It is necessary to display the following sequence of numbers on the
      * screen: 100 90 80 70 60 50 40 30 20 10.</p><br>
      *
-     * @param max максимальное число / maximum number.
      * @param min минимальное число / minimum number.
+     * @param max максимальное число / maximum number.
      * @return заданная последовательность / given sequence.
      */
     public String giveCycleSequence(final int min, int max) {
         final var stringBuilder = new StringBuilder();
 
         while (max >= min) {
-            stringBuilder.append(max)
-                    .append(SPACE);
+            stringBuilder.append(max).append(SPACE);
 
             max -= min;
         }
@@ -99,8 +100,8 @@ public class Cycle {
      * <p>It is necessary to display numbers from 3 to -3 on the screen.
      * That is, the screen should be: 3 2 1 0 -1 -2 -3.</p><br>
      *
-     * @param max максимальное число / maximum number.
      * @param min минимальное число / minimum number.
+     * @param max максимальное число / maximum number.
      * @return заданная последовательность / given sequence.
      */
     public String giveCycleThree(final int min, final int max) {
@@ -116,8 +117,8 @@ public class Cycle {
      * <h4>EN: Task 1.</h4>
      * <p>It is necessary to display numbers from 1 to 5. The screen should show: 1 2 3 4 5.</p><br>
      *
-     * @param max максимальное число / maximum number.
      * @param min минимальное число / minimum number.
+     * @param max максимальное число / maximum number.
      * @return заданная последовательность / given sequence.
      */
     public String giveCycleOne(final int min, final int max) {
@@ -133,8 +134,8 @@ public class Cycle {
      * <h4>EN: Task 2.</h4>
      * <p>It is necessary to display numbers from 5 to 1. The screen should show 5 4 3 2 1.</p><br>
      *
-     * @param max максимальное число / maximum number.
      * @param min минимальное число / minimum number.
+     * @param max максимальное число / maximum number.
      * @return заданная последовательность / given sequence.
      */
     public String giveCycleFive(final int min, final int max) {
@@ -150,9 +151,13 @@ public class Cycle {
      * <h4>EN: Task 3.</h4>
      * <p>Display the multiplication table for 3.</p><br>
      *
+     * @param min    the min
+     * @param max    the max
+     * @param number the number
      * @return таблица умножения на 3 / multiplication table for 3.
      */
     public String giveCycleOnThree(final int min, final int max, final int number) {
+        // TODO:
         return rangeClosed(min, max)
                 .mapToObj(j -> number + " * " + j + " = " + number * j + "\n")
                 .collect(Collectors.joining());
@@ -167,11 +172,12 @@ public class Cycle {
      * <p>Write a program where the user enters any positive integer.
      * And the program sums up all numbers from 1 to the number entered by the user.</p><br>
      *
+     * @param min the min
+     * @param max the max
      * @return результат сложения / addition result.
      */
     public int getSummation(int min, int max) {
-        return rangeClosed(min, max)
-                .sum();
+        return rangeClosed(min, max).sum();
     }
 
     /**
@@ -181,8 +187,8 @@ public class Cycle {
      * <h4>EN: Task 5.</h4>
      * <p>Guess an integer that the computer "guessed" in a certain range.</p><br>
      *
-     * @param max максимальное число / maximum number.
      * @param min минимальное число / minimum number.
+     * @param max максимальное число / maximum number.
      * @return загаданное число / hidden number.
      */
     public String guessTheNumber(final int min, final int max) {
@@ -208,14 +214,12 @@ public class Cycle {
      * <h4>EN: Task 6.</h4>
      * <p>How many odd numbers are on the interval [0; n].</p><br>
      *
-     * @param max максимальное число / maximum number.
      * @param min минимальное число / minimum number.
+     * @param max максимальное число / maximum number.
      * @return результат / result.
      */
     public long getSequenceSegment(final int min, final int max) {
-        return rangeClosed(min, max)
-                .filter(j -> j % 2 != 0)
-                .count();
+        return rangeClosed(min, max).filter(j -> j % 2 != 0).count();
     }
 
     /**
@@ -249,9 +253,9 @@ public class Cycle {
      * I'm interested in a high salary!<br>
      * I am learning programming</p><br>
      *
+     * @param max          максимальное число / maximum number.
      * @param firstNumber  первое число для цикла / first number for loop.
      * @param secondNumber второе число для цикла / second number for loop.
-     * @param max          максимальное число / maximum number.
      * @return результат / result.
      */
     public String getCycle(int max, int firstNumber, int secondNumber) {
@@ -276,8 +280,8 @@ public class Cycle {
      * <h4>EN: Task 8.</h4>
      * <p>Find on the interval [19; 97] the first number is a multiple of 17.</p><br>
      *
-     * @param max      максимальное число / maximum number.
      * @param min      минимальное число / minimum number.
+     * @param max      максимальное число / maximum number.
      * @param multiple число для поиска кратности / number to find multiplicity.
      * @return первое число кратное числу multiple / first multiple of multiple.
      */
@@ -316,8 +320,8 @@ public class Cycle {
         for (var i = 1; i < max; i++) {
             sum += i;
             if (sum <= max) {
-                result.append(sum)
-                        .append(',');
+                // TODO:
+                result.append(sum).append(',');
             }
         }
         return result.toString();

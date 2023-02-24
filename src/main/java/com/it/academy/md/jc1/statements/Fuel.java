@@ -36,9 +36,9 @@ public class Fuel {
         final var second = 2;
         final var third = 3;
 
-        if (secondFuelReserves >= firstFuelReserves && firstFuelReserves <= thirdFuelReserves) {
+        if ((secondFuelReserves >= firstFuelReserves) && (firstFuelReserves <= thirdFuelReserves)) {
             return first;
-        } else if (firstFuelReserves > secondFuelReserves && secondFuelReserves <= thirdFuelReserves) {
+        } else if ((firstFuelReserves > secondFuelReserves) && (secondFuelReserves <= thirdFuelReserves)) {
             return second;
         } else {
             return third;

@@ -27,8 +27,9 @@ public class Home {
     public int getPorchNumber(final int numberFloors, final int numberApartmentsPerFloor, final int apartmentNumber) {
         final var untilOfMeasurePerFloor = 1;
 
-        return (apartmentNumber - untilOfMeasurePerFloor)
-               / (numberFloors * numberApartmentsPerFloor)
-               + untilOfMeasurePerFloor;
+        return (
+                (apartmentNumber - untilOfMeasurePerFloor) / (numberFloors * numberApartmentsPerFloor)
+                + untilOfMeasurePerFloor
+        );
     }
 }

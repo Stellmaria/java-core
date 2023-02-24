@@ -36,13 +36,13 @@ public class Time {
         final var goodEveningHour = 18;
         final var midnight = 24;
 
-        if (0 <= hour && hour <= goodMorningHour - 1) {
+        if ((0 <= hour) && (hour <= goodMorningHour - 1)) {
             return goodNight;
-        } else if (goodMorningHour <= hour && hour <= noonHour - 1) {
+        } else if ((goodMorningHour <= hour) && (hour <= noonHour - 1)) {
             return goodMorning;
-        } else if (noonHour <= hour && hour <= goodEveningHour - 1) {
+        } else if ((noonHour <= hour) && (hour <= goodEveningHour - 1)) {
             return goodDay;
-        } else if (goodEveningHour <= hour && hour <= midnight - 1) {
+        } else if ((goodEveningHour <= hour) && (hour <= midnight - 1)) {
             return goodEvening;
         } else {
             return null;

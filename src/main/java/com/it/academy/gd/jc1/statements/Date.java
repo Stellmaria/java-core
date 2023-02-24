@@ -52,19 +52,11 @@ public class Date {
             month = 1;
             year++;
 
-            stringBuilder.append(day)
-                    .append(COLON)
-                    .append(month)
-                    .append(COLON)
-                    .append(year);
+            stringBuilder.append(day).append(COLON).append(month).append(COLON).append(year);
         } else {
             day++;
 
-            stringBuilder.append(day)
-                    .append(COLON)
-                    .append(month)
-                    .append(COLON)
-                    .append(year);
+            stringBuilder.append(day).append(COLON).append(month).append(COLON).append(year);
         }
         return stringBuilder.toString();
     }
@@ -83,10 +75,6 @@ public class Date {
 
         month++;
 
-        stringBuilder.append(day)
-                .append(COLON)
-                .append(month)
-                .append(COLON)
-                .append(year);
+        stringBuilder.append(day).append(COLON).append(month).append(COLON).append(year);
     }
 }
