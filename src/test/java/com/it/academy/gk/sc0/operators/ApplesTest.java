@@ -21,9 +21,9 @@ class ApplesTest {
     }
 
     static @NotNull Stream<Arguments> applesProviderArguments() {
-        // TODO:
         return Stream.of(
-                Arguments.of(String.format("Students will receive: 3%nThe basket will contain: 5"), 15, 50)
+                Arguments.of(String.format("Students will receive: 3%nThe basket will contain: 5"), 15, 50),
+                Arguments.of(String.format("Students will receive: 5%nThe basket will contain: 0"), 20, 100)
         );
     }
 

@@ -41,6 +41,7 @@ public class Cycle {
         try {
             random = SecureRandom.getInstanceStrong();
         } catch (NoSuchAlgorithmException e) {
+            // TODO:
             throw new RuntimeException(e);
         }
     }
@@ -192,9 +193,11 @@ public class Cycle {
      * @return загаданное число / hidden number.
      */
     public String guessTheNumber(final int min, final int max) {
-        final var answer = this.random.nextInt(max - min) + min;
         var scanner = new Scanner(System.in, StandardCharsets.UTF_8);
+
         final var stringAnswer = "Answer ";
+
+        final var answer = this.random.nextInt(max - min) + min;
 
         String result = null;
 
@@ -204,6 +207,7 @@ public class Cycle {
                 break;
             }
         }
+
         return result;
     }
 
@@ -298,8 +302,7 @@ public class Cycle {
      * Каждая цифра суммы выводиться в консоль через запятую (без пробела). Остановите вывод до того,
      * как сумма превысит введённое число. Например:<br>
      * Ввод: 122<br>
-     * Вывод:<br>
-     * 1,3,6,10,15,21,28,36,45,55,66,78,91,105,120</p><br>
+     * Вывод: 1,3,6,10,15,21,28,36,45,55,66,78,91,105,120</p><br>
      *
      * <h4>EN: Task 9.</h4>
      * <p>A number is entered from the keyboard. Let the sum be considered <code>int sum = 1 + 2 + 3 + 4 + 5</code>, etc.
@@ -307,8 +310,7 @@ public class Cycle {
      * Stop the withdrawal before the amount exceeds the entered number.
      * For example:<br>
      * Input: 122<br>
-     * Output:<br>
-     * 1,3,6,10,15,21,28,36,45,55,66,78,91,105,120</p><br>
+     * Output: 1,3,6,10,15,21,28,36,45,55,66,78,91,105,120</p><br>
      *
      * @param max максимальное число / maximum number.
      * @return суммы цифр / sums of digits.

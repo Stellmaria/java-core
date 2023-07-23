@@ -25,6 +25,7 @@ public class Age {
         final var childAge = 17;
         final var adultAge = 69;
         final var olderAge = 120;
+
         final var longLiver = "\nLong-liver.";
         final var older = "Older.";
         final var adult = "Adult.";
@@ -42,6 +43,7 @@ public class Age {
                 result += longLiver;
             }
         }
+
         return result;
     }
 }
