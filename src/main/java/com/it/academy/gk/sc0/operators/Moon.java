@@ -1,28 +1,42 @@
 package com.it.academy.gk.sc0.operators;
 
-import com.it.academy.gk.sc0.operators.util.Const;
+import com.it.academy.gk.sc0.operators.exception.NegativeWeightException;
 
 /**
- * <h3>RU: Типы данных. Переменные. Операторы. Методы.</h3>
- *
- * <h3>EN: Data types. Variables. Operators. Methods.</h3>
- *
- * @author Anastasia Melnikova.
+ * Task 6: The force of gravity on the Moon is about 17% of Earth's.
+ * Write a program that would calculate your weight on the Moon.
  */
 public class Moon {
     /**
-     * <h4>RU: Задание 6.</h4>
-     * <p>Сила тяжести на Луне составляет около 17% земной.
-     * Напишите программу, которая вычислила бы ваш вес на Луне.</p><br>
-     *
-     * <h4>EN: Task 6.</h4>
-     * <p>The force of gravity on the Moon is about 17% of Earth's.
-     * Write a program that would calculate your weight on the moon.</p><br>
-     *
-     * @param weight земной вес / weight on earth.
-     * @return вес на луне / weight on the moon.
+     * The gravitational constant of the Moon, as a fraction of Earth's gravity.
      */
-    public double getWeight(final double weight) {
-        return weight - (weight / Const.MAX_PERCENTAGE * Const.GRAVITY_ON_THE_MOON);
+    public static final double MOON_GRAVITY = 0.17;
+
+    /**
+     * Error message for when the weight on Earth is negative.
+     */
+    public static final String NEGATIVE_WEIGHT_ERROR = "Weight on Earth cannot be negative";
+
+    /**
+     * Calculates the weight on the Moon given the weight on Earth.
+     * <p>
+     * This method takes in a double value representing the weight on Earth in kilograms,
+     * and returns a double value representing the weight on the Moon in kilograms.
+     * The calculation is done by multiplying the weight on Earth by the gravitational constant
+     * of the Moon (MOON_GRAVITY), which is 0.17.
+     * <p>
+     * If the weight on Earth is negative, this method throws a NegativeWeightException with
+     * an error message indicating that the weight on Earth cannot be negative.
+     *
+     * @param weightOnEarth the weight on Earth in kg.
+     * @return the weight on the Moon in kg.
+     * @throws NegativeWeightException if the weight on Earth is negative.
+     */
+    public double getWeight(final double weightOnEarth) {
+        if (weightOnEarth < 0) {
+            throw new NegativeWeightException(NEGATIVE_WEIGHT_ERROR);
+        }
+
+        return weightOnEarth * MOON_GRAVITY;
     }
 }
