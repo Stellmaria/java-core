@@ -12,15 +12,27 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * This class contains tests for the AppleDivider class.
+ * The AppleDividerTest class is a test class for the AppleDivider class.
+ * <p>
+ * This class contains several methods to test the functionality of the AppleDivider class, including methods
+ * to provide test data and methods to test the getApplesPerStudent and getRemainingApples methods
+ * of the AppleDivider class.
  */
 class AppleDividerTest {
+    /**
+     * This is a private field of the AppleDividerTest class that holds an instance of the AppleDivider class.
+     * It is used in the test methods of the AppleDividerTest class to call the methods
+     * of the AppleDivider class and test their functionality.
+     */
     private AppleDivider divider;
 
     /**
-     * This method provides positive test cases for the testGetApplesPerStudentWithPositiveTestCases method.
+     * Provides a stream of positive test cases for the testGetApplesPerStudent method.
+     * <p>
+     * This method returns a stream of arrays, where each array represents a test case with an input number
+     * of students, an input number of apples, and an expected output number of apples per student.
      *
-     * @return A stream of test cases, where each test case is an array of objects.
+     * @return a stream of positive test cases for the testGetApplesPerStudent method
      */
     @Contract(pure = true)
     private static @NotNull Stream<Object[]> providePositiveTestCasesForGetApplesPerStudent() {
@@ -32,9 +44,12 @@ class AppleDividerTest {
     }
 
     /**
-     * This method provides positive test cases for the testGetRemainingApplesWithPositiveTestCases method.
+     * Provides a stream of positive test cases for the testGetRemainingApples method.
+     * <p>
+     * This method returns a stream of arrays, where each array represents a test case with an input number
+     * of students, an input number of apples, and an expected output number of remaining apples.
      *
-     * @return A stream of test cases where each case is an array of objects
+     * @return a stream of positive test cases for the testGetRemainingApples method
      */
     @Contract(pure = true)
     private static @NotNull Stream<Object[]> providePositiveTestCasesForGetRemainingApples() {
@@ -46,8 +61,10 @@ class AppleDividerTest {
     }
 
     /**
-     * This method sets up the test environment before each test.
-     * It creates a new instance of the AppleDivider class.
+     * Sets up the test environment before each test.
+     * <p>
+     * This method creates a new instance of the AppleDivider class with default arguments and assigns
+     * it to the divider field.
      */
     @BeforeEach
     public void setUp() {
@@ -55,12 +72,18 @@ class AppleDividerTest {
     }
 
     /**
-     * This method tests the getApplesPerStudent method of the AppleDivider class using positive test cases.
-     * The test cases are provided by the providePositiveTestCasesForGetApplesPerStudent method.
+     * Tests the getApplesPerStudent method of the AppleDivider class with positive test cases.
+     * <p>
+     * This method takes an integer representing the number of students, an integer representing the number
+     * of apples, and an integer representing the expected output number of apples per student as arguments.
+     * It creates a new instance of the AppleDivider class with the provided arguments and calls
+     * its getApplesPerStudent method.
+     * It then asserts that the result is equal to the expected output number
+     * of apples per student.
      *
-     * @param n                        The number of students
-     * @param k                        The number of apples
-     * @param expectedApplesPerStudent The expected number of apples per student
+     * @param n                        an integer representing the number of students
+     * @param k                        an integer representing the number of apples
+     * @param expectedApplesPerStudent an integer representing the expected output number of apples per student
      */
     @ParameterizedTest(name = "{index} => n={0}, k={1}, expectedApplesPerStudent={2}")
     @DisplayName("Test getApplesPerStudent method with positive test cases")
@@ -68,16 +91,24 @@ class AppleDividerTest {
     void testGetApplesPerStudentWithPositiveTestCases(int n, int k, int expectedApplesPerStudent) {
         divider = new AppleDivider(n, k);
 
-        assertEquals(expectedApplesPerStudent, divider.getApplesPerStudent());
+        var actual = divider.getApplesPerStudent();
+
+        assertEquals(expectedApplesPerStudent, actual);
     }
 
     /**
-     * This method tests the getRemainingApples method of the AppleDivider class using positive test cases.
-     * The test cases are provided by the providePositiveTestCasesForGetRemainingApples method.
+     * Tests the getRemainingApples method of the AppleDivider class with positive test cases.
+     * <p>
+     * This method takes an integer representing the number of students, an integer representing the number
+     * of apples, and an integer representing the expected output number of remaining apples as arguments.
+     * It creates a new instance of the AppleDivider class with the provided arguments and calls
+     * its getRemainingApples method.
+     * It then asserts that the result is equal to the expected output number
+     * of remaining apples.
      *
-     * @param n                       The number of students
-     * @param k                       The number of apples
-     * @param expectedRemainingApples The expected number of remaining apples
+     * @param n                       an integer representing the number of students
+     * @param k                       an integer representing the number of apples
+     * @param expectedRemainingApples an integer representing the expected output number of remaining apples
      */
     @ParameterizedTest(name = "{index} => n={0}, k={1}, expectedRemainingApples={2}")
     @DisplayName("Test getRemainingApples method with positive test cases")
@@ -85,6 +116,8 @@ class AppleDividerTest {
     void testGetRemainingApplesWithPositiveTestCases(int n, int k, int expectedRemainingApples) {
         divider = new AppleDivider(n, k);
 
-        assertEquals(expectedRemainingApples, divider.getRemainingApples());
+        var actual = divider.getRemainingApples();
+
+        assertEquals(expectedRemainingApples, actual);
     }
 }

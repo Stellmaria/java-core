@@ -10,27 +10,24 @@ public class Moon {
     /**
      * The gravitational constant of the Moon, as a fraction of Earth's gravity.
      */
-    public static final double MOON_GRAVITY = 0.17;
+    private static final double MOON_GRAVITY = 0.17;
 
     /**
      * Error message for when the weight on Earth is negative.
      */
-    public static final String NEGATIVE_WEIGHT_ERROR = "Weight on Earth cannot be negative";
+    private static final String NEGATIVE_WEIGHT_ERROR = "Weight on Earth cannot be negative";
 
     /**
-     * Calculates the weight on the Moon given the weight on Earth.
+     * Calculates the weight of an object on the Moon given its weight on Earth.
      * <p>
-     * This method takes in a double value representing the weight on Earth in kilograms,
-     * and returns a double value representing the weight on the Moon in kilograms.
-     * The calculation is done by multiplying the weight on Earth by the gravitational constant
-     * of the Moon (MOON_GRAVITY), which is 0.17.
-     * <p>
-     * If the weight on Earth is negative, this method throws a NegativeWeightException with
-     * an error message indicating that the weight on Earth cannot be negative.
+     * This method takes the weight of an object on Earth as an argument and calculates its weight on the Moon
+     * by multiplying it by the gravitational constant of the Moon.
+     * If the weight on Earth is negative,
+     * this method throws a NegativeWeightException with an appropriate error message.
      *
-     * @param weightOnEarth the weight on Earth in kg.
-     * @return the weight on the Moon in kg.
-     * @throws NegativeWeightException if the weight on Earth is negative.
+     * @param weightOnEarth the weight of the object on Earth
+     * @return the weight of the object on the Moon
+     * @throws NegativeWeightException if the weight on Earth is negative
      */
     public double getWeight(final double weightOnEarth) {
         if (weightOnEarth < 0) {

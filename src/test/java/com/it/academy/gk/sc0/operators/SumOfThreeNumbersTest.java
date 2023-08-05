@@ -12,15 +12,18 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * This class contains tests for the SumOfThreeNumbers class.
+ * This class tests the SumOfThreeNumbers class.
  */
 class SumOfThreeNumbersTest {
+    /**
+     * An instance of the SumOfThreeNumbers class used for testing.
+     */
     private SumOfThreeNumbers sumOfThreeNumbers;
 
     /**
-     * This method provides positive test cases for the testSum method.
+     * Provides a stream of three numbers and their expected sum.
      *
-     * @return A stream of test cases, where each test case is an array of objects.
+     * @return a stream of three numbers and their expected sum
      */
     @Contract(pure = true)
     private static @NotNull Stream<Object[]> provideThreeNumbers() {
@@ -32,9 +35,9 @@ class SumOfThreeNumbersTest {
     }
 
     /**
-     * This method provides positive test cases for the testSumOfTwoDigitNumber method.
+     * Provides a stream of two-digit numbers and their expected sum of digits.
      *
-     * @return A stream of test cases where each case is an array of objects
+     * @return a stream of two-digit numbers and their expected sum of digits
      */
     @Contract(pure = true)
     private static @NotNull Stream<Object[]> provideTwoDigitNumbers() {
@@ -46,9 +49,9 @@ class SumOfThreeNumbersTest {
     }
 
     /**
-     * This method provides positive test cases for the testSumOfThreeDigitNumber method.
+     * Provides a stream of three-digit numbers and their expected sum of digits.
      *
-     * @return A stream of test cases where each case is an array of objects
+     * @return a stream of three-digit numbers and their expected sum of digits
      */
     @Contract(pure = true)
     private static @NotNull Stream<Object[]> provideThreeDigitNumbers() {
@@ -60,8 +63,7 @@ class SumOfThreeNumbersTest {
     }
 
     /**
-     * This method sets up the test environment before each test.
-     * It creates a new instance of the SumOfThreeNumbers class.
+     * Sets up the test by creating a new instance of SumOfThreeNumbers.
      */
     @BeforeEach
     void setUp() {
@@ -69,46 +71,49 @@ class SumOfThreeNumbersTest {
     }
 
     /**
-     * This method tests the sum method of the SumOfThreeNumbers class using positive test cases.
-     * The test cases are provided by the provideThreeNumbers method.
+     * Tests the sum method of SumOfThreeNumbers.
      *
-     * @param a        The first number to add
-     * @param b        The second number to add
-     * @param c        The third number to add
-     * @param expected The expected sum of the three numbers
+     * @param a        the first number
+     * @param b        the second number
+     * @param c        the third number
+     * @param expected the expected sum
      */
     @ParameterizedTest(name = "Sum of numbers {0}, {1}, and {2} should be {3}")
     @DisplayName("Test sum method")
     @MethodSource("provideThreeNumbers")
     void testSum(int a, int b, int c, int expected) {
-        assertEquals(expected, sumOfThreeNumbers.sum(a, b, c));
+        var actual = sumOfThreeNumbers.sum(a, b, c);
+
+        assertEquals(expected, actual);
     }
 
     /**
-     * This method tests the sumOfTwoDigitNumber method of the SumOfThreeNumbers class using positive test cases.
-     * The test cases are provided by the provideTwoDigitNumbers method.
+     * Tests the sumOfTwoDigitNumber method of SumOfThreeNumbers.
      *
-     * @param num      The two-digit number to sum
-     * @param expected The expected total of the digits in a two-digit number
+     * @param num      the two-digit number
+     * @param expected the expected sum of digits
      */
     @ParameterizedTest(name = "Sum of two-digit number {0} should be {1}")
     @DisplayName("Test sumOfTwoDigitNumber method")
     @MethodSource("provideTwoDigitNumbers")
     void testSumOfTwoDigitNumber(int num, int expected) {
-        assertEquals(expected, sumOfThreeNumbers.sumOfTwoDigitNumber(num));
+        var actual = sumOfThreeNumbers.sumOfTwoDigitNumber(num);
+
+        assertEquals(expected, actual);
     }
 
     /**
-     * This method tests the sumOfThreeDigitNumber method of the SumOfThreeNumbers class using positive test cases.
-     * The test cases are provided by the provideThreeDigitNumbers method.
+     * Tests the sumOfThreeDigitNumber method of SumOfThreeNumbers.
      *
-     * @param num      The three-digit number to sum
-     * @param expected The expected total of the digits in a two-digit number
+     * @param num      the three-digit number
+     * @param expected the expected sum of digits
      */
     @ParameterizedTest(name = "Sum of three-digit number {0} should be {1}")
     @DisplayName("Test sumOfThreeDigitNumber method")
     @MethodSource("provideThreeDigitNumbers")
     void testSumOfThreeDigitNumber(int num, int expected) {
-        assertEquals(expected, sumOfThreeNumbers.sumOfThreeDigitNumber(num));
+        var actual = sumOfThreeNumbers.sumOfThreeDigitNumber(num);
+
+        assertEquals(expected, actual);
     }
 }

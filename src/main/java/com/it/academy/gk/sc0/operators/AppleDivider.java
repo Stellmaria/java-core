@@ -10,10 +10,10 @@ package com.it.academy.gk.sc0.operators;
  * The program receives the numbers n and k as input and should output the desired number of apples (two numbers).
  */
 public record AppleDivider(int n, int k) {
-
     /**
      * Returns the number of apples each student will receive.
-     * This value is calculated by dividing the total number of apples (k) by the number of students (n).
+     * <p>
+     * This method calculates the result by dividing the total number of apples by the number of students.
      *
      * @return the number of apples each student will receive
      */
@@ -22,14 +22,16 @@ public record AppleDivider(int n, int k) {
     }
 
     /**
-     * Returns the number of remaining apples in the basket.
-     * This value is calculated by finding the remainder when the total number of apples (k)
-     * is divided by the number of students (n).
+     * Returns the number of remaining apples after dividing among students.
+     * <p>
+     * This method calculates the result
+     * by finding the remainder when dividing the total number of apples by the number of students.
      *
-     * @return the number of remaining apples in the basket
+     * @return the number of remaining apples
      */
     public int getRemainingApples() {
         return k % n;
     }
 }
+
 

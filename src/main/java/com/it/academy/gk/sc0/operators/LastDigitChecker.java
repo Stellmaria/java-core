@@ -9,30 +9,30 @@ public record LastDigitChecker(int number) {
     /**
      * The base used to calculate the last digit of the number.
      */
-    public static final int BASE = 10;
+    private static final int BASE = 10;
     /**
      * The first valid last digit.
      */
-    public static final int FIRST_VALID_LAST_DIGIT = 1;
+    private static final int FIRST_VALID_LAST_DIGIT = 1;
 
     /**
      * The second valid last digit.
      */
-    public static final int SECOND_VALID_LAST_DIGIT = 2;
+    private static final int SECOND_VALID_LAST_DIGIT = 2;
 
     /**
      * The third valid last digit.
      */
-    public static final int THIRD_VALID_LAST_DIGIT = 3;
+    private static final int THIRD_VALID_LAST_DIGIT = 3;
 
     /**
-     * Checks if the last digit of the number is 1, 2, or 3.
+     * Checks if the last digit of the number is valid.
      * <p>
-     * This method calculates the last digit of the number by finding the remainder when the number is divided by 10.
-     * Then it checks if the last digit is equal to one of the valid last digits (1, 2, or 3) and returns true if it is,
-     * and false otherwise.
+     * This method calculates the last digit of the number
+     * by finding the remainder when dividing the number by the base.
+     * It then checks if the last digit is equal to one of the three valid last digits.
      *
-     * @return true if the last digit of the number is 1, 2, or 3; false otherwise
+     * @return true if the last digit of the number is valid, false otherwise
      */
     public boolean checkLastDigit() {
         var lastDigit = this.number % BASE;

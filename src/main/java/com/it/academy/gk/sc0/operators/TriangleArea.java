@@ -13,12 +13,17 @@ public class TriangleArea {
 
     /**
      * Calculates the area of a right triangle given the lengths of its two legs.
+     * <p>
+     * This method takes two double arguments representing the lengths of the two legs of a right triangle
+     * and returns the area of the triangle.
+     * The area is calculated by multiplying the lengths
+     * of the two legs together and dividing the result by 2.
      *
-     * @param a The length of the first leg.
-     * @param b The length of the second leg.
-     * @return The calculated area of the right triangle.
+     * @param a the length of the first leg of the right triangle
+     * @param b the length of the second leg of the right triangle
+     * @return the area of the right triangle
      */
-    public double calculateArea(double a, double b) {
+    public double calculateArea(final double a, final double b) {
         return (a * b) / DIVISOR;
     }
 }

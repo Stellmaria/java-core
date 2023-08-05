@@ -12,15 +12,18 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * This class contains tests for the TriangleArea class.
+ * This class tests the TriangleArea class.
  */
 class TriangleAreaTest {
+    /**
+     * An instance of the TriangleArea class used for testing.
+     */
     private TriangleArea triangleArea;
 
     /**
-     * Provides test data for the testCalculateArea method.
+     * Provides a stream of test data for the calculateArea method.
      *
-     * @return A stream of arguments for the testCalculateArea method.
+     * @return a stream of test data for the calculateArea method
      */
     private static @NotNull Stream<Arguments> testCalculateAreaProvider() {
         return Stream.of(
@@ -34,7 +37,7 @@ class TriangleAreaTest {
     }
 
     /**
-     * Set up a method that creates a new instance of the TriangleArea class before each test.
+     * Sets up the test by creating a new instance of TriangleArea.
      */
     @BeforeEach
     public void setUp() {
@@ -42,16 +45,25 @@ class TriangleAreaTest {
     }
 
     /**
-     * Parameterized test that checks the calculateArea method with positive and negative cases.
+     * Tests the calculateArea method of TriangleArea.
+     * <p>
+     * This method is a parameterized test that uses data from the `testCalculateAreaProvider`
+     * method to test the `calculateArea` method in `TriangleArea`.
+     * Each run of the test checks
+     * if the actual result from calling the `calculateArea` method with the provided input parameters
+     * is equal to the expected result.
      *
-     * @param a            The length of the first leg.
-     * @param b            The length of the second leg.
-     * @param expectedArea The expected area of the right triangle.
+     * @param a            the first side of the triangle
+     * @param b            the second side of the triangle
+     * @param expectedArea the expected area of the triangle
      */
     @ParameterizedTest(name = "{index} => a={0}, b={1}, expectedArea={2}")
     @DisplayName("Test calculateArea method with positive and negative cases")
     @MethodSource("testCalculateAreaProvider")
     void testCalculateArea(double a, double b, double expectedArea) {
-        assertEquals(expectedArea, triangleArea.calculateArea(a, b));
+        var actual = triangleArea.calculateArea(a, b);
+
+        assertEquals(expectedArea, actual);
     }
 }
+

@@ -1,6 +1,5 @@
 package com.it.academy.gk.sc0.operators;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,18 +12,29 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * This class contains tests for the TimeSinceMidnight class.
+ * The TimeSinceMidnightTest class is a test class for the TimeSinceMidnight class.
+ * <p>
+ * This class contains several methods to test the functionality of the TimeSinceMidnight class,
+ * including methods to provide test data and methods to test the hoursSinceMidnight method
+ * of the TimeSinceMidnight class.
  */
 class TimeSinceMidnightTest {
+    /**
+     * This is a private field of the TimeSinceMidnightTest class that holds an instance
+     * of the TimeSinceMidnight class.
+     * It is used in the test methods of the TimeSinceMidnightTest class to call the methods
+     * of the TimeSinceMidnight class and test their functionality.
+     */
     private TimeSinceMidnight timeSinceMidnight;
 
     /**
-     * Provides test data for the testHoursSinceMidnight method.
+     * Provides a stream of test data for the testHoursSinceMidnight method.
+     * <p>
+     * This method returns a stream of arrays, where each array represents a test case with
+     * an input number of minutes since midnight and an expected output number of hours since midnight.
      *
-     * @return A stream of test data, where each element is an array containing the input values and
-     * expected result for a test case.
+     * @return a stream of test data for the testHoursSinceMidnight method
      */
-    @SuppressFBWarnings("NP_NONNULL_RETURN_VIOLATION")
     @Contract(pure = true)
     static @NotNull Stream<Object[]> testCases() {
         return Stream.of(
@@ -38,7 +48,9 @@ class TimeSinceMidnightTest {
     }
 
     /**
-     * Initializes the TimeSinceMidnight object before each test case.
+     * Sets up the test environment before each test.
+     * <p>
+     * This method creates a new instance of the TimeSinceMidnight class and assigns it to the timeSinceMidnight field.
      */
     @BeforeEach
     void setUp() {
@@ -46,15 +58,23 @@ class TimeSinceMidnightTest {
     }
 
     /**
-     * Tests the hoursSinceMidnight method in the TimeSinceMidnight class with positive and negative cases.
+     * Tests the hoursSinceMidnight method of the TimeSinceMidnight class with positive and negative cases.
+     * <p>
+     * This method takes an integer representing a number of minutes since midnight and an integer representing
+     * the expected output number of hours since midnight as arguments.
+     * It calls the hoursSinceMidnight method of the TimeSinceMidnight class with
+     * the provided number of minutes since midnight
+     * and asserts that the result is equal to the expected output number of hours since midnight.
      *
-     * @param minutes  The number of minutes that have passed since midnight.
-     * @param expected The expected number of hours that have passed since midnight.
+     * @param minutes       an integer representing a number of minutes since midnight
+     * @param expectedHours an integer representing the expected output number of hours since midnight
      */
     @ParameterizedTest(name = "Test case {index}: {0} minutes since midnight is {1} hours since midnight")
     @MethodSource("testCases")
     @DisplayName("Test hoursSinceMidnight method with positive and negative cases")
-    void testHoursSinceMidnight(int minutes, int expected) {
-        assertEquals(expected, timeSinceMidnight.hoursSinceMidnight(minutes));
+    void testHoursSinceMidnight(int minutes, int expectedHours) {
+        var actual = timeSinceMidnight.hoursSinceMidnight(minutes);
+
+        assertEquals(expectedHours, actual);
     }
 }

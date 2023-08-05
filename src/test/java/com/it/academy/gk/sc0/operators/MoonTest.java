@@ -14,29 +14,48 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * This class contains tests for the Moon class.
+ * The MoonTest class is a test class for the Moon class.
+ * <p>
+ * This class contains several methods to test the functionality of the Moon class,
+ * including methods to provide test data and methods to test the getWeight method of the Moon class.
+ * This class uses the Reflection API to access private fields of the Moon class in its test methods.
  */
 class MoonTest {
+    /**
+     * This is a private field of the MoonTest class that holds an instance of the Moon class.
+     * It is used in the test methods of the MoonTest class to call the methods
+     * of the Moon class and test their functionality.
+     */
     private Moon moon;
 
     /**
-     * This method provides positive test cases for the testGetWeight method.
+     * Provides a stream of test data for the testGetWeight method.
+     * <p>
+     * This method returns a stream of arrays, where each array represents a test case with
+     * an input weight on Earth and an expected output weight on the Moon.
      *
-     * @return A stream of test cases, where each test case is an array of objects.
+     * @return a stream of test data for the testGetWeight method
      */
     @Contract(pure = true)
-    private static @NotNull Stream<Object[]> weightProvider() {
+    private static @NotNull Stream<Object[]> weightProvider() throws NoSuchFieldException, IllegalAccessException {
+        var moonGravityField = Moon.class.getDeclaredField("MOON_GRAVITY");
+        moonGravityField.setAccessible(true);
+        var moonGravity = (double) moonGravityField.get(null);
+
         return Stream.of(
                 new Object[]{0, 0},
-                new Object[]{50, 50 * Moon.MOON_GRAVITY},
-                new Object[]{100, 100 * Moon.MOON_GRAVITY}
+                new Object[]{50, 50 * moonGravity},
+                new Object[]{100, 100 * moonGravity}
         );
     }
 
     /**
-     * This method provides negative test cases for the testGetWeightNegative method.
+     * Provides a stream of negative test data for the testGetWeightNegative method.
+     * <p>
+     * This method returns a stream of arrays, where each array represents a test case with
+     * an input negative weight on Earth.
      *
-     * @return A stream of test cases where each case is an array of objects
+     * @return a stream of negative test data for the testGetWeightNegative method
      */
     @Contract(pure = true)
     private static @NotNull Stream<Object[]> negativeWeightProvider() {
@@ -47,8 +66,9 @@ class MoonTest {
     }
 
     /**
-     * This method sets up the test environment before each test.
-     * It creates a new instance of the Moon class.
+     * Sets up the test environment before each test.
+     * <p>
+     * This method creates a new instance of the Moon class and assigns it to the moon field.
      */
     @BeforeEach
     void setUp() {
@@ -56,24 +76,34 @@ class MoonTest {
     }
 
     /**
-     * This method tests the getWeight method of the Moon class using positive test cases.
-     * The test cases are provided by the weightProvider method.
+     * Tests the getWeight method of the Moon class with positive cases.
+     * <p>
+     * This method takes a double representing a weight on Earth and a double representing the expected
+     * output weight on the Moon as arguments.
+     * It calls the getWeight method of the Moon class with
+     * the provided weight on Earth
+     * and asserts that the result is equal to the expected output weight on the Moon.
      *
-     * @param weightOnEarth        The weight on Earth
-     * @param expectedWeightOnMoon The expected weight on the Moon
+     * @param weightOnEarth        a double representing a weight on Earth
+     * @param expectedWeightOnMoon a double representing the expected output weight on the Moon
      */
     @ParameterizedTest(name = "Weight on Earth: {0}, Weight on Moon: {1}")
     @MethodSource("weightProvider")
     @DisplayName("Test getWeight method with positive cases")
     void testGetWeight(double weightOnEarth, double expectedWeightOnMoon) {
-        assertEquals(expectedWeightOnMoon, moon.getWeight(weightOnEarth));
+        var actual = moon.getWeight(weightOnEarth);
+
+        assertEquals(expectedWeightOnMoon, actual);
     }
 
     /**
-     * This method tests the getWeight method of the Moon class using negative test cases.
-     * The test cases are provided by the negativeWeightProvider method.
+     * Tests the getWeight method of the Moon class with negative cases.
+     * <p>
+     * This method takes a double representing a negative weight on Earth as an argument.
+     * It calls the getWeight method of the Moon class with the provided negative weight on Earth
+     * and asserts that it throws a NegativeWeightException.
      *
-     * @param weightOnEarth The weight on Earth
+     * @param weightOnEarth a double representing a negative weight on Earth
      */
     @ParameterizedTest(name = "Weight on Earth: {0}")
     @MethodSource("negativeWeightProvider")
