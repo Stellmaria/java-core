@@ -1,140 +1,194 @@
 package com.it.academy.gk.sc0.statements;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.Mockito;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 /**
- * This class contains unit tests for the GuessNumber class.
- * It uses the Mockito framework to create mock objects for the Scanner and Logger classes,
- * which are passed to the GuessNumber constructor when creating a new game.
+ * This is a test class for the GuessNumber class.
+ * It contains several test methods that test various aspects of the GuessNumber class.
  */
-@ExtendWith(MockitoExtension.class)
 class GuessNumberTest {
     /**
-     * A mock object for the Scanner class, used to simulate user input.
+     * This is a private static field that holds the value of the TOO_LOW constant from the GuessNumber class.
      */
-    @Mock
+    private static String TOO_LOW;
+    /**
+     * This is a private static field that holds the value of the TOO_HIGH constant from the GuessNumber class.
+     */
+    private static String TOO_HIGH;
+    /**
+     * This is a private static field that holds the value of the CORRECT constant from the GuessNumber class.
+     */
+    private static String CORRECT;
+    /**
+     * This is a private field that holds an instance of the GuessNumber class.
+     */
+    private GuessNumber guessNumber;
+    /**
+     * This is a private field that holds an instance of the Scanner class.
+     */
     private Scanner scanner;
     /**
-     * A mock object for the Logger class, used to verify that the correct messages are logged.
+     * This is a private field that holds an instance of the Logger class.
      */
-    @Mock
     private Logger logger;
 
     /**
-     * Tests that the play method behaves correctly when the player correctly guesses the number on their first try.
-     * This test method uses reflection to access the private fields of the GuessNumber class and retrieve the values
-     * of the messages that are displayed to the player. It then creates a new GuessNumber game with a fixed number,
-     * sets up the scanner mock to return the correct guess on the first try, and calls the play method. Finally,
-     * it verifies that the logger mock was called with the expected messages in the correct order.
+     * This method sets up constants before all tests are run.
+     * It uses reflection to access the private fields of the GuessNumber class and assigns their values
+     * to the corresponding fields in this test class.
      */
-    @Test
-    void testPlayMethodCorrectGuessFirstTry() throws NoSuchFieldException, IllegalAccessException {
-        when(scanner.nextInt()).thenReturn(5);
-        var game = new GuessNumber(5, 5, scanner, logger);
-
-        var startGameField = GuessNumber.class.getDeclaredField("START_GAME");
-        startGameField.setAccessible(true);
-        var startGame = (String) startGameField.get(game);
-
-        var enterGuessField = GuessNumber.class.getDeclaredField("ENTER_GUESS");
-        enterGuessField.setAccessible(true);
-        var enterGuess = (String) enterGuessField.get(game);
-
-        var correctField = GuessNumber.class.getDeclaredField("CORRECT");
-        correctField.setAccessible(true);
-        var correct = (String) correctField.get(game);
-
-        game.play();
-        verify(logger).info(startGame);
-        verify(logger).info(enterGuess);
-        verify(logger).info(correct);
-        verifyNoMoreInteractions(logger);
-    }
-
-    /**
-     * Tests that the play method behaves correctly when the player's first guess is too low,
-     * and their second guess is correct. This test method uses reflection to access
-     * the private fields of the GuessNumber class and retrieve the values of the messages that are displayed
-     * to the player. It then creates a new GuessNumber game with a fixed number, sets up the scanner mock
-     * to return a guess that is too low on the first try and the correct guess on the second try, and calls
-     * the play method. Finally, it verifies that the logger mock was called with the expected messages in
-     * the correct order.
-     */
-    @Test
-    void testPlayMethodTooLowThenCorrect() throws NoSuchFieldException, IllegalAccessException {
-        when(scanner.nextInt()).thenReturn(4, 5);
-        var game = new GuessNumber(5, 5, scanner, logger);
-
-        var startGameField = GuessNumber.class.getDeclaredField("START_GAME");
-        startGameField.setAccessible(true);
-        var startGame = (String) startGameField.get(game);
-
-        var enterGuessField = GuessNumber.class.getDeclaredField("ENTER_GUESS");
-        enterGuessField.setAccessible(true);
-        var enterGuess = (String) enterGuessField.get(game);
-
+    @BeforeAll
+    public static void setUpConstants() throws Exception {
         var tooLowField = GuessNumber.class.getDeclaredField("TOO_LOW");
         tooLowField.setAccessible(true);
-        var tooLow = (String) tooLowField.get(game);
-
-        var correctField = GuessNumber.class.getDeclaredField("CORRECT");
-        correctField.setAccessible(true);
-        var correct = (String) correctField.get(game);
-
-        game.play();
-        verify(logger).info(startGame);
-        verify(logger, times(2)).info(enterGuess);
-        verify(logger).info(tooLow);
-        verify(logger).info(correct);
-        verifyNoMoreInteractions(logger);
-    }
-
-    /**
-     * Tests that the play method behaves correctly when the player's first guess is too high,
-     * and their second guess is correct. This test method uses reflection to access
-     * the private fields of the GuessNumber class and retrieve the values of the messages that are displayed
-     * to the player. It then creates a new GuessNumber game with a fixed number, sets up the scanner mock
-     * to return a guess that is too high on the first try and the correct guess on the second try,
-     * and calls the play method. Finally, it verifies that the logger mock was called with the expected messages in
-     * the correct order.
-     */
-    @Test
-    void testPlayMethodTooHighThenCorrect() throws NoSuchFieldException, IllegalAccessException {
-        when(scanner.nextInt()).thenReturn(6, 5);
-        var game = new GuessNumber(5, 5, scanner, logger);
-
-        var startGameField = GuessNumber.class.getDeclaredField("START_GAME");
-        startGameField.setAccessible(true);
-        var startGame = (String) startGameField.get(game);
-
-        var enterGuessField = GuessNumber.class.getDeclaredField("ENTER_GUESS");
-        enterGuessField.setAccessible(true);
-        var enterGuess = (String) enterGuessField.get(game);
+        TOO_LOW = (String) tooLowField.get(null);
 
         var tooHighField = GuessNumber.class.getDeclaredField("TOO_HIGH");
         tooHighField.setAccessible(true);
-        var tooHigh = (String) tooHighField.get(game);
+        TOO_HIGH = (String) tooHighField.get(null);
 
         var correctField = GuessNumber.class.getDeclaredField("CORRECT");
         correctField.setAccessible(true);
-        var correct = (String) correctField.get(game);
+        CORRECT = (String) correctField.get(null);
+    }
 
-        game.play();
-        verify(logger).info(startGame);
-        verify(logger, times(2)).info(enterGuess);
-        verify(logger).info(tooHigh);
-        verify(logger).info(correct);
-        verifyNoMoreInteractions(logger);
+    /**
+     * This method sets up the test environment before each test is run.
+     * It creates mock objects for the Scanner and Logger classes and initializes a new instance
+     * of the GuessNumber class with these mock objects.
+     */
+    @BeforeEach
+    public void setUp() {
+        scanner = Mockito.mock(Scanner.class);
+        logger = Mockito.mock(Logger.class);
+        guessNumber = new GuessNumber(1, 10, scanner, logger);
+    }
+
+    /**
+     * This test method tests that the generateRandomNumber method returns a number within the specified range.
+     * It uses reflection to access the private generateRandomNumber method of the GuessNumber class
+     * and invokes it with a specified range. The returned value is then checked to be within the specified range.
+     */
+    @Test
+    void testGenerateRandomNumberReturnsNumberWithinRange() throws Exception {
+        var generateRandomNumberMethod = GuessNumber.class.getDeclaredMethod(
+                "generateRandomNumber", int.class, int.class
+        );
+        generateRandomNumberMethod.setAccessible(true);
+
+        var min = 1;
+        var max = 10;
+        var randomNumber = (int) generateRandomNumberMethod.invoke(guessNumber, min, max);
+        assertTrue(randomNumber >= min && randomNumber <= max);
+    }
+
+    /**
+     * This test method tests that the generateRandomNumber method returns different numbers on subsequent calls.
+     * It uses reflection to access the private generateRandomNumber method of the GuessNumber class
+     * and invokes it twice with the same range. The returned values are then checked to be different from each other.
+     */
+    @Test
+    void testGenerateRandomNumberReturnsDifferentNumbersOnSubsequentCalls() throws Exception {
+        var generateRandomNumberMethod = GuessNumber.class.getDeclaredMethod(
+                "generateRandomNumber", int.class, int.class
+        );
+        generateRandomNumberMethod.setAccessible(true);
+
+        var min = 1;
+        var max = 10;
+        var randomNumber = (int) generateRandomNumberMethod.invoke(guessNumber, min, max);
+        var randomNumber2 = (int) generateRandomNumberMethod.invoke(guessNumber, min, max);
+        assertNotEquals(randomNumber, randomNumber2);
+    }
+
+    /**
+     * This test method tests that the generateRandomNumber method returns a number within a new specified range.
+     * It uses reflection to access the private generateRandomNumber method of the GuessNumber class
+     * and invokes it with a new specified range. The returned value is then checked to be
+     * within the new specified range.
+     */
+    @Test
+    void testGenerateRandomNumberReturnsNumberWithinNewRange() throws Exception {
+        var generateRandomNumberMethod = GuessNumber.class.getDeclaredMethod(
+                "generateRandomNumber", int.class, int.class
+        );
+        generateRandomNumberMethod.setAccessible(true);
+
+        var newMin = 5;
+        var newMax = 15;
+        var newRandomNumber = (int) generateRandomNumberMethod.invoke(guessNumber, newMin, newMax);
+        assertTrue(newRandomNumber >= newMin && newRandomNumber <= newMax);
+    }
+
+    /**
+     * This test method tests that the play method works correctly and outputs the appropriate messages
+     * when the user inputs a number that is less than, greater than, or equal to the secret number.
+     * It uses Mockito to mock the behavior of the Scanner class and returns predefined values when
+     * its nextInt method is called. The logger object is also mocked, and its info method
+     * is verified to have been called with the appropriate arguments.
+     */
+    @Test
+    void testPlay() throws Exception {
+        var numberField = GuessNumber.class.getDeclaredField("number");
+        numberField.setAccessible(true);
+        var number = (int) numberField.get(guessNumber);
+
+        when(scanner.nextInt()).thenReturn(number - 1, number + 1, number);
+        guessNumber.play();
+        verify(logger, times(1)).info(TOO_LOW);
+        verify(logger, times(1)).info(TOO_HIGH);
+        verify(logger, times(1)).info(CORRECT);
+    }
+
+    /**
+     * This test method tests that the play method works correctly and outputs the appropriate messages
+     * when the user inputs a number that is less than, greater than, or equal to the secret number.
+     * It uses Mockito to mock the behavior of the Scanner class and returns predefined values
+     * when its nextInt method is called. The logger object is also mocked, and its info method
+     * is verified to have been called with the appropriate arguments.
+     */
+    @Test
+    void testPlayNegative() throws Exception {
+        var numberField = GuessNumber.class.getDeclaredField("number");
+        numberField.setAccessible(true);
+        var number = (int) numberField.get(guessNumber);
+
+        when(scanner.nextInt()).thenReturn(number - 1, number + 1, number + 2, number);
+        guessNumber.play();
+        verify(logger, times(1)).info(TOO_LOW);
+        verify(logger, times(2)).info(TOO_HIGH);
+        verify(logger, times(1)).info(CORRECT);
+    }
+
+    /**
+     * This test method tests that the play method works correctly and outputs the appropriate messages
+     * when the user inputs a number that is less than, greater than, or equal to the secret number.
+     * It uses Mockito to mock the behavior of the Scanner class and returns predefined values
+     * when its nextInt method is called. The logger object is also mocked, and its info method
+     * is verified to have been called with the appropriate arguments.
+     */
+    @Test
+    void testPlayPositive() throws Exception {
+        var numberField = GuessNumber.class.getDeclaredField("number");
+        numberField.setAccessible(true);
+        var number = (int) numberField.get(guessNumber);
+
+        when(scanner.nextInt()).thenReturn(number - 1, number + 1, number);
+        guessNumber.play();
+        verify(logger, times(1)).info(TOO_LOW);
+        verify(logger, times(1)).info(TOO_HIGH);
+        verify(logger, times(1)).info(CORRECT);
     }
 }

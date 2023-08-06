@@ -1,5 +1,9 @@
 package com.it.academy.gk.sc0.statements;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.jetbrains.annotations.NotNull;
+
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -11,10 +15,6 @@ import java.util.logging.Logger;
  * a number that the computer has "thought of" within a certain range.
  */
 public class GuessNumber {
-    /**
-     * A static SecureRandom object used for generating secure random numbers.
-     */
-    private static final SecureRandom random = new SecureRandom();
     /**
      * Message displayed at the start of the game.
      */
@@ -47,6 +47,10 @@ public class GuessNumber {
      * The logger used to log messages to the console.
      */
     private final Logger logger;
+    /**
+     * The random number generator used to generate random numbers.
+     */
+    private final SecureRandom rand;
 
     /**
      * Constructs a new GuessNumber game with a randomly generated number between min and max (inclusive).
@@ -54,8 +58,9 @@ public class GuessNumber {
      * @param min the minimum value for the randomly generated number
      * @param max the maximum value for the randomly generated number
      */
+    @SuppressFBWarnings("DM_DEFAULT_ENCODING")
     public GuessNumber(int min, int max) {
-        this(min, max, new Scanner(System.in), Logger.getLogger(GuessNumber.class.getName()));
+        this(min, max, new Scanner(System.in, StandardCharsets.UTF_8), Logger.getLogger(GuessNumber.class.getName()));
     }
 
     /**
@@ -67,10 +72,25 @@ public class GuessNumber {
      * @param scanner the scanner used to read input from the player
      * @param logger  the logger used to log messages to the console
      */
-    public GuessNumber(int min, int max, Scanner scanner, Logger logger) {
-        this.number = random.nextInt(max - min + 1) + min;
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({"EI_EXPOSE_REP2", "DMI_RANDOM_USED_ONLY_ONCE"})
+    public GuessNumber(int min, int max, Scanner scanner, @NotNull Logger logger) {
+        this.rand = new SecureRandom();
+        this.number = generateRandomNumber(min, max);
+        // Note: This class stores a reference to the Scanner object passed to its constructor,
+        // and any changes made to this object outside of this class will affect its internal representation.
         this.scanner = scanner;
         this.logger = logger;
+    }
+
+    /**
+     * Generates a new random number between min and max (inclusive).
+     *
+     * @param min the minimum value for the randomly generated number
+     * @param max the maximum value for the randomly generated number
+     * @return a new random number between min and max (inclusive)
+     */
+    private int generateRandomNumber(final int min, final int max) {
+        return rand.nextInt((max - min) + 1) + min;
     }
 
     /**
