@@ -72,7 +72,7 @@ public class GuessNumber {
      * @param scanner the scanner used to read input from the player
      * @param logger  the logger used to log messages to the console
      */
-    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({"EI_EXPOSE_REP2", "DMI_RANDOM_USED_ONLY_ONCE"})
+    @SuppressFBWarnings({"EI_EXPOSE_REP2", "DMI_RANDOM_USED_ONLY_ONCE"})
     public GuessNumber(int min, int max, Scanner scanner, @NotNull Logger logger) {
         this.rand = new SecureRandom();
         this.number = generateRandomNumber(min, max);

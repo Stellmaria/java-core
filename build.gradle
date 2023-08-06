@@ -15,7 +15,7 @@ repositories {
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.28'
     implementation 'org.jetbrains:annotations:24.0.0'
-    implementation 'com.github.spotbugs:spotbugs-annotations:4.0.1'
+    implementation 'com.github.spotbugs:spotbugs-annotations:4.7.3'
     testImplementation platform('org.junit:junit-bom:5.9.3')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
     testImplementation 'org.mockito:mockito-core:5.4.0'
