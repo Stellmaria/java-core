@@ -2,6 +2,7 @@ package com.it.academy.gk.sc0.statements;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,11 +14,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Test class for the FirstDivisibleNumber class.
  */
+@DisplayName("First Divisible Number Test")
 class FirstDivisibleNumberTest {
     /**
      * An instance of the FirstDivisibleNumber class used for testing the findFirstDivisibleNumber method.
      */
     private FirstDivisibleNumber firstDivisibleNumber;
+
+    /**
+     * Initializes a new instance of the FirstDivisibleNumber class before each test.
+     */
+    @BeforeEach
+    void setUp() {
+        firstDivisibleNumber = new FirstDivisibleNumber();
+    }
 
     /**
      * Provides test cases for the findFirstDivisibleNumber method.
@@ -35,14 +45,6 @@ class FirstDivisibleNumberTest {
     }
 
     /**
-     * Initializes a new instance of the FirstDivisibleNumber class before each test.
-     */
-    @BeforeEach
-    void setUp() {
-        firstDivisibleNumber = new FirstDivisibleNumber();
-    }
-
-    /**
      * Tests the findFirstDivisibleNumber method with the provided test cases.
      *
      * @param lowerBound     The lower bound of the range to search.
@@ -52,8 +54,9 @@ class FirstDivisibleNumberTest {
      */
     @ParameterizedTest(name = "{index} => lowerBound={0}, upperBound={1}, divisor={2}, expectedResult={3}")
     @MethodSource("findFirstDivisibleNumberProvider")
-    void testFindFirstDivisibleNumber(int lowerBound, int upperBound, int divisor, int expectedResult) {
-        var actual = firstDivisibleNumber.findFirstDivisibleNumber(lowerBound, upperBound, divisor);
+    void testFindFirstDivisibleNumber(final int lowerBound, final int upperBound,
+                                      final int divisor, final int expectedResult) {
+        int actual = firstDivisibleNumber.findFirstDivisibleNumber(lowerBound, upperBound, divisor);
 
         assertEquals(expectedResult, actual);
     }

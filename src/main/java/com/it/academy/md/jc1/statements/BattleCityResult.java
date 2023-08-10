@@ -1,7 +1,5 @@
 package com.it.academy.md.jc1.statements;
 
-import com.it.academy.gk.sc0.operators.util.Const;
-
 /**
  * <h3>RU: Принятие решений.</h3>
  *
@@ -40,18 +38,18 @@ public class BattleCityResult {
      * @return 'Игрок 1: {0}. Игрок 2: {1}', где {0} - очки первого игрока, {1} - очки второго игрока /
      * 'Player 1: {0}. Player 2: {1}', where {0} - points of the first player, {1} - points of the second player.
      */
-    public String getResult(int tanksKilledFirstPlayer, int tanksKilledSecondPlayer) {
-        final var bonusPoint = 500;
-        final var killPoint = 100;
-        final var firstPlayer = "Player 1: ";
-        final var secondPlayer = ". Player 2: ";
-        final var allBonusPoint = bonusPoint / Const.MAX_PERCENTAGE;
-
-        if (tanksKilledFirstPlayer > tanksKilledSecondPlayer) {
-            tanksKilledFirstPlayer += allBonusPoint;
-        } else if (tanksKilledFirstPlayer < tanksKilledSecondPlayer) {
-            tanksKilledSecondPlayer += allBonusPoint;
-        }
-        return firstPlayer + killPoint * tanksKilledFirstPlayer + secondPlayer + killPoint * tanksKilledSecondPlayer;
-    }
+//    public String getResult(int tanksKilledFirstPlayer, int tanksKilledSecondPlayer) {
+//        final var bonusPoint = 500;
+//        final var killPoint = 100;
+//        final var firstPlayer = "Player 1: ";
+//        final var secondPlayer = ". Player 2: ";
+//        final var allBonusPoint = bonusPoint / Const.MAX_PERCENTAGE;
+//
+//        if (tanksKilledFirstPlayer > tanksKilledSecondPlayer) {
+//            tanksKilledFirstPlayer += allBonusPoint;
+//        } else if (tanksKilledFirstPlayer < tanksKilledSecondPlayer) {
+//            tanksKilledSecondPlayer += allBonusPoint;
+//        }
+//        return firstPlayer + killPoint * tanksKilledFirstPlayer + secondPlayer + killPoint * tanksKilledSecondPlayer;
+//    }
 }

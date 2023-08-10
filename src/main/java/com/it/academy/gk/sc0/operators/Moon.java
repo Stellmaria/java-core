@@ -25,9 +25,9 @@ public class Moon {
      * If the weight on Earth is negative,
      * this method throws a NegativeWeightException with an appropriate error message.
      *
-     * @param weightOnEarth the weight of the object on Earth
-     * @return the weight of the object on the Moon
-     * @throws NegativeWeightException if the weight on Earth is negative
+     * @param weightOnEarth the weight of the object on Earth.
+     * @return the weight of the object on the Moon.
+     * @throws NegativeWeightException if the weight on Earth is negative.
      */
     public double getWeight(final double weightOnEarth) {
         if (weightOnEarth < 0) {

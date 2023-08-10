@@ -37,34 +37,34 @@ public class Symbol {
      * @return <code>латиница</code>/<code>кириллица</code>/<code>цифра</code>/<code>не определено</code>/
      * <code>latin</code>/<code>cyrillic</code>/<code>digit</code>/<code>undefined</code>
      */
-    public String getSymbolType(final char symbol) {
-        final var minDigit = '0';
-        final var maxDigit = '9';
-        final var minLatin = 'A';
-        final var maxLatin = 'Z';
-        final var minLatinA = 'a';
-        final var maxLatinZ = 'z';
-        final var minCyrillic = 'А';
-        final var maxCyrillic = 'Я';
-        final var minCyrillicA = 'а';
-        final var maxCyrillicZ = 'я';
-        final var digit = "digit";
-        final var latin = "latin";
-        final var cyrillic = "cyrillic";
-        final var undefined = "undefined";
-
-        if ((minDigit <= symbol) && (symbol <= maxDigit)) {
-            return digit;
-        } else if ((minLatin <= symbol) && (symbol <= maxLatin)) {
-            return latin;
-        } else if ((minLatinA <= symbol) && (symbol <= maxLatinZ)) {
-            return latin;
-        } else if ((minCyrillic <= symbol) && (symbol <= maxCyrillic)) {
-            return cyrillic;
-        } else if ((minCyrillicA <= symbol) && (symbol <= maxCyrillicZ)) {
-            return cyrillic;
-        } else {
-            return undefined;
-        }
-    }
+//    public String getSymbolType(final char symbol) {
+//        final var minDigit = '0';
+//        final var maxDigit = '9';
+//        final var minLatin = 'A';
+//        final var maxLatin = 'Z';
+//        final var minLatinA = 'a';
+//        final var maxLatinZ = 'z';
+//        final var minCyrillic = 'А';
+//        final var maxCyrillic = 'Я';
+//        final var minCyrillicA = 'а';
+//        final var maxCyrillicZ = 'я';
+//        final var digit = "digit";
+//        final var latin = "latin";
+//        final var cyrillic = "cyrillic";
+//        final var undefined = "undefined";
+//
+//        if ((minDigit <= symbol) && (symbol <= maxDigit)) {
+//            return digit;
+//        } else if ((minLatin <= symbol) && (symbol <= maxLatin)) {
+//            return latin;
+//        } else if ((minLatinA <= symbol) && (symbol <= maxLatinZ)) {
+//            return latin;
+//        } else if ((minCyrillic <= symbol) && (symbol <= maxCyrillic)) {
+//            return cyrillic;
+//        } else if ((minCyrillicA <= symbol) && (symbol <= maxCyrillicZ)) {
+//            return cyrillic;
+//        } else {
+//            return undefined;
+//        }
+//    }
 }

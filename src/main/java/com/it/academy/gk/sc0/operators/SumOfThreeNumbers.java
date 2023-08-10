@@ -22,14 +22,14 @@ public class SumOfThreeNumbers {
 
     /**
      * Calculates the sum of three numbers.
-     * <p>
+     * <p/>
      * This method takes three integer arguments `a`, `b`, and `c`, and returns their sum.
      * The sum is calculated by adding the three numbers together using the `+` operator.
      *
-     * @param a the first number
-     * @param b the second number
-     * @param c the third number
-     * @return the sum of a, b, and c
+     * @param a the first number.
+     * @param b the second number.
+     * @param c the third number.
+     * @return the sum of a, b, and c.
      */
     public int sum(final int a, final int b, final int c) {
         return a + b + c;
@@ -37,14 +37,14 @@ public class SumOfThreeNumbers {
 
     /**
      * Calculates the sum of the digits of a two-digit number.
-     * <p>
+     * <p/>
      * This method takes a two-digit integer `num` as an argument and returns the sum of its digits.
      * The sum is calculated by dividing `num` by the base of the decimal number system (10) to get the ten digits,
      * and finding the remainder when dividing `num` by the base to get the one's digit.
      * These two digits are then added together using the `+` operator.
      *
-     * @param num a two-digit number
-     * @return the sum of the digits of num
+     * @param num a two-digit number.
+     * @return the sum of the digits of num.
      */
     public int sumOfTwoDigitNumber(final int num) {
         return num / BASE + num % BASE;
@@ -52,16 +52,16 @@ public class SumOfThreeNumbers {
 
     /**
      * Calculates the sum of the digits of a three-digit number.
-     * <p>
+     * <p/>
      * This method takes a three-digit integer `num` as an argument and returns the sum of its digits.
      * The sum is calculated by dividing `num` by the place value of the hundredth digit (100)
      * to get the hundreds digit, dividing `num` by the place value of the tenth digit (10) and finding the remainder
-     * when dividing by the base to get the tens digit, and finding the remainder when dividing `num` by the base
-     * to get the one digit.
+     * when dividing by the base to get the tens digit, and finding the remainder when dividing `num`
+     * by the base to get the one digit.
      * These three digits are then added together using the `+` operator.
      *
-     * @param num a three-digit number
-     * @return the sum of the digits of num
+     * @param num a three-digit number.
+     * @return the sum of the digits of num.
      */
     public int sumOfThreeDigitNumber(final int num) {
         return num / HUNDREDS_PLACE + (num / TENS_PLACE) % BASE + num % BASE;

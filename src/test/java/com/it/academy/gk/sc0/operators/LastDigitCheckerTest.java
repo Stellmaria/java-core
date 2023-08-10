@@ -1,9 +1,11 @@
 package com.it.academy.gk.sc0.operators;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -12,55 +14,43 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The LastDigitCheckerTest class is a test class for the LastDigitChecker class.
- * <p>
- * This class contains several methods to test the functionality of the LastDigitChecker class,
- * including a method
- * to provide test data and a method to test the checkLastDigit method of the LastDigitChecker class.
  */
+@DisplayName("Last Digit Checker Test")
 class LastDigitCheckerTest {
     /**
-     * Provides a stream of test data for the testCheckLastDigit method.
-     * <p>
-     * This method returns a stream of arrays, where each array represents a test case with
-     * an input number and an expected output boolean value indicating whether the last digit
-     * of the number is 1, 2, or 3.
+     * Provides a stream of test data for a method that checks if a number of meets certain criteria.
      *
-     * @return a stream of test data for the testCheckLastDigit method
+     * @return a stream of test data for a method that checks if a number of meets certain criteria
      */
+    @SuppressFBWarnings("NP_NONNULL_RETURN_VIOLATION")
     @Contract(pure = true)
-    static @NotNull Stream<Object[]> provideNumbers() {
+    static @NotNull Stream<Arguments> provideNumbers() {
         return Stream.of(
-                new Object[]{12341, true},
-                new Object[]{12342, true},
-                new Object[]{12343, true},
-                new Object[]{12344, false},
-                new Object[]{12345, false},
-                new Object[]{12346, false},
-                new Object[]{12347, false},
-                new Object[]{12348, false},
-                new Object[]{12349, false}
+                Arguments.of(12341, true),
+                Arguments.of(12342, true),
+                Arguments.of(12343, true),
+                Arguments.of(12344, false),
+                Arguments.of(12345, false),
+                Arguments.of(12346, false),
+                Arguments.of(12347, false),
+                Arguments.of(12348, false),
+                Arguments.of(12349, false)
         );
     }
 
     /**
      * Tests the checkLastDigit method of the LastDigitChecker class.
-     * <p>
-     * This method takes an integer representing a number and a boolean representing the expected output value
-     * as arguments.
-     * It creates a new instance of the LastDigitChecker class with the provided number and calls
-     * its checkLastDigit method.
-     * It then asserts that the result is equal to the expected output value.
      *
-     * @param number         an integer representing a number
-     * @param expectedResult a boolean representing the expected output value
+     * @param number         an integer representing a number.
+     * @param expectedResult a boolean representing the expected output value.
      */
     @ParameterizedTest(name = "Check last digit of {0} is 1, 2, or 3")
     @DisplayName("Check last digit of number is 1, 2, or 3")
     @MethodSource("provideNumbers")
-    void testCheckLastDigit(int number, boolean expectedResult) {
-        var checker = new LastDigitChecker(number);
+    void testCheckLastDigit(final int number, final boolean expectedResult) {
+        LastDigitChecker checker = new LastDigitChecker(number);
 
-        var actual = checker.checkLastDigit();
+        boolean actual = checker.checkLastDigit();
 
         assertEquals(expectedResult, actual);
     }

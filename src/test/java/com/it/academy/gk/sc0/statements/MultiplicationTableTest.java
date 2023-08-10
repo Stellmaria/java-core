@@ -14,11 +14,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * This class contains unit tests for the MultiplicationTable class.
  */
+@DisplayName("Multiplication Table Test")
 class MultiplicationTableTest {
     /**
      * An instance of the MultiplicationTable class, used to test its methods.
      */
     private MultiplicationTable multiplicationTable;
+
+    /**
+     * This method is run before each test method, ensuring that each test has a fresh instance
+     * of the MultiplicationTable class to work with.
+     */
+    @BeforeEach
+    public void setUp() {
+        multiplicationTable = new MultiplicationTable();
+    }
 
     /**
      * This method provides test cases for the testPrintMultiplicationTable method.
@@ -51,15 +61,6 @@ class MultiplicationTableTest {
     }
 
     /**
-     * This method is run before each test method, ensuring that each test has a fresh instance
-     * of the MultiplicationTable class to work with.
-     */
-    @BeforeEach
-    public void setUp() {
-        multiplicationTable = new MultiplicationTable();
-    }
-
-    /**
      * This method tests the printMultiplicationTable method of the MultiplicationTable class.
      * It takes three arguments: the multiplier, the number of rows, and the expected result.
      * The expected result is a string representing the multiplication table that should be printed
@@ -69,8 +70,8 @@ class MultiplicationTableTest {
     @ParameterizedTest(name = "Test case #{index}: {arguments}")
     @DisplayName("Test printMultiplicationTable")
     @MethodSource("printMultiplicationTableTestCases")
-    void testPrintMultiplicationTable(int multiplier, int rows, String expected) {
-        var actual = multiplicationTable.printMultiplicationTable(multiplier, rows);
+    void testPrintMultiplicationTable(final int multiplier, final int rows, final String expected) {
+        String actual = multiplicationTable.printMultiplicationTable(multiplier, rows);
 
         assertEquals(expected, actual);
     }

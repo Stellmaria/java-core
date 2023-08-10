@@ -1,7 +1,5 @@
 package com.it.academy.gd.jc1.statements;
 
-import com.it.academy.gk.sc0.operators.util.Const;
-
 /**
  * <h3>RU: Принятие решений.</h3>
  *
@@ -22,26 +20,26 @@ public class Rub {
      * @param sum начальная сумма / initial amount
      * @return сумма с правильным падежом / amount with the correct case.
      */
-    public String getSum(final int sum) {
-        final var rubles = " рублей.";
-        final var rubel = " рубль.";
-        final var rubel1 = " рубля.";
-        final var error = "Некорректная сумма ";
-        final var stringBuilder = new StringBuilder();
-        final var remainder10 = sum % Const.MINIMAL_TWO_DIGITAL_NUMBER * Const.MINIMAL_TWO_DIGITAL_NUMBER;
-        final var remainder100 = sum % Const.MINIMAL_TWO_DIGITAL_NUMBER;
-
-        // TODO:
-        if (remainder10 == 0 || (5 <= remainder10 && remainder10 <= 9)
-            || (11 <= remainder100 && remainder100 <= 19)) {
-            stringBuilder.append(sum).append(rubles);
-        } else if (remainder100 == 1) {
-            stringBuilder.append(sum).append(rubel);
-        } else if (2 <= remainder100 && remainder100 <= 4) {
-            stringBuilder.append(sum).append(rubel1);
-        } else {
-            stringBuilder.append(error).append(sum);
-        }
-        return stringBuilder.toString();
-    }
+//    public String getSum(final int sum) {
+//        final var rubles = " рублей.";
+//        final var rubel = " рубль.";
+//        final var rubel1 = " рубля.";
+//        final var error = "Некорректная сумма ";
+//        final var stringBuilder = new StringBuilder();
+//        final var remainder10 = sum % Const.MINIMAL_TWO_DIGITAL_NUMBER * Const.MINIMAL_TWO_DIGITAL_NUMBER;
+//        final var remainder100 = sum % Const.MINIMAL_TWO_DIGITAL_NUMBER;
+//
+//        // TODO:
+//        if (remainder10 == 0 || (5 <= remainder10 && remainder10 <= 9)
+//            || (11 <= remainder100 && remainder100 <= 19)) {
+//            stringBuilder.append(sum).append(rubles);
+//        } else if (remainder100 == 1) {
+//            stringBuilder.append(sum).append(rubel);
+//        } else if (2 <= remainder100 && remainder100 <= 4) {
+//            stringBuilder.append(sum).append(rubel1);
+//        } else {
+//            stringBuilder.append(error).append(sum);
+//        }
+//        return stringBuilder.toString();
+//    }
 }

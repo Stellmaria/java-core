@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * This class tests the TriangleArea class.
  */
+@DisplayName("Triangle Area Test")
 class TriangleAreaTest {
     /**
      * An instance of the TriangleArea class used for testing.
@@ -23,7 +24,7 @@ class TriangleAreaTest {
     /**
      * Provides a stream of test data for the calculateArea method.
      *
-     * @return a stream of test data for the calculateArea method
+     * @return a stream of test data for the calculateArea method.
      */
     private static @NotNull Stream<Arguments> testCalculateAreaProvider() {
         return Stream.of(
@@ -46,24 +47,17 @@ class TriangleAreaTest {
 
     /**
      * Tests the calculateArea method of TriangleArea.
-     * <p>
-     * This method is a parameterized test that uses data from the `testCalculateAreaProvider`
-     * method to test the `calculateArea` method in `TriangleArea`.
-     * Each run of the test checks
-     * if the actual result from calling the `calculateArea` method with the provided input parameters
-     * is equal to the expected result.
      *
-     * @param a            the first side of the triangle
-     * @param b            the second side of the triangle
-     * @param expectedArea the expected area of the triangle
+     * @param a            the first side of the triangle.
+     * @param b            the second side of the triangle.
+     * @param expectedArea the expected area of the triangle.
      */
     @ParameterizedTest(name = "{index} => a={0}, b={1}, expectedArea={2}")
     @DisplayName("Test calculateArea method with positive and negative cases")
     @MethodSource("testCalculateAreaProvider")
-    void testCalculateArea(double a, double b, double expectedArea) {
-        var actual = triangleArea.calculateArea(a, b);
+    void testCalculateArea(final double a, final double b, final double expectedArea) {
+        double actual = triangleArea.calculateArea(a, b);
 
         assertEquals(expectedArea, actual);
     }
 }
-

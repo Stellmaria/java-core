@@ -13,14 +13,13 @@ public class TimeSinceMidnight {
 
     /**
      * Calculates the number of hours since midnight given the number of minutes since midnight.
-     * <p>
+     * <p/>
      * This method takes an integer representing the number of minutes since midnight as an argument
      * and returns the number of hours since midnight.
-     * The result is calculated by dividing the number of minutes
-     * by the number of minutes per hour (60).
+     * The result is calculated by dividing the number of minutes by the number of minutes per hour (60).
      *
-     * @param minutes an integer representing the number of minutes since midnight
-     * @return the number of hours since midnight
+     * @param minutes an integer representing the number of minutes since midnight.
+     * @return the number of hours since midnight.
      */
     public int hoursSinceMidnight(final int minutes) {
         return minutes / MINUTES_PER_HOUR;

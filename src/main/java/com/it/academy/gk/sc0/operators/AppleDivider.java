@@ -12,7 +12,7 @@ package com.it.academy.gk.sc0.operators;
 public record AppleDivider(int n, int k) {
     /**
      * Returns the number of apples each student will receive.
-     * <p>
+     * <p/>
      * This method calculates the result by dividing the total number of apples by the number of students.
      *
      * @return the number of apples each student will receive
@@ -23,7 +23,7 @@ public record AppleDivider(int n, int k) {
 
     /**
      * Returns the number of remaining apples after dividing among students.
-     * <p>
+     * <p/>
      * This method calculates the result
      * by finding the remainder when dividing the total number of apples by the number of students.
      *
