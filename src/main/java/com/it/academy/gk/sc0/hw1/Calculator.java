@@ -1,10 +1,12 @@
 package com.it.academy.gk.sc0.hw1;
 
+import java.util.AbstractMap;
+import java.util.stream.Stream;
+
 /**
- * Change the previous program. Let the user besides the number
- * operation enter two numbers, and depending on the operation number with
- * the entered numbers perform certain actions (for example,
- * when entering the number 3, the numbers are multiplied).
+ * Let the user besides the number operation enter two numbers,
+ * and depending on the operation number with the entered numbers perform certain actions
+ * (for example, when entering the number 3, the numbers are multiplied).
  * The result of the operation is displayed on the console.
  */
 public class Calculator {
@@ -12,23 +14,28 @@ public class Calculator {
      * The message to display when prompting the user to enter the number of an operation.
      */
     private static final String PROMPT_MESSAGE = "Enter the number of the operation: 1. Addition 2. Subtraction " +
-                                                 "3. Multiplication";
+                                                 "3. Multiplication ";
+
     /**
      * The message to display when the entered number does not correspond to any operation.
      */
     private static final String INVALID_OPERATION_MESSAGE = "The operation is not defined.";
-    /**
-     * The symbol used to represent the equal sign in a string.
-     */
-    private static final String EQUALS_SYMBOL = " = ";
-    /**
-     * The symbol used to represent the addition operation in a string.
-     */
-    private static final String ADDITION_SYMBOL = " + ";
+
     /**
      * The separator used to insert a line break in a string.
      */
     private static final String LINE_SEPARATOR = "\n";
+
+    /**
+     * The symbol used to represent the equal sign in a string.
+     */
+    private static final String EQUALS_SYMBOL = " = ";
+
+    /**
+     * The symbol used to represent the addition operation in a string.
+     */
+    private static final String ADDITION_SYMBOL = " + ";
+
     /**
      * The symbol used to represent the subtraction operation in a string.
      */
@@ -40,38 +47,68 @@ public class Calculator {
     private static final String MULTIPLICATION_SYMBOL = " * ";
 
     /**
-     * Prompts the user to enter the number of an operation and two numbers, performs the selected operation
-     * on the entered numbers, and returns the result.
-     * <p>
-     * This method displays a message that prompts the user to enter the number of an operation.
-     * It then reads the number entered by the user and uses an if statement to determine which operation to perform.
-     * It also reads two numbers entered by the user and performs the selected operation on these numbers.
-     * If the entered number corresponds to a valid operation, it returns a string that describes the result
-     * of performing that operation on the entered numbers. Otherwise, it returns a message indicating
-     * that the operation is not defined.
-     *
-     * @param operationNumber the number of the operation entered by the user
-     * @param firstNumber     the first number entered by the user
-     * @param secondNumber    the second number entered by the user
-     * @return a string that describes the result of performing the selected operation on the entered numbers
-     * or indicates that the operation is not defined
+     * A constant representing an empty string separator.
      */
-    public String calculate(int operationNumber, double firstNumber, double secondNumber) {
-        var result = new StringBuilder();
+    private static final String SEPARATOR = "";
 
+    /**
+     * Calculates the result of a mathematical operation between two numbers.
+     * <p/>
+     * This method takes in three parameters: operationNumber, firstNumber, and secondNumber.
+     * The operationNumber parameter represents the mathematical operation to perform where 1 is for addition,
+     * 2 is for subtraction, and 3 is for multiplication.
+     * The firstNumber and secondNumber parameters represent the two numbers to use in the calculation.
+     * <p/>
+     * The method creates a stream of AbstractMap.SimpleEntry objects,
+     * where the key is the operation number and the value is the result of the calculation.
+     * The stream is then filtered to only include the entry with the matching operation number,
+     * and the findFirst method is used to get the first (and only) entry in the filtered stream.
+     * The ifPresentOrElse method is then used
+     * to either append the result of the calculation to the result string builder
+     * if an entry was found or append the INVALID_OPERATION_MESSAGE if no entry was found.
+     *
+     * @param operationNumber The number representing the operation to perform.
+     *                        1 for addition, 2 for subtraction, and 3 for multiplication.
+     * @param firstNumber     The first number to use in the calculation.
+     * @param secondNumber    The second number to use in the calculation.
+     * @return A string containing the result of the calculation, or an error message if the operation is invalid.
+     */
+    public String calculate(final int operationNumber, final double firstNumber, final double secondNumber) {
+        var result = new StringBuilder();
         result.append(PROMPT_MESSAGE).append(LINE_SEPARATOR);
-        if (operationNumber == 1) {
-            result.append(firstNumber).append(ADDITION_SYMBOL).append(secondNumber).append(EQUALS_SYMBOL)
-                    .append(firstNumber + secondNumber);
-        } else if (operationNumber == 2) {
-            result.append(firstNumber).append(SUBTRACTION_SYMBOL).append(secondNumber).append(EQUALS_SYMBOL)
-                    .append(firstNumber - secondNumber);
-        } else if (operationNumber == 3) {
-            result.append(firstNumber).append(MULTIPLICATION_SYMBOL).append(secondNumber).append(EQUALS_SYMBOL)
-                    .append(firstNumber * secondNumber);
-        } else {
-            result.append(INVALID_OPERATION_MESSAGE);
-        }
+
+        Stream.of(
+                        new AbstractMap.SimpleEntry<>(1, firstNumber + secondNumber),
+                        new AbstractMap.SimpleEntry<>(2, firstNumber - secondNumber),
+                        new AbstractMap.SimpleEntry<>(3, firstNumber * secondNumber)
+                )
+                .filter(entry -> entry.getKey() == operationNumber)
+                .findFirst()
+                .ifPresentOrElse(
+                        entry -> result.append(firstNumber)
+                                .append(getOperationSymbol(operationNumber))
+                                .append(secondNumber)
+                                .append(EQUALS_SYMBOL)
+                                .append(entry.getValue()),
+                        () -> result.append(INVALID_OPERATION_MESSAGE)
+                );
+
         return result.toString();
+    }
+
+    /**
+     * Returns the symbol representing the given operation number.
+     *
+     * @param operationNumber The number representing the operation.
+     *                        1 for addition, 2 for subtraction, and 3 for multiplication.
+     * @return The symbol representing the given operation number, or an empty string if the operation is invalid.
+     */
+    private String getOperationSymbol(final int operationNumber) {
+        return switch (operationNumber) {
+            case 1 -> ADDITION_SYMBOL;
+            case 2 -> SUBTRACTION_SYMBOL;
+            case 3 -> MULTIPLICATION_SYMBOL;
+            default -> SEPARATOR;
+        };
     }
 }

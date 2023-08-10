@@ -10,12 +10,12 @@ public class MaxNumber {
      * <p>
      * This method takes three numbers as input and returns the maximum of these three numbers.
      *
-     * @param firstNumber  the first number entered by the user
-     * @param secondNumber the second number entered by the user
-     * @param thirdNumber  the third number entered by the user
-     * @return the maximum of the three numbers
+     * @param firstNumber  the first number entered by the user.
+     * @param secondNumber the second number entered by the user.
+     * @param thirdNumber  the third number entered by the user.
+     * @return the maximum of the three numbers.
      */
-    public double maxOfThreeNumbers(double firstNumber, double secondNumber, double thirdNumber) {
+    public double maxOfThreeNumbers(final double firstNumber, final double secondNumber, final double thirdNumber) {
         return Math.max(firstNumber, Math.max(secondNumber, thirdNumber));
     }
 }
