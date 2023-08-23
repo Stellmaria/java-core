@@ -4,6 +4,8 @@ package com.it.academy.gk.sc0.operators;
  * Task 9.
  * Given a number, for example, 12345. Check that the last digit of this number is 1, 2 or 3.
  * If so, print 'yes,' otherwise print 'no.'
+ *
+ * @author Anastasia Melnikova.
  */
 public record LastDigitChecker(int number) {
     /**

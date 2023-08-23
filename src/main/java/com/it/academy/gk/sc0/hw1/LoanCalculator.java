@@ -3,6 +3,8 @@ package com.it.academy.gk.sc0.hw1;
 /**
  * Calculate monthly payments (m) and total payment
  * (s) on credit. The loan is known to be being in rubles, taken for two years, at p percent.
+ *
+ * @author Anastasia Melnikova.
  */
 public class LoanCalculator {
     /**

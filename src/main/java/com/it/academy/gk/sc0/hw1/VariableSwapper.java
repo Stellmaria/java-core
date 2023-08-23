@@ -5,6 +5,8 @@ package com.it.academy.gk.sc0.hw1;
  * One is assigned one variable and the other.
  * Necessary change the values of the variables so that the value the first turned out to be in the second,
  * and the second - in the first.
+ *
+ * @author Anastasia Melnikova.
  */
 public class VariableSwapper {
     /**

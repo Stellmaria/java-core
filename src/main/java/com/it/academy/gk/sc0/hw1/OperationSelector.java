@@ -9,6 +9,8 @@ package com.it.academy.gk.sc0.hw1;
  * To determine the operation by the entered number, use the switch...case construct.
  * If the entered user number does not match any operation (for example, the number 120),
  * then display a message to the user that the operation is not defined.
+ *
+ * @author Anastasia Melnikova.
  */
 public class OperationSelector {
     /**

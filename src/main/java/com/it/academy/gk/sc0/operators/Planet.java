@@ -2,6 +2,8 @@ package com.it.academy.gk.sc0.operators;
 
 /**
  * Task 7: Print a planet's name in the Solar System by its ordinal number (the first planet is closest to the Sun).
+ *
+ * @author Anastasia Melnikova.
  */
 public class Planet {
     /**

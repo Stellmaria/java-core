@@ -5,6 +5,8 @@ import java.util.stream.IntStream;
 /**
  * Task 8.
  * Find on the interval [19; 97] the first number is a multiple of 17.
+ *
+ * @author Anastasia Melnikova.
  */
 public class OddNumberCounter {
     /**
@@ -25,10 +27,10 @@ public class OddNumberCounter {
      * Otherwise, it generates a stream of integers from zero to n, inclusive,
      * and filters the stream to include only odd numbers.
      * It then returns the count of elements in the filtered stream,
-     * which is equal to the number of odd numbers from 0 to n.
+     * which is equal to the number of odd numbers from zero to n.
      *
      * @param n the upper bound for counting odd numbers.
-     * @return the number of odd numbers from 0 to n.
+     * @return the number of odd numbers from zero to n.
      */
     public int countOddNumbers(final int n) {
         if (n < LOWER_BOUND) {

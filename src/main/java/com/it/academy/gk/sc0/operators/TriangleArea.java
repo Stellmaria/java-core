@@ -4,6 +4,8 @@ package com.it.academy.gk.sc0.operators;
  * Task 2.
  * Write a program that reads the lengths of two sides in a right triangle and prints its area.
  * This class contains a method to calculate the area of a right triangle.
+ *
+ * @author Anastasia Melnikova.
  */
 public class TriangleArea {
     /**

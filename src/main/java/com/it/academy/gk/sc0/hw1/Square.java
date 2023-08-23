@@ -11,6 +11,8 @@ import java.util.logging.Logger;
  * The side of the square is given (a - user input).
  * Find the area and perimeter of the square.
  * Make sure to enter incorrect data.
+ *
+ * @author Anastasia Melnikova.
  */
 public class Square {
     /**
@@ -39,7 +41,7 @@ public class Square {
     private static final String PERIMETER_MESSAGE = "The perimeter of the square is: %.2f";
 
     /**
-     * A logger for logging messages.
+     * A SafeLogger used to log messages to the console.
      */
     private final Logger logger;
 

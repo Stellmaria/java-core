@@ -6,6 +6,8 @@ import java.util.stream.IntStream;
 /**
  * Task 3: Print the multiplication table for 3.
  * This class contains a method that prints a multiplication table for a given multiplier and number of rows.
+ *
+ * @author Anastasia Melnikova.
  */
 public class MultiplicationTable {
     /**

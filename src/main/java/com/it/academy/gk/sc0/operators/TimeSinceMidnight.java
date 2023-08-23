@@ -4,6 +4,8 @@ package com.it.academy.gk.sc0.operators;
  * Task 5.
  * N minutes have passed since the beginning of the day.
  * Define: an integer number of hours that have passed since the beginning of the day.
+ *
+ * @author Anastasia Melnikova.
  */
 public class TimeSinceMidnight {
     /**

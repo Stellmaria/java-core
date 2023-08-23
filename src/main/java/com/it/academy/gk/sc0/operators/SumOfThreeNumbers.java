@@ -3,6 +3,8 @@ package com.it.academy.gk.sc0.operators;
 /**
  * Task 1: Write a program that reads three numbers and prints their sum.
  * Task 4: Given a two-digit and a three-digit number. For each print the sum of the digits.
+ *
+ * @author Anastasia Melnikova.
  */
 public class SumOfThreeNumbers {
     /**

@@ -4,6 +4,8 @@ package com.it.academy.gk.sc0.hw1;
  * Write a console program in which the user keyboard enters two numbers.
  * And the program compares two entered numbers and prints the result to the console comparisons
  * (two numbers are equal, the first number is greater second or the first number is less than the second).
+ *
+ * @author Anastasia Melnikova.
  */
 public class NumberComparator {
     /**

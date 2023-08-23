@@ -1,5 +1,6 @@
 package com.it.academy.gk.sc0.hw1;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,6 +27,7 @@ import static org.mockito.Mockito.when;
  * This class contains tests for the Square class.
  * It uses the JUnit 5 testing framework to define and run the tests.
  */
+@SuppressFBWarnings("DM_DEFAULT_ENCODING")
 @DisplayName("Square Test")
 @ExtendWith(MockitoExtension.class)
 class SquareTest {

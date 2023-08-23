@@ -4,6 +4,8 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * The user enters two lines. Determine if these strings are the same (case-sensitive).
+ *
+ * @author Anastasia Melnikova.
  */
 public class StringEqualityChecker {
     /**

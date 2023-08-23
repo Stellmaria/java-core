@@ -4,14 +4,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Task 1*: Print the numbers from 1 to 7 on the screen. The output should be: 1 2 3 4 5 6 7.
+ * Task 1*: Print the numbers from one to seven on the screen.
+ * The output should be: 1 2 3 4 5 6 7.
  * <p/>
  * Task 2*: Print the sequence of numbers from 100 to 10 on the screen.
  * The output should be: 100 90 80 70 60 50 40 30 20 10.
  * <p/>
- * Task 1: Print numbers from 1 to 5. The output should be: 1 2 3 4 5.
+ * Task 1: Print numbers from 1 to 5.
+ * The output should be: 1 2 3 4 5.
  * <p/>
- * Task 2: Print numbers from 5 to 1. The output should be: 5 4 3 2 1.
+ * Task 2: Print numbers from 5 to 1.
+ * The output should be: 5 4 3 2 1.
+ *
+ * @author Anastasia Melnikova.
  */
 public class PrintNumbers {
     /**

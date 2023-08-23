@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
  * Task 7: Print the phrase "I am studying programming" a specified number of times in a loop.
  * When printing, make such branching in the body of the loop so that instead of the 3rd and 9th phrases in a row,
  * the phrase "I am interested in a high salary!" is displayed.
+ *
+ * @author Anastasia Melnikova.
  */
 public class PhrasePrinter {
     /**

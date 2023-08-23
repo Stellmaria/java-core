@@ -8,6 +8,8 @@ package com.it.academy.gk.sc0.operators;
  *     <li>How many apples will be left in the basket?</li>
  * </ul>
  * The program receives the numbers n and k as input and should output the desired number of apples (two numbers).
+ *
+ * @author Anastasia Melnikova.
  */
 public record AppleDivider(int n, int k) {
     /**

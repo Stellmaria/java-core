@@ -3,11 +3,13 @@ package com.it.academy.gk.sc0.hw1;
 /**
  * Determine which of the three inputs the user
  * numbers maximum and display it on the screen.
+ *
+ * @author Anastasia Melnikova.
  */
 public class MaxNumber {
     /**
      * Determines the maximum of three numbers.
-     * <p>
+     * <p/>
      * This method takes three numbers as input and returns the maximum of these three numbers.
      *
      * @param firstNumber  the first number entered by the user.

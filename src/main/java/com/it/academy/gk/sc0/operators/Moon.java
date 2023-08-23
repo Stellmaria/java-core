@@ -5,6 +5,8 @@ import com.it.academy.gk.sc0.operators.exception.NegativeWeightException;
 /**
  * Task 6: The force of gravity on the Moon is about 17% of Earth's.
  * Write a program that would calculate your weight on the Moon.
+ *
+ * @author Anastasia Melnikova.
  */
 public class Moon {
     /**
@@ -19,7 +21,7 @@ public class Moon {
 
     /**
      * Calculates the weight of an object on the Moon given its weight on Earth.
-     * <p>
+     * <p/>
      * This method takes the weight of an object on Earth as an argument and calculates its weight on the Moon
      * by multiplying it by the gravitational constant of the Moon.
      * If the weight on Earth is negative,

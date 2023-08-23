@@ -2,6 +2,8 @@ package com.it.academy.gk.sc0.hw1;
 
 /**
  * Check the e-mail entered by the user for correctness.
+ *
+ * @author Anastasia Melnikova.
  */
 public class EmailValidator {
     /**

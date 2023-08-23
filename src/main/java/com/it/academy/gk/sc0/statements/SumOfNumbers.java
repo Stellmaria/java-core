@@ -20,6 +20,8 @@ import java.util.stream.IntStream;
  * <p/>
  * Task 10.
  * The user enters non-zero numbers until they enter zero. Find the sum of these numbers.
+ *
+ * @author Anastasia Melnikova.
  */
 public class SumOfNumbers {
     /**
@@ -37,7 +39,7 @@ public class SumOfNumbers {
      * Calculates the sum of numbers from one to a given integer n.
      * <p/>
      * This method calculates the sum of numbers from one to a given integer n.
-     * It uses an IntStream to generate a stream of integers from 1 to n, inclusive,
+     * It uses an IntStream to generate a stream of integers from one to n, inclusive,
      * and then calculates the sum of all integers in the stream using the sum() method.
      *
      * @param n the upper bound for calculating the sum.
@@ -85,7 +87,7 @@ public class SumOfNumbers {
      * @param scanner A Scanner object for reading user input.
      * @return A string containing the sum of all entered numbers.
      */
-    public String calculateSum(@NotNull Scanner scanner) {
+    public String calculateSum(@NotNull final Scanner scanner) {
         int sum = 0;
         int number;
         var result = new StringBuilder();

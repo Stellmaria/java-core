@@ -4,6 +4,8 @@ package com.it.academy.gk.sc0.operators;
  * Task 7.
  * Bring out a child, adult or old man depending on age. Child from 0 to 17 years old (inclusive).
  * Adult from 18 to 69 years old (inclusive). Old man 70 and older. Long-liver, if more than 120.
+ *
+ * @author Anastasia Melnikova.
  */
 public class AgeCategory {
     /**

@@ -5,10 +5,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Method;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -22,6 +25,7 @@ import static org.mockito.Mockito.when;
  * It contains several test methods that test various aspects of the GuessNumber class.
  */
 @DisplayName("Guess Number Test")
+@ExtendWith(MockitoExtension.class)
 class GuessNumberTest {
     /**
      * This is a private static field that holds the value of the TOO_LOW constant from the GuessNumber class.
@@ -56,11 +60,13 @@ class GuessNumberTest {
     /**
      * This is a private field that holds an instance of the Scanner class.
      */
+    @Mock
     private Scanner scanner;
 
     /**
      * This is a private field that holds an instance of the Logger class.
      */
+    @Mock
     private Logger logger;
 
     /**
@@ -92,8 +98,6 @@ class GuessNumberTest {
     @SneakyThrows
     @BeforeEach
     public void setUp() {
-        scanner = Mockito.mock(Scanner.class);
-        logger = Mockito.mock(Logger.class);
         guessNumber = new GuessNumber(1, 10, scanner, logger);
 
         var numberField = GuessNumber.class.getDeclaredField("number");
@@ -168,9 +172,9 @@ class GuessNumberTest {
 
         guessNumber.play();
 
-        verify(logger, times(1)).info(TOO_LOW);
-        verify(logger, times(1)).info(TOO_HIGH);
-        verify(logger, times(1)).info(CORRECT);
+        verify(logger, times(1)).log(Level.INFO, TOO_LOW);
+        verify(logger, times(1)).log(Level.INFO, TOO_HIGH);
+        verify(logger, times(1)).log(Level.INFO, CORRECT);
     }
 
     /**
@@ -186,9 +190,9 @@ class GuessNumberTest {
 
         guessNumber.play();
 
-        verify(logger, times(1)).info(TOO_LOW);
-        verify(logger, times(2)).info(TOO_HIGH);
-        verify(logger, times(1)).info(CORRECT);
+        verify(logger, times(1)).log(Level.INFO, TOO_LOW);
+        verify(logger, times(2)).log(Level.INFO, TOO_HIGH);
+        verify(logger, times(1)).log(Level.INFO, CORRECT);
     }
 
     /**
@@ -204,8 +208,8 @@ class GuessNumberTest {
 
         guessNumber.play();
 
-        verify(logger, times(1)).info(TOO_LOW);
-        verify(logger, times(1)).info(TOO_HIGH);
-        verify(logger, times(1)).info(CORRECT);
+        verify(logger, times(1)).log(Level.INFO, TOO_LOW);
+        verify(logger, times(1)).log(Level.INFO, TOO_HIGH);
+        verify(logger, times(1)).log(Level.INFO, CORRECT);
     }
 }

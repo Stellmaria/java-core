@@ -1,11 +1,11 @@
 package com.it.academy.gk.sc0.statements;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -13,6 +13,8 @@ import java.util.logging.Logger;
  * Guess an integer that the computer "guessed" in a certain range.
  * The GuessNumber class allows a user
  * to play a game where they try to guess a number that the computer has "thought of" within a certain range.
+ *
+ * @author Anastasia Melnikova.
  */
 public class GuessNumber {
     /**
@@ -66,7 +68,6 @@ public class GuessNumber {
      * @param min the minimum value for the randomly generated number
      * @param max the maximum value for the randomly generated number
      */
-    @SuppressFBWarnings("DM_DEFAULT_ENCODING")
     public GuessNumber(final int min, final int max) {
         this(min, max, new Scanner(System.in, StandardCharsets.UTF_8), Logger.getLogger(GuessNumber.class.getName()));
     }
@@ -80,12 +81,9 @@ public class GuessNumber {
      * @param scanner the scanner used to read input from the player.
      * @param logger  the logger used to log messages to the console.
      */
-    @SuppressFBWarnings({"EI_EXPOSE_REP2", "DMI_RANDOM_USED_ONLY_ONCE"})
     public GuessNumber(final int min, final int max, final Scanner scanner, final @NotNull Logger logger) {
         this.rand = new SecureRandom();
         this.number = generateRandomNumber(min, max);
-        // Note: This class stores a reference to the Scanner object passed to its constructor,
-        // and any changes made to this object outside of this class will affect its internal representation.
         this.scanner = scanner;
         this.logger = logger;
     }
@@ -112,19 +110,19 @@ public class GuessNumber {
      * If the guess is correct, it logs a congratulatory message and exits the loop.
      */
     public void play() {
-        logger.info(START_GAME);
+        logger.log(Level.INFO, START_GAME);
         int guess = 0;
 
         while (guess != number) {
-            logger.info(ENTER_GUESS);
+            logger.log(Level.INFO, ENTER_GUESS);
 
             guess = scanner.nextInt();
             if (guess < number) {
-                logger.info(TOO_LOW);
+                logger.log(Level.INFO, TOO_LOW);
             } else if (guess > number) {
-                logger.info(TOO_HIGH);
+                logger.log(Level.INFO, TOO_HIGH);
             } else {
-                logger.info(CORRECT);
+                logger.log(Level.INFO, CORRECT);
             }
         }
     }

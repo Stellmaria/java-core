@@ -8,6 +8,8 @@ import java.util.stream.Stream;
  * and depending on the operation number with the entered numbers perform certain actions
  * (for example, when entering the number 3, the numbers are multiplied).
  * The result of the operation is displayed on the console.
+ *
+ * @author Anastasia Melnikova.
  */
 public class Calculator {
     /**
@@ -68,7 +70,7 @@ public class Calculator {
      * if an entry was found or append the INVALID_OPERATION_MESSAGE if no entry was found.
      *
      * @param operationNumber The number representing the operation to perform.
-     *                        1 for addition, 2 for subtraction, and 3 for multiplication.
+     *                        One for addition, 2 for subtraction, and 3 for multiplication.
      * @param firstNumber     The first number to use in the calculation.
      * @param secondNumber    The second number to use in the calculation.
      * @return A string containing the result of the calculation, or an error message if the operation is invalid.
@@ -100,7 +102,7 @@ public class Calculator {
      * Returns the symbol representing the given operation number.
      *
      * @param operationNumber The number representing the operation.
-     *                        1 for addition, 2 for subtraction, and 3 for multiplication.
+     *                        One for addition, 2 for subtraction, and 3 for multiplication.
      * @return The symbol representing the given operation number, or an empty string if the operation is invalid.
      */
     private String getOperationSymbol(final int operationNumber) {

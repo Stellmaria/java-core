@@ -4,6 +4,8 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Using the methods of the String class, output a string that is the result of concatenating two given strings.
+ *
+ * @author Anastasia Melnikova.
  */
 public class StringConcatenator {
     /**

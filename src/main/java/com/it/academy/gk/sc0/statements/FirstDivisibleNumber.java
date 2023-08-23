@@ -4,6 +4,8 @@ import java.util.stream.IntStream;
 
 /**
  * This class finds the first number divisible by a given divisor on a given interval.
+ *
+ * @author Anastasia Melnikova.
  */
 public class FirstDivisibleNumber {
     /**
@@ -18,8 +20,7 @@ public class FirstDivisibleNumber {
      * @param lowerBound the lower bound of the interval.
      * @param upperBound the upper bound of the interval.
      * @param divisor    the divisor to use when checking for divisibility.
-     * @return the first number divisible by divisor on the interval [lowerBound; upperBound],
-     * or -1 if no such number is found.
+     * @return the first number divisible by divisor on the interval [lowerBound; upperBound], or -1 if no such number is found.
      */
     public int findFirstDivisibleNumber(final int lowerBound, final int upperBound, final int divisor) {
         return IntStream.rangeClosed(lowerBound, upperBound)
