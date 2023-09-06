@@ -1,67 +1,98 @@
 package com.it.academy.gk.sc0.operators.task3;
 
-import com.it.academy.gk.sc0.operators.exception.DivisionByZeroException;
+import com.it.academy.gk.sc0.operators.exception.InvalidNumberOfApplesException;
+import com.it.academy.gk.sc0.operators.exception.InvalidNumberOfStudentsException;
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 
 /**
- * The AppleDivision class provides methods to calculate the number of apples each student will receive and the number of remaining apples.
+ * AppleDivision is a utility class
+ * that provides methods for dividing a certain number of apples among a given number of students.
+ * It includes methods for calculating the number of apples per student,
+ * the remaining apples, and the total apples that will be distributed.
+ *
+ * <p>Example usage:</p>
+ * <pre>
+ *     int perStudent = AppleDivision.calculateApplesPerStudent(5, 22);  // perStudent will be 4
+ *     int remaining = AppleDivision.calculateRemainingApples(5, 22);    // remaining will be 2
+ *     int total = AppleDivision.calculateTotalApples(5, 22);            // total will be 20
+ * </pre>
+ *
+ * @author Anastasia Melnikova
+ * @version 1.0
+ * @since 2023-09-02
  */
-public class AppleDivision {
+@UtilityClass
+public final class AppleDivision {
     /**
-     * The error message used when the number of students is zero.
+     * A constant holding the message for an invalid number of students.
      */
-    private static final String DIVISION_BY_ZERO_MESSAGE = "Number of students cannot be zero";
+    private static final String NUMBER_OF_STUDENTS_MUST_BE_GREATER_THAN_ZERO =
+            "Number of students must be greater than zero or cannot be negative";
 
     /**
-     * Calculates the number of apples each student will receive.
-     *
-     * @param n the number of students
-     * @param k the total number of apples
-     * @return the number of apples each student will receive
-     * @throws DivisionByZeroException if the number of students is zero
+     * A constant holding the message for invalid number of apples.
      */
-    public int calculateApplesPerStudent(final int n, final int k) throws DivisionByZeroException {
-        validate(n);
+    private static final String NUMBER_OF_APPLES_CANNOT_BE_NEGATIVE =
+            "Number of apples cannot be negative or must be greater than zero";
+
+    /**
+     * Calculates the number of apples each student will get.
+     *
+     * @param n the number of students. Must be greater than zero.
+     * @param k the total number of apples.
+     * @return the number of apples per student.
+     */
+    @SneakyThrows
+    public static int calculateApplesPerStudent(final int n, final int k) {
+        validate(n, k);
 
         return k / n;
     }
 
     /**
-     * Calculates the number of remaining apples after dividing them among the students.
+     * Calculates the remaining number of apples after distribution.
      *
-     * @param n the number of students
-     * @param k the total number of apples
-     * @return the number of remaining apples
-     * @throws DivisionByZeroException if the number of students is zero
+     * @param n the number of students. Must be greater than zero.
+     * @param k the total number of apples.
+     * @return the remaining number of apples.
      */
-    public int calculateRemainingApples(final int n, final int k) throws DivisionByZeroException {
-        validate(n);
+    @SneakyThrows
+    public static int calculateRemainingApples(final int n, final int k) {
+        validate(n, k);
 
         return k % n;
     }
 
     /**
-     * Calculates the total number of apples that all students will receive.
+     * Calculates the total number of apples that will be distributed among the students.
      *
-     * @param n the number of students
-     * @param k the total number of apples
-     * @return the total number of apples that all students will receive
-     * @throws DivisionByZeroException if the number of students is zero
+     * @param n the number of students. Must be greater than zero.
+     * @param k the total number of apples.
+     * @return the total number of apples that will be distributed.
      */
-    public int calculateTotalApples(final int n, final int k) throws DivisionByZeroException {
-        validate(n);
+    @SneakyThrows
+    public static int calculateTotalApples(final int n, final int k) {
+        validate(n, k);
 
-        return (k / n) * n;
+        return calculateApplesPerStudent(n, k) * n;
     }
 
     /**
-     * Validates the given integer value.
+     * Validates the number of students and the total number of apples.
      *
-     * @param n the integer value to be validated
-     * @throws DivisionByZeroException if the given integer value is zero
+     * @param n the number of students.
+     * @param k the total number of apples.
+     * @throws InvalidNumberOfStudentsException if the number of students is not greater than zero.
+     * @throws InvalidNumberOfApplesException   if the number of apples is negative.
      */
-    private void validate(int n) {
-        if (n == 0) {
-            throw new DivisionByZeroException(DIVISION_BY_ZERO_MESSAGE);
+    private static void validate(int n, int k) {
+        if (n <= 0) {
+            throw new InvalidNumberOfStudentsException(NUMBER_OF_STUDENTS_MUST_BE_GREATER_THAN_ZERO);
+        }
+
+        if (k <= 0) {
+            throw new InvalidNumberOfApplesException(NUMBER_OF_APPLES_CANNOT_BE_NEGATIVE);
         }
     }
 }

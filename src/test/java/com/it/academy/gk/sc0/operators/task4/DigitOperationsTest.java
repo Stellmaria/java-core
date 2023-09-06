@@ -1,35 +1,55 @@
 package com.it.academy.gk.sc0.operators.task4;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidDigitNumberException;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static com.it.academy.gk.sc0.operators.task4.DigitOperations.calculateDigitProduct;
+import static com.it.academy.gk.sc0.operators.task4.DigitOperations.calculateDigitSum;
+import static com.it.academy.gk.sc0.operators.task4.DigitOperations.calculateNumberOfDigits;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * The DigitOperationsTest class is a test class for the DigitOperations class.
- * It contains tests for the calculateDigitSum, calculateDigitProduct, and calculateNumberOfDigits methods of the DigitOperations class.
+ * DigitOperationsTest is a test class that performs unit tests for methods related to the operations on digits.
+ *
+ * <p>This class uses JUnit 5 for unit testing and exception testing to validate the behavior of methods
+ * for various digit operations.</p>
+ *
+ * @author Ansatsia Melnikova
+ * @version 1.0
+ * @since 2023-09-03
  */
-@SuppressFBWarnings("NP_NONNULL_RETURN_VIOLATION")
 class DigitOperationsTest {
-    /**
-     * The digitOperations field is an instance of the DigitOperations class.
-     */
-    private DigitOperations digitOperations;
+    private static String INVALID_DIGIT_NUMBER_MESSAGE;
 
     /**
-     * The provideValidArgumentsForCalculateDigitSum method provides valid test data for the testValidCasesForCalculateDigitSum method.
-     * It returns a Stream of Arguments, where each Argument contains a number and its expected digit sum.
+     * Setup method executed before all tests in the class.
+     */
+    @SneakyThrows
+    @BeforeAll
+    public static void beforeAll() {
+        var invalidDigitNumberMessageField =
+                DigitOperations.class.getDeclaredField("INVALID_DIGIT_NUMBER_MESSAGE");
+        invalidDigitNumberMessageField.setAccessible(true);
+        INVALID_DIGIT_NUMBER_MESSAGE = (String) invalidDigitNumberMessageField.get(null);
+    }
+
+    /**
+     * Provides valid arguments for parameterized testing of the
+     * {@link DigitOperations#calculateDigitSum(int)} method.
      *
-     * @return a Stream of Arguments for the testValidCasesForCalculateDigitSum method
+     * @return a {@link Stream} of {@link Arguments} containing numbers,
+     * and their expected sum of digits.
      */
     static @NotNull Stream<Arguments> provideValidArgumentsForCalculateDigitSum() {
         return Stream.of(
@@ -40,10 +60,11 @@ class DigitOperationsTest {
     }
 
     /**
-     * The provideValidArgumentsForCalculateDigitProduct method provides valid test data for the testValidCasesForCalculateDigitProduct method.
-     * It returns a Stream of Arguments, where each Argument contains a number and its expected digit product.
+     * Provides valid arguments for parameterized testing of the
+     * {@link DigitOperations#calculateDigitProduct(int)} method.
      *
-     * @return a Stream of Arguments for the testValidCasesForCalculateDigitProduct method
+     * @return a {@link Stream} of {@link Arguments} containing numbers,
+     * and their expected product of digits.
      */
     static @NotNull Stream<Arguments> provideValidArgumentsForCalculateDigitProduct() {
         return Stream.of(
@@ -54,10 +75,11 @@ class DigitOperationsTest {
     }
 
     /**
-     * The provideValidArgumentsForCalculateNumberOfDigits method provides valid test data for the testValidCasesForCalculateNumberOfDigits method.
-     * It returns a Stream of Arguments, where each Argument contains a number and its expected number of digits.
+     * Provides valid arguments for parameterized testing of the
+     * {@link DigitOperations#calculateNumberOfDigits(int)} method.
      *
-     * @return a Stream of Arguments for the testValidCasesForCalculateNumberOfDigits method
+     * @return a {@link Stream} of {@link Arguments} containing numbers,
+     * and their expected number of digits.
      */
     static @NotNull Stream<Arguments> provideValidArgumentsForCalculateNumberOfDigits() {
         return Stream.of(
@@ -68,112 +90,106 @@ class DigitOperationsTest {
     }
 
     /**
-     * The provideInvalidArguments method provides invalid test data for all testInvalidCases methods.
-     * It returns a Stream of Arguments, where each Argument contains an invalid number.
+     * Provides invalid arguments for parameterized testing of digit operation methods.
      *
-     * @return a Stream of Arguments for all testInvalidCases methods
+     * @return a {@link Stream} of {@link Arguments} containing executable blocks and
+     * expected exception messages.
      */
-    static @NotNull Stream<Arguments> provideInvalidArguments() {
+    static @NotNull Stream<Arguments> provideInvalidArgumentsAndMessage() {
         return Stream.of(
-                Arguments.of(0),
-                Arguments.of(9),
-                Arguments.of(1000)
+                Arguments.of((Executable) () -> calculateDigitSum(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateDigitSum(9), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateDigitProduct(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateDigitProduct(9), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateNumberOfDigits(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateNumberOfDigits(9), INVALID_DIGIT_NUMBER_MESSAGE)
         );
     }
 
     /**
-     * The setUp method is called before each test method.
-     * It initializes the digitOperations field with a new instance of the DigitOperations class.
-     */
-    @BeforeEach
-    void setUp() {
-        digitOperations = new DigitOperations();
-    }
-
-    /**
-     * The testValidCasesForCalculateDigitSum method tests the calculateDigitSum method of the DigitOperations class with various valid inputs.
-     * It is a parameterized test that uses the data provided by the provideValidArgumentsForCalculateDigitSum method.
+     * Tests the {@link DigitOperations#calculateDigitSum(int)} method with valid input parameters
+     * for the number and expected sum of digits.
      *
-     * @param number   a number
-     * @param expected its expected digit sum
+     * @param number   the input number.
+     * @param expected the expected sum of digits.
      */
+    @SneakyThrows
     @ParameterizedTest(name = "With number = {0}, expected sum = {1}")
     @MethodSource("provideValidArgumentsForCalculateDigitSum")
     @DisplayName("Valid cases for calculateDigitSum")
-    void testValidCasesForCalculateDigitSum(int number, int expected) throws InvalidDigitNumberException {
-        var actual = digitOperations.calculateDigitSum(number);
+    void testValidCasesForCalculateDigitSum(final int number, final int expected) {
+        var actual = calculateDigitSum(number);
 
         assertEquals(expected, actual);
     }
 
     /**
-     * The testValidCasesForCalculateDigitProduct method tests the calculateDigitProduct method of the DigitOperations class with various valid inputs.
-     * It is a parameterized test that uses the data provided by the provideValidArgumentsForCalculateDigitProduct method.
+     * Tests the {@link DigitOperations#calculateDigitProduct(int)} method with valid input parameters
+     * for the number and expected product of digits.
      *
-     * @param number   a number
-     * @param expected its expected digit product
+     * @param number   the input number.
+     * @param expected the expected product of digits.
      */
     @ParameterizedTest(name = "With number = {0}, expected product = {1}")
     @MethodSource("provideValidArgumentsForCalculateDigitProduct")
     @DisplayName("Valid cases for calculateDigitProduct")
-    void testValidCasesForCalculateDigitProduct(int number, int expected) throws InvalidDigitNumberException {
-        var actual = digitOperations.calculateDigitProduct(number);
+    @SneakyThrows
+    void testValidCasesForCalculateDigitProduct(final int number, final int expected) {
+        var actual = calculateDigitProduct(number);
 
         assertEquals(expected, actual);
     }
 
     /**
-     * The testValidCasesForCalculateNumberOfDigits method tests the calculateNumberOfDigits method of the DigitOperations class with various valid inputs.
-     * It is a parameterized test that uses the data provided by the provideValidArgumentsForCalculateNumberOfDigits method.
+     * Tests the {@link DigitOperations#calculateNumberOfDigits(int)} method with valid input parameters
+     * for the number and expected number of digits.
      *
-     * @param number   a number
-     * @param expected its expected number of digits
+     * @param number   the input number.
+     * @param expected the expected number of digits.
      */
     @ParameterizedTest(name = "With number = {0}, expected numberOfDigits = {1}")
     @MethodSource("provideValidArgumentsForCalculateNumberOfDigits")
     @DisplayName("Valid cases for calculateNumberOfDigits")
-    void testValidCasesForCalculateNumberOfDigits(int number, int expected) throws InvalidDigitNumberException {
-        var actual = digitOperations.calculateNumberOfDigits(number);
+    @SneakyThrows
+    void testValidCasesForCalculateNumberOfDigits(final int number, final int expected) {
+        var actual = calculateNumberOfDigits(number);
 
         assertEquals(expected, actual);
     }
 
     /**
-     * The testInvalidCasesForCalculateDigitSum method tests the calculateDigitSum method of the DigitOperations class with various invalid inputs.
-     * It is a parameterized test that uses the data provided by the provideInvalidArguments method.
+     * Tests invalid cases for all digit operation methods and expects a specific exception message.
      *
-     * @param number an invalid number
+     * @param executable the executable code block that should throw an exception.
+     * @param expected   the expected exception message.
      */
-    @ParameterizedTest(name = "With invalid number = {0}")
-    @MethodSource("provideInvalidArguments")
-    @DisplayName("Invalid cases for calculateDigitSum")
-    void testInvalidCasesForCalculateDigitSum(int number) {
-        assertThrows(InvalidDigitNumberException.class, () -> digitOperations.calculateDigitSum(number));
+    @ParameterizedTest(name = "With invalid number, method = {0}")
+    @MethodSource("provideInvalidArgumentsAndMessage")
+    @DisplayName("Invalid cases for all methods with message")
+    void testInvalidCasesForAllMethods(final Executable executable, final String expected) {
+        var actual = assertThrows(InvalidDigitNumberException.class, executable).getMessage();
+
+        assertEquals(expected, actual);
     }
 
     /**
-     * The testInvalidCasesForCalculateDigitProduct method tests the calculateDigitProduct method of the DigitOperations class with various invalid inputs.
-     * It is a parameterized test that uses the data provided by the provideInvalidArguments method.
-     *
-     * @param number an invalid number
+     * Tests the performDigitOperation method using Reflection to invoke the method dynamically.
      */
-    @ParameterizedTest(name = "With invalid number = {0}")
-    @MethodSource("provideInvalidArguments")
-    @DisplayName("Invalid cases for calculateDigitProduct")
-    void testInvalidCasesForCalculateDigitProduct(int number) {
-        assertThrows(InvalidDigitNumberException.class, () -> digitOperations.calculateDigitProduct(number));
-    }
+    @SneakyThrows
+    @Test
+    @DisplayName("Test performDigitOperation method using Reflection")
+    void testPerformDigitOperation() {
+        var method = DigitOperations.class.getDeclaredMethod("performDigitOperation", int.class,
+                DigitOperation.class, int.class);
+        method.setAccessible(true);
 
-    /**
-     * The testInvalidCasesForCalculateNumberOfDigits method tests the calculateNumberOfDigits method of the DigitOperations class with various invalid inputs.
-     * It is a parameterized test that uses the data provided by the provideInvalidArguments method.
-     *
-     * @param number an invalid number
-     */
-    @ParameterizedTest(name = "With invalid number = {0}")
-    @MethodSource("provideInvalidArguments")
-    @DisplayName("Invalid cases for calculateNumberOfDigits")
-    void testInvalidCasesForCalculateNumberOfDigits(int number) {
-        assertThrows(InvalidDigitNumberException.class, () -> digitOperations.calculateNumberOfDigits(number));
+        DigitOperation addition = Integer::sum;
+        int resultForSum = (int) method.invoke(null, 123, addition, 0);
+
+        DigitOperation multiplication = (a, b) -> a * b;
+        int resultForProduct = (int) method.invoke(null, 123, multiplication, 1);
+
+        assertEquals(6, resultForProduct);
+        assertEquals(6, resultForSum);
     }
 }

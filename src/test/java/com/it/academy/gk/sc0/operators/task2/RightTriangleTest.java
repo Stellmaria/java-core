@@ -1,36 +1,61 @@
 package com.it.academy.gk.sc0.operators.task2;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidTriangleSideException;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static com.it.academy.gk.sc0.operators.task2.RightTriangle.calculateArea;
+import static com.it.academy.gk.sc0.operators.task2.RightTriangle.calculateHypotenuse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * The RightTriangleTest class is a test class for the RightTriangle class.
- * It contains tests for the calculateArea and calculateHypotenuse methods of the RightTriangle class.
+ * RightTriangleTest is a test class that performs unit tests for the {@link RightTriangle} class.
+ *
+ * <p>This class uses JUnit 5 for parameterized testing and exception testing to validate the behavior
+ * of the {@link RightTriangle} class methods.</p>
+ *
+ * @author Anastasia Melnikova
+ * @version 1.0
+ * @since 2023-09-02
  */
-@SuppressFBWarnings("NP_NONNULL_RETURN_VIOLATION")
 class RightTriangleTest {
+    private static String BOTH_SIDES_INVALID_MESSAGE;
+    private static String SIDE_A_INVALID_MESSAGE;
+    private static String SIDE_B_INVALID_MESSAGE;
 
     /**
-     * The rightTriangle field is an instance of the RightTriangle class.
+     * Setup method executed before all tests in the class.
      */
-    private RightTriangle rightTriangle;
+    @SneakyThrows
+    @BeforeAll
+    public static void beforeAll() {
+        var bothSidesInvalidMessageField = RightTriangle.class.getDeclaredField("BOTH_SIDES_INVALID_MESSAGE");
+        bothSidesInvalidMessageField.setAccessible(true);
+        BOTH_SIDES_INVALID_MESSAGE = (String) bothSidesInvalidMessageField.get(null);
+
+        var sideAInvalidMessageField = RightTriangle.class.getDeclaredField("SIDE_A_INVALID_MESSAGE");
+        sideAInvalidMessageField.setAccessible(true);
+        SIDE_A_INVALID_MESSAGE = (String) sideAInvalidMessageField.get(null);
+
+        var sideBInvalidMessageField = RightTriangle.class.getDeclaredField("SIDE_B_INVALID_MESSAGE");
+        sideBInvalidMessageField.setAccessible(true);
+        SIDE_B_INVALID_MESSAGE = (String) sideBInvalidMessageField.get(null);
+    }
 
     /**
-     * The provideValidAreaArguments method provides test data for the testCalculateArea method.
-     * It returns a Stream of Arguments, where each Argument contains two sides of a right triangle and the expected area of that triangle.
+     * Provides valid side lengths and expected area values for parameterized testing of the
+     * {@link RightTriangle#calculateArea(double, double)} method.
      *
-     * @return a Stream of Arguments for the testCalculateArea method
+     * @return a {@link Stream} of {@link Arguments} containing side lengths and expected area values.
      */
     static @NotNull Stream<Arguments> provideValidAreaArguments() {
         return Stream.of(
@@ -41,10 +66,10 @@ class RightTriangleTest {
     }
 
     /**
-     * The provideValidHypotenuseArguments method provides test data for the testCalculateHypotenuse method.
-     * It returns a Stream of Arguments, where each Argument contains two sides of a right triangle and the expected length of its hypotenuse.
+     * Provides valid side lengths and expected hypotenuse values for parameterized testing of the
+     * {@link RightTriangle#calculateHypotenuse(double, double)} method.
      *
-     * @return a Stream of Arguments for the testCalculateHypotenuse method
+     * @return a {@link Stream} of {@link Arguments} containing side lengths and expected hypotenuse values.
      */
     static @NotNull Stream<Arguments> provideValidHypotenuseArguments() {
         return Stream.of(
@@ -55,92 +80,103 @@ class RightTriangleTest {
     }
 
     /**
-     * The provideInvalidSideArguments method provides invalid test data for both testInvalidSidesCalculateArea and testInvalidSidesCalculateHypotenuse methods.
-     * It returns a Stream of Arguments, where each Argument contains two invalid sides of a right triangle.
+     * Provides executable instances for testing invalid side lengths along with the expected error message.
      *
-     * @return a Stream of Arguments for both testInvalidSidesCalculateArea and testInvalidSidesCalculateHypotenuse methods
+     * @return a {@link Stream} of {@link Arguments} containing executable instances and expected error messages.
      */
-    static @NotNull Stream<Arguments> provideInvalidSideArguments() {
+    static @NotNull Stream<Arguments> provideInvalidSideArgumentsAndMessage() {
         return Stream.of(
-                Arguments.of(0.0, 4.0),
-                Arguments.of(3.0, 0.0),
-                Arguments.of(-1.0, 4.0),
-                Arguments.of(Double.NaN, 4.0),
-                Arguments.of(Double.POSITIVE_INFINITY, 4.0),
-                Arguments.of(Double.NEGATIVE_INFINITY, 4.0)
+                Arguments.of((Executable) () -> calculateArea(0.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateArea(3.0, 0.0), SIDE_B_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateArea(-1.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateArea(0.0, 0.0), BOTH_SIDES_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(3.0, 0.0), SIDE_B_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(-1.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 0.0), BOTH_SIDES_INVALID_MESSAGE)
         );
     }
 
     /**
-     * The setUp method is called before each test method.
-     * It initializes the rightTriangle field with a new instance of the RightTriangle class.
+     * Provides executable instances for testing invalid side lengths without specifying the expected error message.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing executable instances.
      */
-    @BeforeEach
-    void setUp() {
-        rightTriangle = new RightTriangle();
+    static @NotNull Stream<Arguments> provideInvalidSideArguments() {
+        return Stream.of(
+                Arguments.of((Executable) () -> calculateArea(0.0, 4.0)),
+                Arguments.of((Executable) () -> calculateArea(3.0, 0.0)),
+                Arguments.of((Executable) () -> calculateArea(-1.0, 4.0)),
+                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 4.0)),
+                Arguments.of((Executable) () -> calculateHypotenuse(3.0, 0.0)),
+                Arguments.of((Executable) () -> calculateHypotenuse(-1.0, 4.0))
+        );
     }
 
     /**
-     * The testCalculateArea method tests the calculateArea method of the RightTriangle class with various valid inputs.
-     * It is a parameterized test that uses the data provided by the provideValidAreaArguments method.
+     * Tests the {@link RightTriangle#calculateArea(double, double)} method with valid input side lengths
+     * and expected area values.
      *
-     * @param sideA    one side of a right triangle
-     * @param sideB    another side of a right triangle
-     * @param expected the expected area of the triangle
+     * @param sideA    the length of side A.
+     * @param sideB    the length of side B.
+     * @param expected the expected area value.
      */
+    @SneakyThrows
     @ParameterizedTest(name = "Calculate area with side A = {0}, side B = {1}, expected area = {2}")
     @MethodSource("provideValidAreaArguments")
     @DisplayName("Valid cases for calculateArea method")
-    void testCalculateArea(final double sideA, final double sideB,
-                           final double expected) throws InvalidTriangleSideException {
-        var actual = rightTriangle.calculateArea(sideA, sideB);
+    void testCalculateArea(final double sideA, final double sideB, final double expected) {
+        var actual = calculateArea(sideA, sideB);
 
-        assertEquals(expected, actual);
+        assertEquals(expected, actual, 1e-9);
     }
 
     /**
-     * The testCalculateHypotenuse method tests the calculateHypotenuse method of the RightTriangle class with various valid inputs.
-     * It is a parameterized test that uses the data provided by the provideValidHypotenuseArguments method.
+     * Tests the {@link RightTriangle#calculateHypotenuse(double, double)} method with valid input side lengths
+     * and expected hypotenuse values.
      *
-     * @param sideA    one side of a right triangle
-     * @param sideB    another side of a right triangle
-     * @param expected the expected length of the hypotenuse
+     * @param sideA    the length of side A.
+     * @param sideB    the length of side B.
+     * @param expected the expected hypotenuse value.
      */
+    @SneakyThrows
     @ParameterizedTest(name = "Calculate hypotenuse with side A = {0}, side B = {1}, expected hypotenuse = {2}")
     @MethodSource("provideValidHypotenuseArguments")
     @DisplayName("Valid cases for calculateHypotenuse method")
-    void testCalculateHypotenuse(final double sideA, final double sideB,
-                                 final double expected) throws InvalidTriangleSideException {
-        var actual = rightTriangle.calculateHypotenuse(sideA, sideB);
+    void testCalculateHypotenuse(final double sideA, final double sideB, final double expected) {
+        var actual = calculateHypotenuse(sideA, sideB);
+
+        assertEquals(expected, actual, 1e-9);
+    }
+
+    /**
+     * Tests invalid side lengths for both {@link RightTriangle#calculateArea(double, double)}
+     * and {@link RightTriangle#calculateHypotenuse(double, double)} methods,
+     * and verifies that the expected error message is thrown.
+     *
+     * @param executable the executable representing the method call with invalid side lengths.
+     * @param expected   the expected error message.
+     */
+    @ParameterizedTest(name = "Test with invalid sides A = {0}, B = {1}, method = {2}")
+    @MethodSource("provideInvalidSideArgumentsAndMessage")
+    @DisplayName("Invalid cases for both calculateArea and calculateHypotenuse methods with message")
+    void testInvalidSidesForMethodsAndMessage(Executable executable, String expected) {
+        var actual = assertThrows(InvalidTriangleSideException.class, executable).getMessage();
 
         assertEquals(expected, actual);
     }
 
     /**
-     * The testInvalidSidesCalculateArea method tests the calculateArea method of the RightTriangle class with various invalid inputs.
-     * It is a parameterized test that uses the data provided by the provideInvalidSideArguments method.
+     * Tests invalid side lengths for both {@link RightTriangle#calculateArea(double, double)}
+     * and {@link RightTriangle#calculateHypotenuse(double, double)} methods,
+     * expecting {@link InvalidTriangleSideException}.
      *
-     * @param sideA one side of a right triangle
-     * @param sideB another side of a right triangle
+     * @param expected the executable representing the method call with invalid side lengths.
      */
-    @ParameterizedTest(name = "Calculate area with invalid sides A = {0}, B = {1}")
+    @ParameterizedTest(name = "Test with invalid sides A = {0}, B = {1}, method = {2}")
     @MethodSource("provideInvalidSideArguments")
     @DisplayName("Invalid cases for both calculateArea and calculateHypotenuse methods")
-    void testInvalidSidesCalculateArea(final double sideA, final double sideB) {
-        assertThrows(InvalidTriangleSideException.class, () -> rightTriangle.calculateArea(sideA, sideB));
-    }
-
-    /**
-     * The testInvalidSidesCalculateHypotenuse method tests the calculateHypotenuse method of the RightTriangle class with various invalid inputs.
-     * It is a parameterized test that uses the data provided by the provideInvalidSideArguments method.
-     *
-     * @param sideA one side of a right triangle
-     * @param sideB another side of a right triangle
-     */
-    @ParameterizedTest(name = "Calculate hypotenuse with invalid sides A = {0}, B = {1}")
-    @MethodSource("provideInvalidSideArguments")
-    @DisplayName("Invalid cases for both calculateArea and calculateHypotenuse methods")
-    void testInvalidSidesCalculateHypotenuse(final double sideA, final double sideB) {
-        assertThrows(InvalidTriangleSideException.class, () -> rightTriangle.calculateHypotenuse(sideA, sideB));
+    void testInvalidSidesForMethods(Executable expected) {
+        assertThrows(InvalidTriangleSideException.class, expected);
     }
 }

@@ -1,56 +1,77 @@
 package com.it.academy.gk.sc0.operators.task7;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidAgeException;
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 
 /**
- * The AgeClassifier class provides a method to classify a given age into one of several categories.
+ * AgeClassifier is a utility class that provides a method for classifying a person's age into categories such as Child,
+ * Adult, and Elderly.
+ *
+ * <p>Example usage:</p>
+ * <pre>
+ *     String ageCategory = AgeClassifier.classifyAge(25);  // ageCategory will be "Adult"
+ * </pre>
+ *
+ * @author Anastasia Melnikova
+ * @version 1.0
+ * @since 2023-09-02
  */
-public class AgeClassifier {
+@UtilityClass
+public final class AgeClassifier {
     /**
-     * The upper limit for the child age category.
+     * The upper age limit for the category "Child".
      */
     private static final int CHILD_UPPER_LIMIT = 17;
+
     /**
-     * The upper limit for the adult age category.
+     * The upper age limit for the category "Adult".
      */
     private static final int ADULT_UPPER_LIMIT = 69;
+
     /**
-     * The lower limit for the long-lived age category.
+     * The lower age limit for the label "Long-lived".
      */
     private static final int LONG_LIVED_LOWER_LIMIT = 120;
+
     /**
-     * The error message used when an invalid age is encountered.
+     * A constant holding the default message for negative age.
      */
     private static final String INVALID_AGE_MESSAGE = "Age cannot be negative.";
+
     /**
-     * The label used for the child age category.
+     * A constant for the label "Child".
      */
     private static final String CHILD_LABEL = "Child";
+
     /**
-     * The label used for the adult age category.
+     * A constant for the label "Adult".
      */
     private static final String ADULT_LABEL = "Adult";
+
     /**
-     * The label used for the elderly age category.
+     * A constant for the label "Elderly".
      */
     private static final String ELDERLY_LABEL = "Elderly";
+
     /**
-     * The label used for the long-lived age category.
+     * A constant for the label "Long-lived".
      */
     private static final String LONG_LIVED_LABEL = "Long-lived";
+
     /**
-     * A space character.
+     * A constant for space used in labels.
      */
     private static final String SPACE = " ";
 
     /**
-     * Classifies the given age into one of several categories: Child, Adult, Elderly, or Long-lived.
+     * Classifies the given age into categories such as Child, Adult, and Elderly.
      *
-     * @param age the age to be classified
-     * @return a string representing the age category of the given age
-     * @throws InvalidAgeException if the given age is negative
+     * @param age the age of the person. Must be a non-negative number.
+     * @return the category label based on the age.
      */
-    public String classifyAge(final int age) throws InvalidAgeException {
+    @SneakyThrows
+    public static String classifyAge(final int age) {
         String result;
 
         validateAge(age);
@@ -70,12 +91,12 @@ public class AgeClassifier {
     }
 
     /**
-     * Validates the given age to ensure that it is not negative.
+     * Validates the given age to ensure it is a non-negative number.
      *
-     * @param age the age to be validated
-     * @throws InvalidAgeException if the given age is negative
+     * @param age the age to validate.
      */
-    private void validateAge(final int age) throws InvalidAgeException {
+    @SneakyThrows
+    private static void validateAge(final int age) {
         if (age < 0) {
             throw new InvalidAgeException(INVALID_AGE_MESSAGE);
         }
