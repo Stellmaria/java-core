@@ -60,31 +60,6 @@ class SumNumbersTest {
     }
 
     /**
-     * Provides valid arguments for testing array validation exceptions and their messages.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing exception class, expected message, and executable.
-     */
-    static @NotNull Stream<Arguments> provideInvalidArraysForExceptionMessages() {
-        return Stream.of(
-                Arguments.of(EmptyArrayException.class, ARRAY_MUST_NOT_BE_EMPTY, (Executable) () -> sum(new int[]{})),
-                Arguments.of(EmptyArrayException.class, EXPECTED_NON_NULL_ARGUMENT,
-                        (Executable) () -> sum((int[]) null))
-        );
-    }
-
-    /**
-     * Provides invalid arrays and their corresponding expected exception classes for testing exceptions.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing expected exception class and executable.
-     */
-    static @NotNull Stream<Arguments> provideInvalidArraysForExceptions() {
-        return Stream.of(
-                Arguments.of(EmptyArrayException.class, (Executable) () -> sum(new int[]{})),
-                Arguments.of(EmptyArrayException.class, (Executable) () -> sum((int[]) null))
-        );
-    }
-
-    /**
      * Tests the {@link SumNumbers#sum(int...)} method with various input arrays and their corresponding expected sums.
      *
      * @param numbers  the array of numbers.
@@ -97,6 +72,19 @@ class SumNumbersTest {
         var actual = sum(numbers);
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides valid arguments for testing array validation exceptions and their messages.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing exception class, expected message, and executable.
+     */
+    static @NotNull Stream<Arguments> provideInvalidArraysForExceptionMessages() {
+        return Stream.of(
+                Arguments.of(EmptyArrayException.class, ARRAY_MUST_NOT_BE_EMPTY, (Executable) () -> sum(new int[]{})),
+                Arguments.of(EmptyArrayException.class, EXPECTED_NON_NULL_ARGUMENT,
+                        (Executable) () -> sum((int[]) null))
+        );
     }
 
     /**
@@ -115,6 +103,18 @@ class SumNumbersTest {
         var actual = assertThrows(exception, executable).getMessage();
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides invalid arrays and their corresponding expected exception classes for testing exceptions.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing expected exception class and executable.
+     */
+    static @NotNull Stream<Arguments> provideInvalidArraysForExceptions() {
+        return Stream.of(
+                Arguments.of(EmptyArrayException.class, (Executable) () -> sum(new int[]{})),
+                Arguments.of(EmptyArrayException.class, (Executable) () -> sum((int[]) null))
+        );
     }
 
     /**
