@@ -2,56 +2,73 @@ package com.it.academy.gk.sc0.operators.task8;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidPlanetNameException;
 import com.it.academy.gk.sc0.operators.exception.InvalidPlanetNumberException;
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
- * The SolarSystemPlanetFinder class provides a method to find the name of a planet in the Solar System given its number.
+ * Utility class for finding planets in the Solar System.
+ *
+ * <p>This class provides methods to find the name of a planet based on its number, and vice versa.</p>
+ *
+ * <p>Example usage:</p>
+ * <pre>
+ *     Optional<String> planetName = SolarSystemPlanetFinder.findPlanetByNumber(3);
+ *     Optional<Integer> planetNumber = SolarSystemPlanetFinder.findPlanetNumberByName("Earth");
+ * </pre>
+ *
+ * @author Anastasia Melnikova
+ * @version 1.0
+ * @since 2023-09-02
  */
-public class SolarSystemPlanetFinder {
+@UtilityClass
+public final class SolarSystemPlanetFinder {
     /**
-     * An array of planet names in the Solar System, in order from the Sun.
+     * A HashMap containing the planet numbers as keys and their names as values.
      */
-    private final String[] planetNames = {
-            "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"
-    };
+    private static final HashMap<Integer, String> planetByNumber = new HashMap<>();
 
-    /**
-     * Finds the name of a planet in the Solar System given its number.
-     *
-     * @param planetNumber the number of the planet, where 1 is the closest to the Sun
-     * @return the name of the planet
-     * @throws InvalidPlanetNumberException if the given planet number is not between 1 and the total number of planets in the Solar System
-     */
-    public String findPlanetByNumber(final int planetNumber) throws InvalidPlanetNumberException {
-        validatePlanetNumber(planetNumber);
-
-        return planetNames[planetNumber - 1];
+    static {
+        for (Planet planet : Planet.values()) {
+            planetByNumber.put(planet.getNumber(), planet.name());
+        }
     }
 
     /**
-     * Finds the number of a planet in the Solar System given its name.
+     * Finds the name of a planet based on its number.
      *
-     * @param planetName the name of the planet
-     * @return the number of the planet, where 1 is the closest to the Sun
-     * @throws InvalidPlanetNameException if the given planet name is not a valid planet name in the Solar System
+     * @param planetNumber The number of the planet.
+     * @return An Optional containing the name of the planet, or an empty Optional if the planet number is invalid.
      */
-    public int findPlanetNumberByName(final String planetName) throws InvalidPlanetNameException {
-        for (int i = 0; i < planetNames.length; i++) {
-            if (planetNames[i].equals(planetName)) {
-                return i + 1;
+    @SneakyThrows
+    public static @NotNull Optional<String> findPlanetByNumber(final int planetNumber) {
+        Optional<String> result = Optional.ofNullable(planetByNumber.get(planetNumber));
+
+        if (result.isPresent()) {
+            return result;
+        } else {
+            throw InvalidPlanetNumberException.createWith(planetNumber, planetByNumber.size());
+        }
+    }
+
+    /**
+     * Finds the number of a planet based on its name.
+     *
+     * @param planetName The name of the planet. The name is case-insensitive.
+     * @return An Optional containing the number of the planet, or an empty Optional if the planet name is invalid.
+     */
+    @SneakyThrows
+    public static @NotNull Optional<Integer> findPlanetNumberByName(final @NotNull String planetName) {
+        for (Map.Entry<Integer, String> entry : planetByNumber.entrySet()) {
+            if (entry.getValue().equalsIgnoreCase(planetName)) {
+                return Optional.of(entry.getKey());
             }
         }
-        throw new InvalidPlanetNameException(planetName);
-    }
 
-    /**
-     * Validates the given planet number to ensure that it is between 1 and the total number of planets in the Solar System.
-     *
-     * @param planetNumber the planet number to be validated
-     * @throws InvalidPlanetNumberException if the given planet number is not between 1 and the total number of planets in the Solar System
-     */
-    private void validatePlanetNumber(final int planetNumber) throws InvalidPlanetNumberException {
-        if (planetNumber < 1 || planetNumber > planetNames.length) {
-            throw InvalidPlanetNumberException.createWith(planetNumber, planetNames.length);
-        }
+        throw new InvalidPlanetNameException(planetName);
     }
 }
