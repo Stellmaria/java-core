@@ -72,6 +72,22 @@ public class TimeSinceStartOfDayTest {
     }
 
     /**
+     * Tests the {@link TimeSinceStartOfDay#calculateHours(int)} method with valid input parameters
+     * for the number of minutes and expected number of hours.
+     *
+     * @param inputMinutes the input number of minutes.
+     * @param expected     the expected number of hours.
+     */
+    @DisplayName("Positive Test Cases for calculateHours")
+    @ParameterizedTest(name = "calculateHours with {0} minutes should return {1} hours")
+    @MethodSource("validMinutesAndHoursProvider")
+    void testCalculateHours_PositiveCases(final int inputMinutes, final int expected) {
+        var actual = calculateHours(inputMinutes);
+
+        assertEquals(expected, actual);
+    }
+
+    /**
      * Provides valid minutes and their corresponding minutes since last hour for parameterized testing of the
      * {@link TimeSinceStartOfDay#calculateMinutesSinceLastHour(int)} method.
      *
@@ -85,6 +101,22 @@ public class TimeSinceStartOfDayTest {
                 Arguments.of(119, 59),
                 Arguments.of(1440 - 1, 59)
         );
+    }
+
+    /**
+     * Tests the {@link TimeSinceStartOfDay#calculateMinutesSinceLastHour(int)} method with valid input parameters
+     * for the number of minutes and expected number of minutes since the last hour.
+     *
+     * @param inputMinutes the input number of minutes.
+     * @param expected     the expected number of minutes since the last hour.
+     */
+    @DisplayName("Positive Test Cases for calculateMinutesSinceLastHour")
+    @ParameterizedTest(name = "calculateMinutesSinceLastHour with {0} minutes should return {1} minutes")
+    @MethodSource("validMinutesAndMinutesSinceLastHourProvider")
+    void testCalculateMinutesSinceLastHour_PositiveCases(final int inputMinutes, final int expected) {
+        var actual = calculateMinutesSinceLastHour(inputMinutes);
+
+        assertEquals(expected, actual);
     }
 
     /**
@@ -103,6 +135,23 @@ public class TimeSinceStartOfDayTest {
         );
     }
 
+    /**
+     * Tests the {@link TimeSinceStartOfDay#calculateTotalMinutes(int, int)} method with valid input parameters
+     * for the number of hours, minutes and expected total minutes.
+     *
+     * @param inputHours   the input number of hours.
+     * @param inputMinutes the input number of minutes.
+     * @param expected     the expected total number of minutes.
+     */
+    @DisplayName("Positive Test Cases for calculateTotalMinutes")
+    @ParameterizedTest(name = "calculateTotalMinutes with {0} hours and {1} minutes should return {2} total minutes")
+    @MethodSource("validHoursAndMinutesAndTotalMinutesProvider")
+    void testCalculateTotalMinutes_PositiveCases(final int inputHours, final int inputMinutes, final int expected) {
+        var actual = calculateTotalMinutes(inputHours, inputMinutes);
+
+        assertEquals(expected, actual);
+    }
+
     static @NotNull Stream<Arguments> provideInvalidArgumentsAndExceptionType() {
         return Stream.of(
                 Arguments.of((Executable) () -> calculateHours(-1), InvalidMinuteException.class),
@@ -117,14 +166,16 @@ public class TimeSinceStartOfDayTest {
     }
 
     /**
-     * Constructs an exception message using the provided invalid minutes.
+     * Tests invalid cases for all time calculation methods and expects a specific exception type.
      *
-     * @param minutes the invalid minutes.
-     * @return the constructed exception message.
+     * @param actual   the executable code block that should throw an exception.
+     * @param expected the expected exception class.
      */
-    @Contract(pure = true)
-    private static @NotNull String buildExceptionMessage(int minutes) {
-        return INVALID_MINUTES_MESSAGE + SPACE + RECEIVED + SPACE + minutes;
+    @DisplayName("Invalid cases for all time calculation methods")
+    @ParameterizedTest(name = "With invalid input, method = {0}")
+    @MethodSource("provideInvalidArgumentsAndExceptionType")
+    void testInvalidCasesForAllMethods(final Executable actual, final Class<? extends Exception> expected) {
+        assertThrows(expected, actual);
     }
 
     /**
@@ -156,73 +207,11 @@ public class TimeSinceStartOfDayTest {
     }
 
     /**
-     * Tests the {@link TimeSinceStartOfDay#calculateHours(int)} method with valid input parameters
-     * for the number of minutes and expected number of hours.
-     *
-     * @param inputMinutes the input number of minutes.
-     * @param expected     the expected number of hours.
-     */
-    @DisplayName("Positive Test Cases for calculateHours")
-    @ParameterizedTest(name = "calculateHours with {0} minutes should return {1} hours")
-    @MethodSource("validMinutesAndHoursProvider")
-    void testCalculateHours_PositiveCases(final int inputMinutes, final int expected) {
-        var actual = calculateHours(inputMinutes);
-
-        assertEquals(expected, actual);
-    }
-
-    /**
-     * Tests the {@link TimeSinceStartOfDay#calculateMinutesSinceLastHour(int)} method with valid input parameters
-     * for the number of minutes and expected number of minutes since the last hour.
-     *
-     * @param inputMinutes the input number of minutes.
-     * @param expected     the expected number of minutes since the last hour.
-     */
-    @DisplayName("Positive Test Cases for calculateMinutesSinceLastHour")
-    @ParameterizedTest(name = "calculateMinutesSinceLastHour with {0} minutes should return {1} minutes")
-    @MethodSource("validMinutesAndMinutesSinceLastHourProvider")
-    void testCalculateMinutesSinceLastHour_PositiveCases(final int inputMinutes, final int expected) {
-        var actual = calculateMinutesSinceLastHour(inputMinutes);
-
-        assertEquals(expected, actual);
-    }
-
-    /**
-     * Tests the {@link TimeSinceStartOfDay#calculateTotalMinutes(int, int)} method with valid input parameters
-     * for the number of hours, minutes and expected total minutes.
-     *
-     * @param inputHours   the input number of hours.
-     * @param inputMinutes the input number of minutes.
-     * @param expected     the expected total number of minutes.
-     */
-    @DisplayName("Positive Test Cases for calculateTotalMinutes")
-    @ParameterizedTest(name = "calculateTotalMinutes with {0} hours and {1} minutes should return {2} total minutes")
-    @MethodSource("validHoursAndMinutesAndTotalMinutesProvider")
-    void testCalculateTotalMinutes_PositiveCases(final int inputHours, final int inputMinutes, final int expected) {
-        var actual = calculateTotalMinutes(inputHours, inputMinutes);
-
-        assertEquals(expected, actual);
-    }
-
-    /**
-     * Tests invalid cases for all time calculation methods and expects a specific exception type.
-     *
-     * @param actual   the executable code block that should throw an exception.
-     * @param expected the expected exception class.
-     */
-    @DisplayName("Invalid cases for all time calculation methods")
-    @ParameterizedTest(name = "With invalid input, method = {0}")
-    @MethodSource("provideInvalidArgumentsAndExceptionType")
-    void testInvalidCasesForAllMethods(final Executable actual, final Class<? extends Exception> expected) {
-        assertThrows(expected, actual);
-    }
-
-    /**
      * Tests invalid cases for all time calculation methods and expects a specific exception message.
      *
-     * @param executable          the executable code block that should throw an exception.
+     * @param executable            the executable code block that should throw an exception.
      * @param expectedExceptionType the expected exception class.
-     * @param expected            the expected exception message.
+     * @param expected              the expected exception message.
      */
     @DisplayName("Invalid cases for all time calculation methods with exception message")
     @ParameterizedTest(name = "With invalid input, method = {0}")
@@ -233,5 +222,16 @@ public class TimeSinceStartOfDayTest {
         var actual = assertThrows(expectedExceptionType, executable).getMessage();
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Constructs an exception message using the provided invalid minutes.
+     *
+     * @param minutes the invalid minutes.
+     * @return the constructed exception message.
+     */
+    @Contract(pure = true)
+    private static @NotNull String buildExceptionMessage(int minutes) {
+        return INVALID_MINUTES_MESSAGE + SPACE + RECEIVED + SPACE + minutes;
     }
 }

@@ -55,6 +55,22 @@ class MoonWeightCalculatorTest {
     }
 
     /**
+     * Tests the {@link MoonWeightCalculator#calculateMoonWeight(double)} method with valid Earth weights.
+     *
+     * @param earthWeight the weight on Earth.
+     * @param expected    the expected weight on the Moon.
+     * @throws NegativeWeightException if the weight is negative.
+     */
+    @ParameterizedTest(name = "For Earth weight {0}, Moon weight should be {1}")
+    @MethodSource("validWeightProvider")
+    @DisplayName("Valid Earth weights")
+    void testCalculateMoonWeight(final double earthWeight, final double expected) throws NegativeWeightException {
+        var actual = MoonWeightCalculator.calculateMoonWeight(earthWeight);
+
+        assertEquals(expected, actual, 0.001);
+    }
+
+    /**
      * Provides invalid Earth weights for parameterized testing.
      *
      * @return a {@link Stream} of {@link Arguments} containing invalid Earth weights.
@@ -65,6 +81,19 @@ class MoonWeightCalculatorTest {
                 Arguments.of(-100.0),
                 Arguments.of(-1.0)
         );
+    }
+
+    /**
+     * Tests the {@link MoonWeightCalculator#calculateMoonWeight(double)} method with invalid Earth weights,
+     * expecting a NegativeWeightException.
+     *
+     * @param earthWeight the invalid weight on Earth.
+     */
+    @ParameterizedTest(name = "Invalid Earth weight {0} should throw NegativeWeightException")
+    @MethodSource("invalidWeightProvider")
+    @DisplayName("Invalid Earth weights")
+    void testNegativeWeights(final double earthWeight) {
+        assertThrows(NegativeWeightException.class, () -> MoonWeightCalculator.calculateMoonWeight(earthWeight));
     }
 
     /**
@@ -82,35 +111,6 @@ class MoonWeightCalculatorTest {
                 Arguments.of((Executable) () -> MoonWeightCalculator.calculateMoonWeight(-1.0),
                         NegativeWeightException.class, NEGATIVE_WEIGHT_MESSAGE)
         );
-    }
-
-    /**
-     * Tests the {@link MoonWeightCalculator#calculateMoonWeight(double)} method with valid Earth weights.
-     *
-     * @param earthWeight the weight on Earth.
-     * @param expected    the expected weight on the Moon.
-     * @throws NegativeWeightException if the weight is negative.
-     */
-    @ParameterizedTest(name = "For Earth weight {0}, Moon weight should be {1}")
-    @MethodSource("validWeightProvider")
-    @DisplayName("Valid Earth weights")
-    void testCalculateMoonWeight(final double earthWeight, final double expected) throws NegativeWeightException {
-        var actual = MoonWeightCalculator.calculateMoonWeight(earthWeight);
-
-        assertEquals(expected, actual, 0.001);
-    }
-
-    /**
-     * Tests the {@link MoonWeightCalculator#calculateMoonWeight(double)} method with invalid Earth weights,
-     * expecting a NegativeWeightException.
-     *
-     * @param earthWeight the invalid weight on Earth.
-     */
-    @ParameterizedTest(name = "Invalid Earth weight {0} should throw NegativeWeightException")
-    @MethodSource("invalidWeightProvider")
-    @DisplayName("Invalid Earth weights")
-    void testNegativeWeights(final double earthWeight) {
-        assertThrows(NegativeWeightException.class, () -> MoonWeightCalculator.calculateMoonWeight(earthWeight));
     }
 
     /**

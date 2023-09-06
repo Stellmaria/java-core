@@ -60,53 +60,6 @@ class DigitOperationsTest {
     }
 
     /**
-     * Provides valid arguments for parameterized testing of the
-     * {@link DigitOperations#calculateDigitProduct(int)} method.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing numbers,
-     * and their expected product of digits.
-     */
-    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateDigitProduct() {
-        return Stream.of(
-                Arguments.of(12, 2),
-                Arguments.of(111, 1),
-                Arguments.of(321, 6)
-        );
-    }
-
-    /**
-     * Provides valid arguments for parameterized testing of the
-     * {@link DigitOperations#calculateNumberOfDigits(int)} method.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing numbers,
-     * and their expected number of digits.
-     */
-    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateNumberOfDigits() {
-        return Stream.of(
-                Arguments.of(12, 2),
-                Arguments.of(111, 3),
-                Arguments.of(321, 3)
-        );
-    }
-
-    /**
-     * Provides invalid arguments for parameterized testing of digit operation methods.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing executable blocks and
-     * expected exception messages.
-     */
-    static @NotNull Stream<Arguments> provideInvalidArgumentsAndMessage() {
-        return Stream.of(
-                Arguments.of((Executable) () -> calculateDigitSum(0), INVALID_DIGIT_NUMBER_MESSAGE),
-                Arguments.of((Executable) () -> calculateDigitSum(9), INVALID_DIGIT_NUMBER_MESSAGE),
-                Arguments.of((Executable) () -> calculateDigitProduct(0), INVALID_DIGIT_NUMBER_MESSAGE),
-                Arguments.of((Executable) () -> calculateDigitProduct(9), INVALID_DIGIT_NUMBER_MESSAGE),
-                Arguments.of((Executable) () -> calculateNumberOfDigits(0), INVALID_DIGIT_NUMBER_MESSAGE),
-                Arguments.of((Executable) () -> calculateNumberOfDigits(9), INVALID_DIGIT_NUMBER_MESSAGE)
-        );
-    }
-
-    /**
      * Tests the {@link DigitOperations#calculateDigitSum(int)} method with valid input parameters
      * for the number and expected sum of digits.
      *
@@ -121,6 +74,21 @@ class DigitOperationsTest {
         var actual = calculateDigitSum(number);
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides valid arguments for parameterized testing of the
+     * {@link DigitOperations#calculateDigitProduct(int)} method.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing numbers,
+     * and their expected product of digits.
+     */
+    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateDigitProduct() {
+        return Stream.of(
+                Arguments.of(12, 2),
+                Arguments.of(111, 1),
+                Arguments.of(321, 6)
+        );
     }
 
     /**
@@ -141,6 +109,21 @@ class DigitOperationsTest {
     }
 
     /**
+     * Provides valid arguments for parameterized testing of the
+     * {@link DigitOperations#calculateNumberOfDigits(int)} method.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing numbers,
+     * and their expected number of digits.
+     */
+    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateNumberOfDigits() {
+        return Stream.of(
+                Arguments.of(12, 2),
+                Arguments.of(111, 3),
+                Arguments.of(321, 3)
+        );
+    }
+
+    /**
      * Tests the {@link DigitOperations#calculateNumberOfDigits(int)} method with valid input parameters
      * for the number and expected number of digits.
      *
@@ -155,6 +138,23 @@ class DigitOperationsTest {
         var actual = calculateNumberOfDigits(number);
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides invalid arguments for parameterized testing of digit operation methods.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing executable blocks and
+     * expected exception messages.
+     */
+    static @NotNull Stream<Arguments> provideInvalidArgumentsAndMessage() {
+        return Stream.of(
+                Arguments.of((Executable) () -> calculateDigitSum(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateDigitSum(9), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateDigitProduct(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateDigitProduct(9), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateNumberOfDigits(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                Arguments.of((Executable) () -> calculateNumberOfDigits(9), INVALID_DIGIT_NUMBER_MESSAGE)
+        );
     }
 
     /**

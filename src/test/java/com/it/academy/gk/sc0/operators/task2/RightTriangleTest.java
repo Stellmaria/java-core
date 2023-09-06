@@ -66,54 +66,6 @@ class RightTriangleTest {
     }
 
     /**
-     * Provides valid side lengths and expected hypotenuse values for parameterized testing of the
-     * {@link RightTriangle#calculateHypotenuse(double, double)} method.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing side lengths and expected hypotenuse values.
-     */
-    static @NotNull Stream<Arguments> provideValidHypotenuseArguments() {
-        return Stream.of(
-                Arguments.of(3.0, 4.0, 5.0),
-                Arguments.of(5.0, 5.0, 7.0710678118654755),
-                Arguments.of(1.0, 1.0, 1.4142135623730951)
-        );
-    }
-
-    /**
-     * Provides executable instances for testing invalid side lengths along with the expected error message.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing executable instances and expected error messages.
-     */
-    static @NotNull Stream<Arguments> provideInvalidSideArgumentsAndMessage() {
-        return Stream.of(
-                Arguments.of((Executable) () -> calculateArea(0.0, 4.0), SIDE_A_INVALID_MESSAGE),
-                Arguments.of((Executable) () -> calculateArea(3.0, 0.0), SIDE_B_INVALID_MESSAGE),
-                Arguments.of((Executable) () -> calculateArea(-1.0, 4.0), SIDE_A_INVALID_MESSAGE),
-                Arguments.of((Executable) () -> calculateArea(0.0, 0.0), BOTH_SIDES_INVALID_MESSAGE),
-                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 4.0), SIDE_A_INVALID_MESSAGE),
-                Arguments.of((Executable) () -> calculateHypotenuse(3.0, 0.0), SIDE_B_INVALID_MESSAGE),
-                Arguments.of((Executable) () -> calculateHypotenuse(-1.0, 4.0), SIDE_A_INVALID_MESSAGE),
-                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 0.0), BOTH_SIDES_INVALID_MESSAGE)
-        );
-    }
-
-    /**
-     * Provides executable instances for testing invalid side lengths without specifying the expected error message.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing executable instances.
-     */
-    static @NotNull Stream<Arguments> provideInvalidSideArguments() {
-        return Stream.of(
-                Arguments.of((Executable) () -> calculateArea(0.0, 4.0)),
-                Arguments.of((Executable) () -> calculateArea(3.0, 0.0)),
-                Arguments.of((Executable) () -> calculateArea(-1.0, 4.0)),
-                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 4.0)),
-                Arguments.of((Executable) () -> calculateHypotenuse(3.0, 0.0)),
-                Arguments.of((Executable) () -> calculateHypotenuse(-1.0, 4.0))
-        );
-    }
-
-    /**
      * Tests the {@link RightTriangle#calculateArea(double, double)} method with valid input side lengths
      * and expected area values.
      *
@@ -129,6 +81,20 @@ class RightTriangleTest {
         var actual = calculateArea(sideA, sideB);
 
         assertEquals(expected, actual, 1e-9);
+    }
+
+    /**
+     * Provides valid side lengths and expected hypotenuse values for parameterized testing of the
+     * {@link RightTriangle#calculateHypotenuse(double, double)} method.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing side lengths and expected hypotenuse values.
+     */
+    static @NotNull Stream<Arguments> provideValidHypotenuseArguments() {
+        return Stream.of(
+                Arguments.of(3.0, 4.0, 5.0),
+                Arguments.of(5.0, 5.0, 7.0710678118654755),
+                Arguments.of(1.0, 1.0, 1.4142135623730951)
+        );
     }
 
     /**
@@ -150,6 +116,24 @@ class RightTriangleTest {
     }
 
     /**
+     * Provides executable instances for testing invalid side lengths along with the expected error message.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing executable instances and expected error messages.
+     */
+    static @NotNull Stream<Arguments> provideInvalidSideArgumentsAndMessage() {
+        return Stream.of(
+                Arguments.of((Executable) () -> calculateArea(0.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateArea(3.0, 0.0), SIDE_B_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateArea(-1.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateArea(0.0, 0.0), BOTH_SIDES_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(3.0, 0.0), SIDE_B_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(-1.0, 4.0), SIDE_A_INVALID_MESSAGE),
+                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 0.0), BOTH_SIDES_INVALID_MESSAGE)
+        );
+    }
+
+    /**
      * Tests invalid side lengths for both {@link RightTriangle#calculateArea(double, double)}
      * and {@link RightTriangle#calculateHypotenuse(double, double)} methods,
      * and verifies that the expected error message is thrown.
@@ -164,6 +148,22 @@ class RightTriangleTest {
         var actual = assertThrows(InvalidTriangleSideException.class, executable).getMessage();
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides executable instances for testing invalid side lengths without specifying the expected error message.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing executable instances.
+     */
+    static @NotNull Stream<Arguments> provideInvalidSideArguments() {
+        return Stream.of(
+                Arguments.of((Executable) () -> calculateArea(0.0, 4.0)),
+                Arguments.of((Executable) () -> calculateArea(3.0, 0.0)),
+                Arguments.of((Executable) () -> calculateArea(-1.0, 4.0)),
+                Arguments.of((Executable) () -> calculateHypotenuse(0.0, 4.0)),
+                Arguments.of((Executable) () -> calculateHypotenuse(3.0, 0.0)),
+                Arguments.of((Executable) () -> calculateHypotenuse(-1.0, 4.0))
+        );
     }
 
     /**

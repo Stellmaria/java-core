@@ -77,19 +77,6 @@ class AgeClassifierTest {
     }
 
     /**
-     * Provides invalid age values for parameterized testing.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing invalid age values.
-     */
-    static @NotNull Stream<Arguments> invalidAgeProvider() {
-        return Stream.of(
-                Arguments.of(-1),
-                Arguments.of(-10),
-                Arguments.of(-100)
-        );
-    }
-
-    /**
      * Tests the {@link AgeClassifier#classifyAge(int)} method with valid age values.
      *
      * @param age      the age value to classify.
@@ -103,6 +90,19 @@ class AgeClassifierTest {
         var actual = AgeClassifier.classifyAge(age);
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides invalid age values for parameterized testing.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing invalid age values.
+     */
+    static @NotNull Stream<Arguments> invalidAgeProvider() {
+        return Stream.of(
+                Arguments.of(-1),
+                Arguments.of(-10),
+                Arguments.of(-100)
+        );
     }
 
     /**

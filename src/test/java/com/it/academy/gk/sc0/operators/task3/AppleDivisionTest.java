@@ -67,79 +67,6 @@ class AppleDivisionTest {
     }
 
     /**
-     * Provides valid arguments for parameterized testing of the
-     * {@link AppleDivision#calculateRemainingApples(int, int)} method.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing the number of students,
-     * the number of apples, and the expected remaining apples.
-     */
-    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateRemainingApples() {
-        return Stream.of(
-                Arguments.of(5, 15, 0),
-                Arguments.of(4, 10, 2),
-                Arguments.of(3, 7, 1)
-        );
-    }
-
-    /**
-     * Provides valid arguments for parameterized testing of the
-     * {@link AppleDivision#calculateTotalApples(int, int)} method.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing the number of students,
-     * the number of apples, and the expected total apples.
-     */
-    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateTotalApples() {
-        return Stream.of(
-                Arguments.of(5, 15, 15),
-                Arguments.of(4, 10, 8),
-                Arguments.of(3, 7, 6)
-        );
-    }
-
-    /**
-     * Provides invalid student numbers for parameterized testing of exceptions in
-     * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing invalid student numbers and the expected exception class.
-     */
-    static @NotNull Stream<Arguments> provideInvalidStudentNumbers() {
-        return Stream.of(
-                Arguments.of(0, 10, InvalidNumberOfStudentsException.class),
-                Arguments.of(-1, 10, InvalidNumberOfStudentsException.class)
-        );
-    }
-
-    /**
-     * Provides invalid apple numbers for parameterized testing of exceptions in
-     * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing invalid apple numbers.
-     */
-    static @NotNull Stream<Arguments> provideInvalidAppleNumbers() {
-        return Stream.of(
-                Arguments.of(5, -1)
-        );
-    }
-
-    /**
-     * Provides invalid numbers for testing exception messages in
-     * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing invalid numbers and the expected exception message.
-     */
-    static @NotNull Stream<Arguments> provideInvalidNumbersForExceptionMessages() {
-        return Stream.of(
-                Arguments.of(0, 10, InvalidNumberOfStudentsException.class,
-                        NUMBER_OF_STUDENTS_MUST_BE_GREATER_THAN_ZERO),
-                Arguments.of(-1, 10, InvalidNumberOfStudentsException.class,
-                        NUMBER_OF_STUDENTS_MUST_BE_GREATER_THAN_ZERO),
-                Arguments.of(5, -1, InvalidNumberOfApplesException.class,
-                        NUMBER_OF_APPLES_CANNOT_BE_NEGATIVE),
-                Arguments.of(5, 0, InvalidNumberOfApplesException.class, NUMBER_OF_APPLES_CANNOT_BE_NEGATIVE)
-        );
-    }
-
-    /**
      * Tests the {@link AppleDivision#calculateApplesPerStudent(int, int)} method with valid input parameters
      * for the number of students and apples, and expected apples per student.
      *
@@ -155,6 +82,21 @@ class AppleDivisionTest {
         var actual = calculateApplesPerStudent(n, k);
 
         assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides valid arguments for parameterized testing of the
+     * {@link AppleDivision#calculateRemainingApples(int, int)} method.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing the number of students,
+     * the number of apples, and the expected remaining apples.
+     */
+    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateRemainingApples() {
+        return Stream.of(
+                Arguments.of(5, 15, 0),
+                Arguments.of(4, 10, 2),
+                Arguments.of(3, 7, 1)
+        );
     }
 
     /**
@@ -176,6 +118,21 @@ class AppleDivisionTest {
     }
 
     /**
+     * Provides valid arguments for parameterized testing of the
+     * {@link AppleDivision#calculateTotalApples(int, int)} method.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing the number of students,
+     * the number of apples, and the expected total apples.
+     */
+    static @NotNull Stream<Arguments> provideValidArgumentsForCalculateTotalApples() {
+        return Stream.of(
+                Arguments.of(5, 15, 15),
+                Arguments.of(4, 10, 8),
+                Arguments.of(3, 7, 6)
+        );
+    }
+
+    /**
      * Tests the {@link AppleDivision#calculateTotalApples(int, int)} method with valid input parameters
      * for the number of students and apples, and expected total apples.
      *
@@ -194,6 +151,19 @@ class AppleDivisionTest {
     }
 
     /**
+     * Provides invalid student numbers for parameterized testing of exceptions in
+     * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing invalid student numbers and the expected exception class.
+     */
+    static @NotNull Stream<Arguments> provideInvalidStudentNumbers() {
+        return Stream.of(
+                Arguments.of(0, 10, InvalidNumberOfStudentsException.class),
+                Arguments.of(-1, 10, InvalidNumberOfStudentsException.class)
+        );
+    }
+
+    /**
      * Tests for exceptions when invalid student numbers are provided to
      * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
      *
@@ -209,6 +179,18 @@ class AppleDivisionTest {
     }
 
     /**
+     * Provides invalid apple numbers for parameterized testing of exceptions in
+     * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing invalid apple numbers.
+     */
+    static @NotNull Stream<Arguments> provideInvalidAppleNumbers() {
+        return Stream.of(
+                Arguments.of(5, -1)
+        );
+    }
+
+    /**
      * Tests for exceptions when invalid apple numbers are provided to
      * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
      *
@@ -220,6 +202,24 @@ class AppleDivisionTest {
     @DisplayName("Test for InvalidNumberOfApplesException")
     void testInvalidNumberOfApplesException(int n, int k) {
         assertThrows(InvalidNumberOfApplesException.class, () -> calculateApplesPerStudent(n, k));
+    }
+
+    /**
+     * Provides invalid numbers for testing exception messages in
+     * {@link AppleDivision#calculateApplesPerStudent(int, int)}.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing invalid numbers and the expected exception message.
+     */
+    static @NotNull Stream<Arguments> provideInvalidNumbersForExceptionMessages() {
+        return Stream.of(
+                Arguments.of(0, 10, InvalidNumberOfStudentsException.class,
+                        NUMBER_OF_STUDENTS_MUST_BE_GREATER_THAN_ZERO),
+                Arguments.of(-1, 10, InvalidNumberOfStudentsException.class,
+                        NUMBER_OF_STUDENTS_MUST_BE_GREATER_THAN_ZERO),
+                Arguments.of(5, -1, InvalidNumberOfApplesException.class,
+                        NUMBER_OF_APPLES_CANNOT_BE_NEGATIVE),
+                Arguments.of(5, 0, InvalidNumberOfApplesException.class, NUMBER_OF_APPLES_CANNOT_BE_NEGATIVE)
+        );
     }
 
     /**

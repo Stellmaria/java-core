@@ -12,18 +12,28 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.findPlanetByNumber;
 import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.findPlanetNumberByName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * SolarSystemPlanetFinderTest is a test class that performs unit tests for methods related to age classification.
+ *
+ * <p>This class uses JUnit 5 for parameterized testing and exception testing to validate the behavior of methods
+ * for various age groups.</p>
+ *
+ * @author Anastasia Melnikova
+ * @version 1.0
+ * @since 2023-09-02
+ */
 class SolarSystemPlanetFinderTest {
     /**
      * Provides valid planet numbers and their corresponding planet names for parameterized testing.
      *
      * @return a {@link Stream} of {@link Arguments} containing valid planet numbers and expected planet names.
      */
-
     static @NotNull Stream<Arguments> validPlanetNumberProvider() {
         return Stream.of(
                 Arguments.of(1, Planet.MERCURY.name()),
@@ -38,6 +48,24 @@ class SolarSystemPlanetFinderTest {
     }
 
     /**
+     * Tests the {@link SolarSystemPlanetFinder#findPlanetByNumber(int)} method with valid planet numbers.
+     *
+     * @param planetNumber the planet number to look up.
+     * @param expected     the expected planet name for the given planet number.
+     */
+    @ParameterizedTest(name = "For planet number {0}, the planet name should be {1}")
+    @MethodSource("validPlanetNumberProvider")
+    @DisplayName("Valid planet numbers")
+    @SneakyThrows
+    void testFindPlanetByNumber(final int planetNumber, final String expected) {
+        Optional<String> actualOptional = findPlanetByNumber(planetNumber);
+        assertTrue(actualOptional.isPresent(), "Optional should not be empty");
+        String actual = actualOptional.orElseThrow();
+
+        assertEquals(expected, actual);
+    }
+
+    /**
      * Provides valid planet numbers and their corresponding planet names for parameterized testing.
      *
      * @return a {@link Stream} of {@link Arguments} containing valid planet numbers and expected planet names.
@@ -48,6 +76,18 @@ class SolarSystemPlanetFinderTest {
                 Arguments.of(9),
                 Arguments.of(-1)
         );
+    }
+
+    /**
+     * Tests the {@link SolarSystemPlanetFinder#findPlanetByNumber(int)} method with invalid planet numbers.
+     *
+     * @param planetNumber the invalid planet number to test.
+     */
+    @ParameterizedTest(name = "Invalid planet number {0} should throw InvalidPlanetNumberException")
+    @MethodSource("invalidPlanetNumberProvider")
+    @DisplayName("Invalid planet numbers")
+    void testInvalidPlanetNumbers(final int planetNumber) {
+        assertThrows(InvalidPlanetNumberException.class, () -> findPlanetByNumber(planetNumber));
     }
 
     /**
@@ -69,55 +109,11 @@ class SolarSystemPlanetFinderTest {
     }
 
     /**
-     * Provides invalid planet names for parameterized testing.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing invalid planet names.
-     */
-    static @NotNull Stream<Arguments> invalidPlanetNameProvider() {
-        return Stream.of(
-                Arguments.of("Pluto"),
-                Arguments.of("PlanetX"),
-                Arguments.of("InvalidName")
-        );
-    }
-
-    /**
-     * Tests the {@link SolarSystemPlanetFinder#findPlanetByNumber(int)} method with valid planet numbers.
-     *
-     * @param planetNumber the planet number to look up.
-     * @param expected     the expected planet name for the given planet number.
-     */
-    @ParameterizedTest(name = "For planet number {0}, the planet name should be {1}")
-    @MethodSource("validPlanetNumberProvider")
-    @DisplayName("Valid planet numbers")
-    @SneakyThrows
-    void testFindPlanetByNumber(final int planetNumber, final String expected) {
-        Optional<String> actualOptional = SolarSystemPlanetFinder.findPlanetByNumber(planetNumber);
-        assertTrue(actualOptional.isPresent(), "Optional should not be empty");
-        String actual = actualOptional.orElseThrow();
-
-        assertEquals(expected, actual);
-    }
-
-    /**
-     * Tests the {@link SolarSystemPlanetFinder#findPlanetByNumber(int)} method with invalid planet numbers.
-     *
-     * @param planetNumber the invalid planet number to test.
-     */
-    @ParameterizedTest(name = "Invalid planet number {0} should throw InvalidPlanetNumberException")
-    @MethodSource("invalidPlanetNumberProvider")
-    @DisplayName("Invalid planet numbers")
-    void testInvalidPlanetNumbers(final int planetNumber) {
-        assertThrows(InvalidPlanetNumberException.class, () -> SolarSystemPlanetFinder.findPlanetByNumber(planetNumber));
-    }
-
-    /**
      * Tests the {@link SolarSystemPlanetFinder#findPlanetNumberByName(String)} method with valid planet names.
      *
      * @param planetName the planet name to look up.
      * @param expected   the expected planet number for the given planet name.
      */
-
     @ParameterizedTest(name = "For planet name {0}, the planet number should be {1}")
     @MethodSource("validPlanetNameProvider")
     @DisplayName("Valid planet names")
@@ -131,15 +127,87 @@ class SolarSystemPlanetFinderTest {
     }
 
     /**
+     * Provides invalid planet names for parameterized testing.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing invalid planet names.
+     */
+    static @NotNull Stream<Arguments> invalidPlanetNameProvider() {
+        return Stream.of(
+                Arguments.of("Pluto"),
+                Arguments.of("PlanetX"),
+                Arguments.of("InvalidName")
+        );
+    }
+
+    /**
      * Tests the {@link SolarSystemPlanetFinder#findPlanetNumberByName(String)} method with invalid planet names.
      *
      * @param planetName the invalid planet name to test.
      */
-
     @ParameterizedTest(name = "Invalid planet name {0} should throw InvalidPlanetNameException")
     @MethodSource("invalidPlanetNameProvider")
     @DisplayName("Invalid planet names")
-    void testInvalidPlanetNames(String planetName) {
+    void testInvalidPlanetNames(final String planetName) {
         assertThrows(InvalidPlanetNameException.class, () -> findPlanetNumberByName(planetName));
+    }
+
+    /**
+     * Provides invalid planet numbers along with expected exception messages for parameterized testing.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing invalid planet numbers and their expected exception messages.
+     */
+    static @NotNull Stream<Arguments> invalidPlanetNumberProviderWithMessage() {
+        return Stream.of(
+                Arguments.of(0, "Invalid planet number: 0. Must be between 1 and 8. "),
+                Arguments.of(9, "Invalid planet number: 9. Must be between 1 and 8. "),
+                Arguments.of(-1, "Invalid planet number: -1. Must be between 1 and 8. ")
+        );
+    }
+
+    /**
+     * Tests the {@link SolarSystemPlanetFinder#findPlanetByNumber(int)} method with invalid planet numbers,
+     * checking both the exception type and the exception message.
+     *
+     * @param invalidPlanetNumber the invalid planet number to test.
+     * @param expected the expected exception message.
+     */
+    @ParameterizedTest(name = "Invalid planet number {0} should throw InvalidPlanetNumberException")
+    @MethodSource("invalidPlanetNumberProviderWithMessage")
+    @DisplayName("Invalid planet numbers")
+    void testInvalidPlanetNameExceptionMessage(final int invalidPlanetNumber, final String expected) {
+        var actual = assertThrows(InvalidPlanetNumberException.class, () ->
+                findPlanetByNumber(invalidPlanetNumber)).getMessage();
+
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Provides invalid planet names along with expected exception messages for parameterized testing.
+     *
+     * @return a {@link Stream} of {@link Arguments} containing invalid planet names and their expected exception messages.
+     */
+    static @NotNull Stream<Arguments> invalidPlanetNameProviderWithName() {
+        return Stream.of(
+                Arguments.of("Pluto", new InvalidPlanetNameException("Pluto").getMessage()),
+                Arguments.of("Xyz", new InvalidPlanetNameException("Xyz").getMessage()),
+                Arguments.of("", new InvalidPlanetNameException("").getMessage())
+        );
+    }
+
+    /**
+     * Tests the {@link SolarSystemPlanetFinder#findPlanetNumberByName(String)} method with invalid planet names,
+     * checking both the exception type and the exception message.
+     *
+     * @param invalidPlanetName the invalid planet name to test.
+     * @param expected the expected exception message.
+     */
+    @ParameterizedTest(name = "Invalid planet name {0} should throw InvalidPlanetNameException")
+    @MethodSource("invalidPlanetNameProviderWithName")
+    @DisplayName("Invalid planet names")
+     void testInvalidPlanetNameExceptionMessage(final String invalidPlanetName, final String expected) {
+        var exception = assertThrows(InvalidPlanetNameException.class,
+                () -> SolarSystemPlanetFinder.findPlanetNumberByName(invalidPlanetName)).getMessage();
+
+        assertEquals(expected, exception);
     }
 }
