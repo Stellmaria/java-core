@@ -12,22 +12,16 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * A test class for the LastDigitChecker class.
- */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LastDigitCheckerTest {
-    /**
-     * The LastDigitChecker instance to be tested.
-     */
     private LastDigitChecker lastDigitChecker;
 
-    /**
-     * Provides a stream of valid numbers and their corresponding last digit validity for testing purposes.
-     *
-     * @return a stream of valid numbers and their corresponding last digit validity as arguments
-     */
-    static @NotNull Stream<Arguments> validLastDigitProvider() {
+    @BeforeEach
+    public void setUp() {
+        lastDigitChecker = new LastDigitChecker();
+    }
+
+    static @NotNull Stream<Arguments> validLastDigitArguments() {
         return Stream.of(
                 Arguments.of(1, "yes"),
                 Arguments.of(21, "yes"),
@@ -36,39 +30,8 @@ class LastDigitCheckerTest {
         );
     }
 
-    /**
-     * Provides a stream of invalid numbers and their corresponding last digit validity for testing purposes.
-     *
-     * @return a stream of invalid numbers and their corresponding last digit validity as arguments
-     */
-    static @NotNull Stream<Arguments> invalidLastDigitProvider() {
-        return Stream.of(
-                Arguments.of(0, "no"),
-                Arguments.of(10, "no"),
-                Arguments.of(1234, "no"),
-                Arguments.of(29, "no"),
-                Arguments.of(-1, "no"),
-                Arguments.of(-11, "no"),
-                Arguments.of(-21, "yes")
-        );
-    }
-
-    /**
-     * Sets up the LastDigitChecker instance before each test.
-     */
-    @BeforeEach
-    public void setUp() {
-        lastDigitChecker = new LastDigitChecker();
-    }
-
-    /**
-     * Tests the checkLastDigit method with valid numbers.
-     *
-     * @param number   the number to be checked
-     * @param expected the expected result
-     */
     @ParameterizedTest(name = "When the number is {0}, the last digit is valid: {1}")
-    @MethodSource("validLastDigitProvider")
+    @MethodSource("validLastDigitArguments")
     @DisplayName("Valid Last Digit")
     void testValidLastDigits(final int number, final String expected) {
         var actual = lastDigitChecker.checkLastDigit(number);
@@ -76,14 +39,20 @@ class LastDigitCheckerTest {
         assertEquals(expected, actual);
     }
 
-    /**
-     * Tests the checkLastDigit method with invalid numbers.
-     *
-     * @param number   the number to be checked
-     * @param expected the expected result
-     */
+    static @NotNull Stream<Arguments> invalidLastDigitArguments() {
+        return Stream.of(
+                Arguments.of(0, "no"),
+                Arguments.of(10, "no"),
+                Arguments.of(1234, "no"),
+                Arguments.of(29, "no"),
+                Arguments.of(-1, "no"),
+                Arguments.of(-11, "no"),
+                Arguments.of(-21, "no")
+        );
+    }
+
     @ParameterizedTest(name = "When the number is {0}, the last digit is invalid: {1}")
-    @MethodSource("invalidLastDigitProvider")
+    @MethodSource("invalidLastDigitArguments")
     @DisplayName("Invalid Last Digit")
     void testInvalidLastDigits(final int number, final String expected) {
         var actual = lastDigitChecker.checkLastDigit(number);

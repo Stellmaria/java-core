@@ -2,10 +2,10 @@ package com.it.academy.gk.sc0.operators.task8;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidPlanetNameException;
 import com.it.academy.gk.sc0.operators.exception.InvalidPlanetNumberException;
-import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -18,7 +18,10 @@ import java.util.Optional;
  * <p>Example usage:</p>
  * <pre>
  *     Optional<String> planetName = SolarSystemPlanetFinder.findPlanetByNumber(3);
+ *     // planetName: Optional["Earth"]
+ *
  *     Optional<Integer> planetNumber = SolarSystemPlanetFinder.findPlanetNumberByName("Earth");
+ *     // planetNumber: Optional[3]
  * </pre>
  *
  * @author Anastasia Melnikova
@@ -28,28 +31,38 @@ import java.util.Optional;
 @UtilityClass
 public final class SolarSystemPlanetFinder {
     /**
-     * A HashMap containing the planet numbers as keys and their names as values.
+     * A Map containing the planet numbers as keys and their names as values.
      */
-    private static final HashMap<Integer, String> planetByNumber = new HashMap<>();
+    private static final Map<Integer, String> planetByNumber;
 
     static {
+        var map = new HashMap<Integer, String>();
+
         for (Planet planet : Planet.values()) {
-            planetByNumber.put(planet.getNumber(), planet.name());
+            map.put(planet.getNumber(), planet.name());
         }
+
+        planetByNumber = Collections.unmodifiableMap(map);
     }
 
     /**
      * Finds the name of a planet based on its number.
+     * <p>
+     * Example:
+     * <pre>
+     *     Optional<String> planetName = SolarSystemPlanetFinder.findPlanetByNumber(3);
+     *     // planetName: Optional["Earth"]
+     * </pre>
      *
      * @param planetNumber The number of the planet.
      * @return An Optional containing the name of the planet, or an empty Optional if the planet number is invalid.
      */
-    @SneakyThrows
-    public static @NotNull Optional<String> findPlanetByNumber(final int planetNumber) {
-        Optional<String> result = Optional.ofNullable(planetByNumber.get(planetNumber));
+    public static @NotNull Optional<String> findPlanetByNumber(final int planetNumber)
+            throws InvalidPlanetNumberException {
+        var planetName = planetByNumber.get(planetNumber);
 
-        if (result.isPresent()) {
-            return result;
+        if (planetName != null) {
+            return Optional.of(planetName);
         } else {
             throw InvalidPlanetNumberException.createWith(planetNumber, planetByNumber.size());
         }
@@ -57,12 +70,18 @@ public final class SolarSystemPlanetFinder {
 
     /**
      * Finds the number of a planet based on its name.
+     * <p>
+     * Example:
+     * <pre>
+     *     Optional<Integer> planetNumber = SolarSystemPlanetFinder.findPlanetNumberByName("Earth");
+     *     // planetNumber: Optional[3]
+     * </pre>
      *
      * @param planetName The name of the planet. The name is case-insensitive.
      * @return An Optional containing the number of the planet, or an empty Optional if the planet name is invalid.
      */
-    @SneakyThrows
-    public static @NotNull Optional<Integer> findPlanetNumberByName(final @NotNull String planetName) {
+    public static @NotNull Optional<Integer> findPlanetNumberByName(final @NotNull String planetName)
+            throws InvalidPlanetNameException {
         for (Map.Entry<Integer, String> entry : planetByNumber.entrySet()) {
             if (entry.getValue().equalsIgnoreCase(planetName)) {
                 return Optional.of(entry.getKey());

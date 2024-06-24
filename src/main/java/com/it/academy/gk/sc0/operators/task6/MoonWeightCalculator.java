@@ -34,6 +34,7 @@ public final class MoonWeightCalculator {
      *
      * @param earthWeight the weight of the object on Earth. Must be a positive number.
      * @return the calculated weight of the object on the Moon.
+     * @throws NegativeWeightException if the weight is negative.
      */
     @SneakyThrows
     public static double calculateMoonWeight(final double earthWeight) {
@@ -55,3 +56,4 @@ public final class MoonWeightCalculator {
         }
     }
 }
+

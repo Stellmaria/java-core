@@ -1,7 +1,6 @@
 package com.it.academy.gk.sc0.operators.task7;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidAgeException;
-import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -11,6 +10,15 @@ import lombok.experimental.UtilityClass;
  * <p>Example usage:</p>
  * <pre>
  *     String ageCategory = AgeClassifier.classifyAge(25);  // ageCategory will be "Adult"
+ * </pre>
+ *
+ * <p>Example usage for validation:</p>
+ * <pre>
+ *     try {
+ *         AgeClassifier.validateAge(30);  // Valid age, no exception thrown
+ *     } catch (InvalidAgeException e) {
+ *         // Handle exception
+ *     }
  * </pre>
  *
  * @author Anastasia Melnikova
@@ -69,9 +77,9 @@ public final class AgeClassifier {
      *
      * @param age the age of the person. Must be a non-negative number.
      * @return the category label based on the age.
+     * @throws InvalidAgeException if the age is negative.
      */
-    @SneakyThrows
-    public static String classifyAge(final int age) {
+    public static String classifyAge(final int age) throws InvalidAgeException {
         String result;
 
         validateAge(age);
@@ -94,9 +102,9 @@ public final class AgeClassifier {
      * Validates the given age to ensure it is a non-negative number.
      *
      * @param age the age to validate.
+     * @throws InvalidAgeException if the age is negative.
      */
-    @SneakyThrows
-    private static void validateAge(final int age) {
+    public static void validateAge(final int age) throws InvalidAgeException {
         if (age < 0) {
             throw new InvalidAgeException(INVALID_AGE_MESSAGE);
         }

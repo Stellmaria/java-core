@@ -1,7 +1,6 @@
 package com.it.academy.gk.sc0.operators.task5;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidMinuteException;
-import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -52,9 +51,9 @@ public final class TimeSinceStartOfDay {
      *
      * @param m the minutes since the start of the day. Must be between zero and the total minutes in a day.
      * @return the number of hours.
+     * @throws InvalidMinuteException if the given minutes are invalid.
      */
-    @SneakyThrows
-    public static int calculateHours(final int m) {
+    public static int calculateHours(final int m) throws InvalidMinuteException {
         validateMinutes(m);
 
         return m / MINUTES_IN_HOUR;
@@ -65,9 +64,9 @@ public final class TimeSinceStartOfDay {
      *
      * @param m the minutes since the start of the day. Must be between zero and the total minutes in a day.
      * @return the minutes since the last full hour.
+     * @throws InvalidMinuteException if the given minutes are invalid.
      */
-    @SneakyThrows
-    public static int calculateMinutesSinceLastHour(final int m) {
+    public static int calculateMinutesSinceLastHour(final int m) throws InvalidMinuteException {
         validateMinutes(m);
 
         return m % MINUTES_IN_HOUR;
@@ -79,9 +78,9 @@ public final class TimeSinceStartOfDay {
      * @param h the hours since the start of the day.
      * @param m the minutes since the last full hour. Must be between 0 and 59.
      * @return the total number of minutes since the start of the day.
+     * @throws InvalidMinuteException if the given minutes are invalid.
      */
-    @SneakyThrows
-    public static int calculateTotalMinutes(final int h, final int m) {
+    public static int calculateTotalMinutes(final int h, final int m) throws InvalidMinuteException {
         validateMinutes(m);
 
         return h * MINUTES_IN_HOUR + m;
@@ -91,11 +90,12 @@ public final class TimeSinceStartOfDay {
      * Validates the given number of minutes.
      *
      * @param m the number of minutes to validate.
+     * @throws InvalidMinuteException if the given minutes are not within the valid range.
      */
-    @SneakyThrows
-    private static void validateMinutes(final int m) {
+    private static void validateMinutes(final int m) throws InvalidMinuteException {
         if (m < 0 || m >= MINUTES_IN_HOUR * HOURS_IN_DAY) {
             throw new InvalidMinuteException(INVALID_MINUTES_MESSAGE + SPACE + RECEIVED + SPACE + m);
         }
     }
 }
+

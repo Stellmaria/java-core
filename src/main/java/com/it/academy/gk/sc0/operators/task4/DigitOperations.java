@@ -11,9 +11,19 @@ import lombok.experimental.UtilityClass;
  *
  * <p>Example usage:</p>
  * <pre>
- *     int sum = DigitOperations.calculateDigitSum(123);  // sum will be 6
- *     int product = DigitOperations.calculateDigitProduct(123);  // product will be 6
- *     int numberOfDigits = DigitOperations.calculateNumberOfDigits(123);  // numberOfDigits will be 3
+ *     int number = 123;
+ *     int sum = DigitOperations.calculateDigitSum(number);  // sum will be 6
+ *     int product = DigitOperations.calculateDigitProduct(number);  // product will be 6
+ *     int numberOfDigits = DigitOperations.calculateNumberOfDigits(number);  // numberOfDigits will be 3
+ * </pre>
+ *
+ * <p>Example usage with exception handling:</p>
+ * <pre>
+ *     try {
+ *         DigitOperations.calculateDigitSum(9);  // throws InvalidDigitNumberException
+ *     } catch (InvalidDigitNumberException e) {
+ *         System.out.println(e.getMessage());  // prints "The number should be either a two-digit or a three-digit number."
+ *     }
  * </pre>
  *
  * @author Anastasia Melnikova
@@ -48,6 +58,7 @@ public final class DigitOperations {
      *
      * @param number the integer number.
      * @return the sum of the digits.
+     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
      */
     @SneakyThrows
     public static int calculateDigitSum(final int number) {
@@ -61,6 +72,7 @@ public final class DigitOperations {
      *
      * @param number the integer number.
      * @return the product of the digits.
+     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
      */
     @SneakyThrows
     public static int calculateDigitProduct(final int number) {
@@ -74,6 +86,7 @@ public final class DigitOperations {
      *
      * @param number the integer number.
      * @return the number of digits.
+     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
      */
     @SneakyThrows
     public static int calculateNumberOfDigits(final int number) {
@@ -92,13 +105,14 @@ public final class DigitOperations {
      * @return the result of performing the operation on the digits of the number.
      */
     private static int performDigitOperation(final int number, final DigitOperation operation, final int initialValue) {
-        int result = initialValue;
-        int temp = number;
+        var result = initialValue;
+        var temp = number;
 
         while (temp > 0) {
             result = operation.apply(result, temp % BASE_10);
             temp /= BASE_10;
         }
+
         return result;
     }
 
@@ -107,6 +121,7 @@ public final class DigitOperations {
      * Throws an exception if the validation fails.
      *
      * @param number the integer number to validate.
+     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
      */
     @SneakyThrows
     private static void validateNumber(final int number) {

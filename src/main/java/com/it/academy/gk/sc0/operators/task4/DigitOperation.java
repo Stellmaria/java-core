@@ -17,7 +17,7 @@ package com.it.academy.gk.sc0.operators.task4;
 @FunctionalInterface
 public interface DigitOperation {
     /**
-     * Apply an operation on two integer digits.
+     * Applies an operation on two integer digits.
      *
      * @param a the first integer
      * @param b the second integer

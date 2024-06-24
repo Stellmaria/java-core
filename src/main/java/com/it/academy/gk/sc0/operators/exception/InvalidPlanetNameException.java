@@ -1,17 +1,8 @@
 package com.it.academy.gk.sc0.operators.exception;
 
 /**
- * InvalidPlanetNameException is a custom exception class that extends the standard Exception class.
- * This exception is thrown to indicate that an invalid planet name has been used.
- *
- * <p>For example, you can throw this exception when a given planet name
- * is not found in a list of known planets.</p>
- *
- * <pre>
- *     if (!knownPlanets.contains(planetName)) {
- *         throw new InvalidPlanetNameException(planetName);
- *     }
- * </pre>
+ * This class represents a custom exception for invalid planet names.
+ * It extends the standard Exception class.
  *
  * @author Anastasia Melnikova
  * @version 1.0
@@ -19,8 +10,8 @@ package com.it.academy.gk.sc0.operators.exception;
  */
 public class InvalidPlanetNameException extends Exception {
     /**
-     * A constant holding the default invalid planet name message. This message is
-     * prepended to the planet name when the exception is thrown.
+     * A constant holding the default invalid planet name message.
+     * This message is prepended to the planet name when the exception is thrown.
      */
     private static final String INVALID_PLANET_NAME = "Invalid planet name: ";
 
@@ -30,8 +21,12 @@ public class InvalidPlanetNameException extends Exception {
      *
      * @param planetName the name of the planet, which will be included in the final
      *                   detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @throws IllegalArgumentException if the planetName is null or empty
      */
     public InvalidPlanetNameException(String planetName) {
         super(INVALID_PLANET_NAME + planetName);
+        if (planetName == null || planetName.isEmpty()) {
+            throw new IllegalArgumentException("Planet name cannot be null or empty");
+        }
     }
 }

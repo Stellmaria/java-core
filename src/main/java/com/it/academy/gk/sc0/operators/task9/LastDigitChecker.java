@@ -41,11 +41,17 @@ public class LastDigitChecker {
     /**
      * Checks whether the last digit of a given number is within a specific set of valid digits.
      *
+     * <p>Example usage:</p>
+     * <pre>
+     *     LastDigitChecker checker = new LastDigitChecker();
+     *     String response = checker.checkLastDigit(12);  // response will be "yes"
+     * </pre>
+     *
      * @param number the number whose last digit is to be checked.
      * @return "yes" if the last digit is valid, "no" otherwise.
      */
     public String checkLastDigit(final int number) {
-        int lastDigit = number % CHECK_DIVISOR;
+        var lastDigit = number % CHECK_DIVISOR;
 
         return VALID_LAST_DIGITS.contains(lastDigit) ? YES_RESPONSE : NO_RESPONSE;
     }

@@ -52,10 +52,18 @@ public class InvalidPlanetNumberException extends Exception {
      * @param planetNumber the invalid planet number.
      * @param totalPlanets the total number of valid planets.
      * @return a new InvalidPlanetNumberException with a formatted message.
+     * @throws IllegalArgumentException if planetNumber is less than 1 or greater than totalPlanets.
      */
     @Contract("_, _ -> new")
     public static @NotNull InvalidPlanetNumberException createWith(int planetNumber, int totalPlanets) {
-        return new InvalidPlanetNumberException(INVALID_PLANET_NUMBER + planetNumber + DOT + MUST_BE_BETWEEN_1_AND
-                                                + totalPlanets + DOT);
+        if (planetNumber < 1 || planetNumber > totalPlanets) {
+            throw new IllegalArgumentException(
+                    INVALID_PLANET_NUMBER + planetNumber + MUST_BE_BETWEEN_1_AND + totalPlanets + DOT
+            );
+        }
+
+        return new InvalidPlanetNumberException(
+                INVALID_PLANET_NUMBER + planetNumber + DOT + MUST_BE_BETWEEN_1_AND + totalPlanets + DOT
+        );
     }
 }

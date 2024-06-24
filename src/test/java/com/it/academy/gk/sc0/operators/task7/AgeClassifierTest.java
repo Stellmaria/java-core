@@ -1,10 +1,10 @@
 package com.it.academy.gk.sc0.operators.task7;
 
 import com.it.academy.gk.sc0.operators.exception.InvalidAgeException;
-import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,16 +14,6 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * AgeClassifierTest is a test class that performs unit tests for methods related to age classification.
- *
- * <p>This class uses JUnit 5 for parameterized testing and exception testing to validate the behavior of methods
- * for various age groups.</p>
- *
- * @author Anastasia Melnikova
- * @version 1.0
- * @since 2023-09-02
- */
 class AgeClassifierTest {
     private static String INVALID_AGE_MESSAGE;
     private static String CHILD_LABEL;
@@ -31,12 +21,8 @@ class AgeClassifierTest {
     private static String ELDERLY_LABEL;
     private static String LONG_LIVED_LABEL;
 
-    /**
-     * Setup method executed before all tests in the class to initialize the static fields.
-     */
-    @SneakyThrows
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws NoSuchFieldException, IllegalAccessException {
         var invalidAgeMessageField = AgeClassifier.class.getDeclaredField("INVALID_AGE_MESSAGE");
         invalidAgeMessageField.setAccessible(true);
         INVALID_AGE_MESSAGE = (String) invalidAgeMessageField.get(null);
@@ -58,11 +44,14 @@ class AgeClassifierTest {
         LONG_LIVED_LABEL = (String) longLivedLabelField.get(null);
     }
 
-    /**
-     * Provides valid age values and their corresponding classifications for parameterized testing.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing valid age values and expected classifications.
-     */
+    @ParameterizedTest(name = "For age {0}, the classification should be {1}")
+    @MethodSource("validAgeProvider")
+    @DisplayName("Valid ages")
+    void testClassifyAge(final int age, final String expected) throws InvalidAgeException {
+        String actual = AgeClassifier.classifyAge(age);
+        assertEquals(expected, actual);
+    }
+
     static @NotNull Stream<Arguments> validAgeProvider() {
         return Stream.of(
                 Arguments.of(0, CHILD_LABEL),
@@ -76,27 +65,13 @@ class AgeClassifierTest {
         );
     }
 
-    /**
-     * Tests the {@link AgeClassifier#classifyAge(int)} method with valid age values.
-     *
-     * @param age      the age value to classify.
-     * @param expected the expected classification for the given age.
-     */
-    @ParameterizedTest(name = "For age {0}, the classification should be {1}")
-    @MethodSource("validAgeProvider")
-    @DisplayName("Valid ages")
-    @SneakyThrows
-    void testClassifyAge(final int age, final String expected) {
-        var actual = AgeClassifier.classifyAge(age);
-
-        assertEquals(expected, actual);
+    @ParameterizedTest(name = "Invalid age {0} should throw InvalidAgeException")
+    @MethodSource("invalidAgeProvider")
+    @DisplayName("Invalid ages")
+    void testInvalidAges(final int age) {
+        assertThrows(InvalidAgeException.class, () -> AgeClassifier.classifyAge(age));
     }
 
-    /**
-     * Provides invalid age values for parameterized testing.
-     *
-     * @return a {@link Stream} of {@link Arguments} containing invalid age values.
-     */
     static @NotNull Stream<Arguments> invalidAgeProvider() {
         return Stream.of(
                 Arguments.of(-1),
@@ -105,29 +80,11 @@ class AgeClassifierTest {
         );
     }
 
-    /**
-     * Tests the {@link AgeClassifier#classifyAge(int)} method with invalid age values.
-     *
-     * @param age the invalid age value to test.
-     */
-    @ParameterizedTest(name = "Invalid age {0} should throw InvalidAgeException")
-    @MethodSource("invalidAgeProvider")
-    @DisplayName("Invalid ages")
-    void testInvalidAges(final int age) {
-        assertThrows(InvalidAgeException.class, () -> AgeClassifier.classifyAge(age));
-    }
+    @Test
+    @DisplayName("Exception message for invalid ages should be correct")
+    void testInvalidAgeExceptionMessage() {
+        var exception = assertThrows(InvalidAgeException.class, () -> AgeClassifier.classifyAge(-1));
 
-    /**
-     * Tests the {@link AgeClassifier#classifyAge(int)} method with invalid age values.
-     *
-     * @param age the invalid age value to test.
-     */
-    @ParameterizedTest(name = "Invalid age {0} should throw InvalidAgeException")
-    @MethodSource("invalidAgeProvider")
-    @DisplayName("Invalid ages")
-    void testInvalidAgesWithMessage(final int age) {
-        var expected = assertThrows(InvalidAgeException.class, () -> AgeClassifier.classifyAge(age)).getMessage();
-
-        assertEquals(INVALID_AGE_MESSAGE, expected);
+        assertEquals(INVALID_AGE_MESSAGE, exception.getMessage());
     }
 }
