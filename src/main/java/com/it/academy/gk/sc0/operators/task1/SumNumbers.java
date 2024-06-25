@@ -1,6 +1,5 @@
 package com.it.academy.gk.sc0.operators.task1;
 
-import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
@@ -42,8 +41,8 @@ import java.util.Arrays;
  * </pre>
  *
  * @author Anastasia Melnikova
- * @version 1.0
- * @since 2023-09-02
+ * @version 2.0
+ * @since 2024-06-24
  */
 @UtilityClass
 public final class SumNumbers {
@@ -70,11 +69,10 @@ public final class SumNumbers {
      * @throws NullPointerException     if the provided array is null.
      * @throws IllegalArgumentException if the provided array is empty.
      */
-    @SneakyThrows
-    public static int sum(final int... numbers) {
+    public static long sum(final int... numbers) {
         validate(numbers);
 
-        return Arrays.stream(numbers).sum();
+        return Arrays.stream(numbers).asLongStream().sum();
     }
 
     /**

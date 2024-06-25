@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static com.it.academy.gk.sc0.operators.task1.SumNumbers.sum;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,36 +21,34 @@ class SumNumbersTest {
     private static String EXPECTED_NON_NULL_ARGUMENT;
 
     @BeforeAll
-    public static void setUp() {
+    public static void setUp() throws NoSuchFieldException, IllegalAccessException {
         ARRAY_MUST_NOT_BE_EMPTY = getStaticFieldValue("ARRAY_MUST_NOT_BE_EMPTY");
         EXPECTED_NON_NULL_ARGUMENT = getStaticFieldValue("EXPECTED_NON_NULL_ARGUMENT");
     }
 
-    private static String getStaticFieldValue(String fieldName) {
-        try {
-            var field = SumNumbers.class.getDeclaredField(fieldName);
-            field.setAccessible(true);
+    private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        var field = SumNumbers.class.getDeclaredField(fieldName);
+        field.setAccessible(true);
 
-            return (String) field.get(null);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        return (String) field.get(null);
     }
 
     static @NotNull Stream<Arguments> provideNumbersForSum() {
         return Stream.of(
-                Arguments.of(new int[]{1, 2, 3}, 6),
-                Arguments.of(new int[]{0, 0, 0}, 0),
-                Arguments.of(new int[]{-1, 1}, 0),
-                Arguments.of(new int[]{-1, -1, -1}, -3)
+                Arguments.of(new int[]{1, 2, 3}, 6L),
+                Arguments.of(new int[]{0, 0, 0}, 0L),
+                Arguments.of(new int[]{-1, 1}, 0L),
+                Arguments.of(new int[]{-1, -1, -1}, -3L),
+                Arguments.of(new int[]{Integer.MAX_VALUE, 1}, (long) Integer.MAX_VALUE + 1), // overflow
+                Arguments.of(new int[]{Integer.MIN_VALUE, -1}, (long) Integer.MIN_VALUE - 1)  // overflow
         );
     }
 
     @ParameterizedTest(name = "Test with input numbers {0}, expecting sum {1}")
     @MethodSource("provideNumbersForSum")
     @DisplayName("Test sum method with various inputs.")
-    void testSum(final int[] numbers, final int expected) {
-        var actual = sum(numbers);
+    void testSum(final int[] numbers, final long expected) {
+        var actual = SumNumbers.sum(numbers);
 
         assertEquals(expected, actual);
     }
@@ -59,11 +57,11 @@ class SumNumbersTest {
         return Stream.of(
                 Arguments.of(
                         IllegalArgumentException.class, ARRAY_MUST_NOT_BE_EMPTY,
-                        (Executable) () -> sum(new int[]{})
+                        (Executable) () -> SumNumbers.sum(new int[]{})
                 ),
                 Arguments.of(
                         NullPointerException.class, EXPECTED_NON_NULL_ARGUMENT,
-                        (Executable) () -> sum((int[]) null)
+                        (Executable) () -> SumNumbers.sum((int[]) null)
                 )
         );
     }
@@ -81,8 +79,8 @@ class SumNumbersTest {
 
     static @NotNull Stream<Arguments> provideInvalidArraysForExceptions() {
         return Stream.of(
-                Arguments.of(IllegalArgumentException.class, (Executable) () -> sum(new int[]{})),
-                Arguments.of(NullPointerException.class, (Executable) () -> sum((int[]) null))
+                Arguments.of(IllegalArgumentException.class, (Executable) () -> SumNumbers.sum(new int[]{})),
+                Arguments.of(NullPointerException.class, (Executable) () -> SumNumbers.sum((int[]) null))
         );
     }
 
@@ -95,43 +93,80 @@ class SumNumbersTest {
 
     static @NotNull Stream<Arguments> provideSingleElementForSum() {
         return Stream.of(
-                Arguments.of(new int[]{5}, 5),
-                Arguments.of(new int[]{-5}, -5),
-                Arguments.of(new int[]{0}, 0)
+                Arguments.of(new int[]{5}, 5L),
+                Arguments.of(new int[]{-5}, -5L),
+                Arguments.of(new int[]{0}, 0L)
         );
     }
 
     @ParameterizedTest(name = "Test with a single element array {0}, expecting sum {1}")
     @MethodSource("provideSingleElementForSum")
     @DisplayName("Test sum method with a single element array.")
-    void testSingleElementSum(final int @NotNull [] numbers, final int expected) {
-        assertEquals(1, numbers.length, "Array should contain exactly one element");
+    void testSingleElementSum(final int @NotNull [] numbers, final long expected) {
+        var actual = SumNumbers.sum(numbers);
 
-        var actual = sum(numbers);
-
-        assertEquals(expected, actual, "Sum should match the expected single element value");
+        assertAll(
+                () -> assertEquals(1, numbers.length),
+                () -> assertEquals(expected, actual)
+        );
     }
-
 
     @Test
     @DisplayName("Test sum method with a large array.")
     void testLargeArraySum() {
         var largeArray = new int[10000];
+        var expected = 10000L;
         Arrays.fill(largeArray, 1);
-        var expected = 10000;
 
-        var actual = sum(largeArray);
+        var actual = SumNumbers.sum(largeArray);
 
         assertEquals(expected, actual);
     }
 
-    @Test
-    @DisplayName("Test sum method with max/min integer values.")
-    void testMaxMinIntSum() {
-        var array = new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE};
-        var expected = -1;
+    static @NotNull Stream<Arguments> provideMaxMinIntSum() {
+        return Stream.of(
+                Arguments.of(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, -1L)
+        );
+    }
 
-        var actual = sum(array);
+    @ParameterizedTest(name = "Test sum method with max/min integer values {0}, expecting sum {1}")
+    @MethodSource("provideMaxMinIntSum")
+    @DisplayName("Test sum method with max/min integer values.")
+    void testMaxMinIntSum(final int[] array, final long expected) {
+        var actual = SumNumbers.sum(array);
+
+        assertEquals(expected, actual);
+    }
+
+    static @NotNull Stream<Arguments> provideSumWithDuplicateElements() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 1, 1, 1, 1}, 5L)
+        );
+    }
+
+    @ParameterizedTest(name = "Test sum method with duplicate elements {0}, expecting sum {1}")
+    @MethodSource("provideSumWithDuplicateElements")
+    @DisplayName("Test sum method with duplicate elements.")
+    void testSumWithDuplicateElements(final int[] array, final long expected) {
+        var actual = SumNumbers.sum(array);
+
+        assertEquals(expected, actual);
+    }
+
+    static @NotNull Stream<Arguments> provideOverflowSum() {
+        return Stream.of(
+                Arguments.of(
+                        new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE},
+                        (long) Integer.MAX_VALUE + Integer.MAX_VALUE
+                )
+        );
+    }
+
+    @ParameterizedTest(name = "Test sum method with large numbers causing overflow {0}, expecting sum {1}")
+    @MethodSource("provideOverflowSum")
+    @DisplayName("Test sum method with large numbers causing overflow.")
+    void testOverflowSum(final int[] array, final long expected) {
+        var actual = SumNumbers.sum(array);
 
         assertEquals(expected, actual);
     }
