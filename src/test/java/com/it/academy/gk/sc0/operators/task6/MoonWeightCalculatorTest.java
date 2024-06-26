@@ -11,9 +11,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static com.it.academy.gk.sc0.operators.task6.MoonWeightCalculator.calculateMoonWeight;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class MoonWeightCalculatorTest {
     private static String NEGATIVE_WEIGHT_MESSAGE;
@@ -29,9 +29,9 @@ class MoonWeightCalculatorTest {
 
     static @NotNull Stream<Arguments> validWeightProvider() {
         return Stream.of(
-                arguments(0.0, 0.0),
-                arguments(100.0, 17.0),
-                arguments(50.5, 8.585)
+                Arguments.of(0.0, 0.0),
+                Arguments.of(100.0, 17.0),
+                Arguments.of(50.5, 8.585)
         );
     }
 
@@ -39,16 +39,16 @@ class MoonWeightCalculatorTest {
     @MethodSource("validWeightProvider")
     @DisplayName("Valid Earth weights")
     void testCalculateMoonWeight(final double earthWeight, final double expected) throws NegativeWeightException {
-        var actual = MoonWeightCalculator.calculateMoonWeight(earthWeight);
+        var actual = calculateMoonWeight(earthWeight);
 
         assertEquals(expected, actual, 0.001);
     }
 
     static @NotNull Stream<Arguments> invalidWeightProvider() {
         return Stream.of(
-                arguments(-0.1),
-                arguments(-100.0),
-                arguments(-1.0)
+                Arguments.of(-0.1),
+                Arguments.of(-100.0),
+                Arguments.of(-1.0)
         );
     }
 
@@ -56,21 +56,21 @@ class MoonWeightCalculatorTest {
     @MethodSource("invalidWeightProvider")
     @DisplayName("Invalid Earth weights")
     void testNegativeWeights(final double earthWeight) {
-        assertThrows(NegativeWeightException.class, () -> MoonWeightCalculator.calculateMoonWeight(earthWeight));
+        assertThrows(NegativeWeightException.class, () -> calculateMoonWeight(earthWeight));
     }
 
     static @NotNull Stream<Arguments> provideInvalidWeightsAndExceptionMessage() {
         return Stream.of(
-                arguments(
-                        (Executable) () -> MoonWeightCalculator.calculateMoonWeight(-0.1),
+                Arguments.of(
+                        (Executable) () -> calculateMoonWeight(-0.1),
                         NegativeWeightException.class, NEGATIVE_WEIGHT_MESSAGE
                 ),
-                arguments(
-                        (Executable) () -> MoonWeightCalculator.calculateMoonWeight(-100.0),
+                Arguments.of(
+                        (Executable) () -> calculateMoonWeight(-100.0),
                         NegativeWeightException.class, NEGATIVE_WEIGHT_MESSAGE
                 ),
-                arguments(
-                        (Executable) () -> MoonWeightCalculator.calculateMoonWeight(-1.0),
+                Arguments.of(
+                        (Executable) () -> calculateMoonWeight(-1.0),
                         NegativeWeightException.class, NEGATIVE_WEIGHT_MESSAGE
                 )
         );
