@@ -1,17 +1,17 @@
 package com.it.academy.gk.sc0.operators.task8;
 
 /**
- * Enum representing the planets in the Solar System.
- * Each planet is assigned a unique number starting from one (Mercury) to eight (Neptune).
+ * This enum represents the eight planets in our solar system.
+ * Each planet is associated with a unique number.
  *
  * @author Anastasia Melnikova
- * @version 1.0
- * @since 2023-09-02
+ * @version 2.0
+ * @since 2024-06-25
  */
 @SuppressWarnings("LombokGetterMayBeUsed")
 enum Planet {
     /**
-     * Mercury is the first planet from the Sun and the closest to it.
+     * Mercury is the smallest planet in our solar system.
      */
     MERCURY(1),
 
@@ -21,7 +21,7 @@ enum Planet {
     VENUS(2),
 
     /**
-     * Earth is the third planet from the Sun and the only known to harbor life.
+     * Earth is the third planet from the Sun and the only known celestial body to support life.
      */
     EARTH(3),
 
@@ -50,18 +50,25 @@ enum Planet {
      */
     NEPTUNE(8);
 
+    /**
+     * The unique number associated with each planet.
+     */
     private final int number;
 
     /**
-     * Constructor to initialize the unique number for each planet.
+     * Constructor for Planet enum.
      *
-     * @param number The unique number for the planet. It should be a positive integer starting from 1.
-     *               Each planet is assigned a unique number in this range.
+     * @param number The unique number associated with the planet.
      */
     Planet(int number) {
         this.number = number;
     }
 
+    /**
+     * Getter for the unique number associated with the planet.
+     *
+     * @return The unique number associated with the planet.
+     */
     public int getNumber() {
         return number;
     }

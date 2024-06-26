@@ -1,7 +1,6 @@
 package com.it.academy.gk.sc0.operators.task9;
 
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,13 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LastDigitCheckerTest {
-    private LastDigitChecker lastDigitChecker;
-
-    @BeforeEach
-    public void setUp() {
-        lastDigitChecker = new LastDigitChecker();
-    }
-
     static @NotNull Stream<Arguments> validLastDigitArguments() {
         return Stream.of(
                 Arguments.of(1, "yes"),
@@ -34,7 +26,7 @@ class LastDigitCheckerTest {
     @MethodSource("validLastDigitArguments")
     @DisplayName("Valid Last Digit")
     void testValidLastDigits(final int number, final String expected) {
-        var actual = lastDigitChecker.checkLastDigit(number);
+        var actual = LastDigitChecker.checkLastDigit(number);
 
         assertEquals(expected, actual);
     }
@@ -55,7 +47,7 @@ class LastDigitCheckerTest {
     @MethodSource("invalidLastDigitArguments")
     @DisplayName("Invalid Last Digit")
     void testInvalidLastDigits(final int number, final String expected) {
-        var actual = lastDigitChecker.checkLastDigit(number);
+        var actual = LastDigitChecker.checkLastDigit(number);
 
         assertEquals(expected, actual);
     }

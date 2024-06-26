@@ -1,7 +1,7 @@
 package com.it.academy.gk.sc0.operators.task8;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidPlanetNameException;
-import com.it.academy.gk.sc0.operators.exception.InvalidPlanetNumberException;
+import com.it.academy.gk.sc0.operators.task8.exception.InvalidPlanetNameException;
+import com.it.academy.gk.sc0.operators.task8.exception.InvalidPlanetNumberException;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.*;
 import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.findPlanetByNumber;
 import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.findPlanetNumberByName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +18,52 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SolarSystemPlanetFinderTest {
+    private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        var field = InvalidPlanetNumberException.class.getDeclaredField(fieldName);
+        field.setAccessible(true);
+
+        return (String) field.get(null);
+    }
+
+    static @NotNull Stream<Arguments> invalidPlanetNumberProviderWithMessage() throws Exception {
+        var invalidPlanetNumber = getStaticFieldValue("INVALID_PLANET_NUMBER");
+        var mustBeBetween1And = getStaticFieldValue("MUST_BE_BETWEEN_1_AND");
+        var dot = getStaticFieldValue("DOT");
+        var totalPlanets = Planet.values().length;
+
+        return Stream.of(
+                Arguments.of(0, String.format(
+                                "%s%d%s%s%d%s",
+                                invalidPlanetNumber, 0, dot, mustBeBetween1And, totalPlanets, dot
+                        )
+                ),
+                Arguments.of(
+                        9,
+                        String.format(
+                                "%s%d%s%s%d%s",
+                                invalidPlanetNumber, 9, dot, mustBeBetween1And, totalPlanets, dot
+                        )
+                ),
+                Arguments.of(
+                        -1,
+                        String.format(
+                                "%s%d%s%s%d%s",
+                                invalidPlanetNumber, -1, dot, mustBeBetween1And, totalPlanets, dot
+                        )
+                )
+        );
+    }
+
+    @ParameterizedTest(name = "Invalid planet number {0} should throw InvalidPlanetNumberException")
+    @MethodSource("invalidPlanetNumberProviderWithMessage")
+    @DisplayName("Invalid planet numbers")
+    void testInvalidPlanetNameExceptionMessage(final int invalidPlanetNumber, final String expected) {
+        var actual = assertThrows(
+                InvalidPlanetNumberException.class, () -> findPlanetByNumber(invalidPlanetNumber)
+        ).getMessage();
+
+        assertEquals(expected, actual);
+    }
 
     static @NotNull Stream<Arguments> validPlanetNumberProvider() {
         return Stream.of(
@@ -36,7 +83,7 @@ class SolarSystemPlanetFinderTest {
     @DisplayName("Valid planet numbers")
     void testFindPlanetByNumber(final int planetNumber, final String expected) throws InvalidPlanetNumberException {
         var actualOptional = findPlanetByNumber(planetNumber);
-        assertTrue(actualOptional.isPresent(), "Optional should not be empty");
+        assertTrue(actualOptional.isPresent());
 
         var actual = actualOptional.orElseThrow();
 
@@ -76,7 +123,7 @@ class SolarSystemPlanetFinderTest {
     @DisplayName("Valid planet names")
     void testFindPlanetNumberByName(final String planetName, final int expected) throws InvalidPlanetNameException {
         var actualOptional = findPlanetNumberByName(planetName);
-        assertTrue(actualOptional.isPresent(), "Optional should not be empty");
+        assertTrue(actualOptional.isPresent());
 
         var actual = actualOptional.orElseThrow();
 
@@ -98,25 +145,6 @@ class SolarSystemPlanetFinderTest {
         assertThrows(InvalidPlanetNameException.class, () -> findPlanetNumberByName(planetName));
     }
 
-    static @NotNull Stream<Arguments> invalidPlanetNumberProviderWithMessage() {
-        return Stream.of(
-                Arguments.of(0, "Invalid planet number: 0. Must be between 1 and 8. "),
-                Arguments.of(9, "Invalid planet number: 9. Must be between 1 and 8. "),
-                Arguments.of(-1, "Invalid planet number: -1. Must be between 1 and 8. ")
-        );
-    }
-
-    @ParameterizedTest(name = "Invalid planet number {0} should throw InvalidPlanetNumberException")
-    @MethodSource("invalidPlanetNumberProviderWithMessage")
-    @DisplayName("Invalid planet numbers")
-    void testInvalidPlanetNameExceptionMessage(final int invalidPlanetNumber, final String expected) {
-        var actual = assertThrows(
-                InvalidPlanetNumberException.class, () -> findPlanetByNumber(invalidPlanetNumber)
-        ).getMessage();
-
-        assertEquals(expected, actual);
-    }
-
     static @NotNull Stream<Arguments> invalidPlanetNameProviderWithName() {
         return Stream.of(
                 Arguments.of("Pluto", new InvalidPlanetNameException("Pluto").getMessage()),
@@ -129,10 +157,8 @@ class SolarSystemPlanetFinderTest {
     @MethodSource("invalidPlanetNameProviderWithName")
     @DisplayName("Invalid planet names")
     void testInvalidPlanetNameExceptionMessage(final String invalidPlanetName, final String expected) {
-        var exception = assertThrows(
-                InvalidPlanetNameException.class,
-                () -> SolarSystemPlanetFinder.findPlanetNumberByName(invalidPlanetName)
-        ).getMessage();
+        var exception = assertThrows(InvalidPlanetNameException.class, () -> findPlanetNumberByName(invalidPlanetName))
+                .getMessage();
 
         assertEquals(expected, exception);
     }
