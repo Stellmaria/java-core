@@ -1,7 +1,8 @@
 package com.it.academy.gk.sc0.operators.task2;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidTriangleSideException;
+import com.it.academy.gk.sc0.operators.task2.exception.InvalidTriangleSideException;
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,10 +15,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RightTriangleTest {
-    private final static String BOTH_SIDES_INVALID_MESSAGE = RightTriangle.BOTH_SIDES_INVALID_MESSAGE;
-    private final static String SIDE_A_INVALID_MESSAGE = RightTriangle.SIDE_A_INVALID_MESSAGE;
+    private static String BOTH_SIDES_INVALID_MESSAGE;
+    private static String SIDE_A_INVALID_MESSAGE;
+    private static String SIDE_B_INVALID_MESSAGE;
 
-    private final static String SIDE_B_INVALID_MESSAGE = RightTriangle.SIDE_B_INVALID_MESSAGE;
+    @BeforeAll
+    public static void setUp() throws NoSuchFieldException, IllegalAccessException {
+        BOTH_SIDES_INVALID_MESSAGE = getStaticFieldValue("BOTH_SIDES_INVALID_MESSAGE");
+        SIDE_A_INVALID_MESSAGE = getStaticFieldValue("SIDE_A_INVALID_MESSAGE");
+        SIDE_B_INVALID_MESSAGE = getStaticFieldValue("SIDE_B_INVALID_MESSAGE");
+    }
+
+    private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        var field = RightTriangle.class.getDeclaredField(fieldName);
+        field.setAccessible(true);
+
+        return (String) field.get(null);
+    }
 
     static @NotNull Stream<Arguments> provideValidAreaArguments() {
         return Stream.of(
