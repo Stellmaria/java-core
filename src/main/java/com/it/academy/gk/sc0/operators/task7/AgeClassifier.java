@@ -1,29 +1,14 @@
 package com.it.academy.gk.sc0.operators.task7;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidAgeException;
+import com.it.academy.gk.sc0.operators.task7.exception.InvalidAgeException;
 import lombok.experimental.UtilityClass;
 
 /**
- * AgeClassifier is a utility class that provides a method for classifying a person's age into categories such as Child,
- * Adult, and Elderly.
- *
- * <p>Example usage:</p>
- * <pre>
- *     String ageCategory = AgeClassifier.classifyAge(25);  // ageCategory will be "Adult"
- * </pre>
- *
- * <p>Example usage for validation:</p>
- * <pre>
- *     try {
- *         AgeClassifier.validateAge(30);  // Valid age, no exception thrown
- *     } catch (InvalidAgeException e) {
- *         // Handle exception
- *     }
- * </pre>
+ * A utility class for classifying ages into categories.
  *
  * @author Anastasia Melnikova
- * @version 1.0
- * @since 2023-09-02
+ * @version 2.0
+ * @since 2024-06-25
  */
 @UtilityClass
 public final class AgeClassifier {
@@ -73,11 +58,11 @@ public final class AgeClassifier {
     private static final String SPACE = " ";
 
     /**
-     * Classifies the given age into categories such as Child, Adult, and Elderly.
+     * Classifies the given age into a category.
      *
-     * @param age the age of the person. Must be a non-negative number.
-     * @return the category label based on the age.
-     * @throws InvalidAgeException if the age is negative.
+     * @param age The age to be classified.
+     * @return A string representing the age category.
+     * @throws InvalidAgeException If the age is negative.
      */
     public static String classifyAge(final int age) throws InvalidAgeException {
         String result;
@@ -99,10 +84,10 @@ public final class AgeClassifier {
     }
 
     /**
-     * Validates the given age to ensure it is a non-negative number.
+     * Validates the given age.
      *
-     * @param age the age to validate.
-     * @throws InvalidAgeException if the age is negative.
+     * @param age The age to be validated.
+     * @throws InvalidAgeException If the age is negative.
      */
     public static void validateAge(final int age) throws InvalidAgeException {
         if (age < 0) {

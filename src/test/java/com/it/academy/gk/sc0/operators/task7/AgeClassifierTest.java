@@ -1,6 +1,6 @@
 package com.it.academy.gk.sc0.operators.task7;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidAgeException;
+import com.it.academy.gk.sc0.operators.task7.exception.InvalidAgeException;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -20,35 +20,31 @@ class AgeClassifierTest {
     private static String ADULT_LABEL;
     private static String ELDERLY_LABEL;
     private static String LONG_LIVED_LABEL;
+    private static String SPACE;
 
     @BeforeAll
-    public static void beforeAll() throws NoSuchFieldException, IllegalAccessException {
-        var invalidAgeMessageField = AgeClassifier.class.getDeclaredField("INVALID_AGE_MESSAGE");
-        invalidAgeMessageField.setAccessible(true);
-        INVALID_AGE_MESSAGE = (String) invalidAgeMessageField.get(null);
+    public static void setUp() throws NoSuchFieldException, IllegalAccessException {
+        INVALID_AGE_MESSAGE = getStaticFieldValue("INVALID_AGE_MESSAGE");
+        CHILD_LABEL = getStaticFieldValue("CHILD_LABEL");
+        ADULT_LABEL = getStaticFieldValue("ADULT_LABEL");
+        ELDERLY_LABEL = getStaticFieldValue("ELDERLY_LABEL");
+        LONG_LIVED_LABEL = getStaticFieldValue("LONG_LIVED_LABEL");
+        SPACE = getStaticFieldValue("SPACE");
+    }
 
-        var childLabelField = AgeClassifier.class.getDeclaredField("CHILD_LABEL");
-        childLabelField.setAccessible(true);
-        CHILD_LABEL = (String) childLabelField.get(null);
+    private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        var field = AgeClassifier.class.getDeclaredField(fieldName);
+        field.setAccessible(true);
 
-        var adultLabelField = AgeClassifier.class.getDeclaredField("ADULT_LABEL");
-        adultLabelField.setAccessible(true);
-        ADULT_LABEL = (String) adultLabelField.get(null);
-
-        var elderlyLabelField = AgeClassifier.class.getDeclaredField("ELDERLY_LABEL");
-        elderlyLabelField.setAccessible(true);
-        ELDERLY_LABEL = (String) elderlyLabelField.get(null);
-
-        var longLivedLabelField = AgeClassifier.class.getDeclaredField("LONG_LIVED_LABEL");
-        longLivedLabelField.setAccessible(true);
-        LONG_LIVED_LABEL = (String) longLivedLabelField.get(null);
+        return (String) field.get(null);
     }
 
     @ParameterizedTest(name = "For age {0}, the classification should be {1}")
     @MethodSource("validAgeProvider")
     @DisplayName("Valid ages")
     void testClassifyAge(final int age, final String expected) throws InvalidAgeException {
-        String actual = AgeClassifier.classifyAge(age);
+        var actual = AgeClassifier.classifyAge(age);
+
         assertEquals(expected, actual);
     }
 
@@ -60,8 +56,8 @@ class AgeClassifierTest {
                 Arguments.of(69, ADULT_LABEL),
                 Arguments.of(70, ELDERLY_LABEL),
                 Arguments.of(119, ELDERLY_LABEL),
-                Arguments.of(120, ELDERLY_LABEL + " " + LONG_LIVED_LABEL),
-                Arguments.of(130, ELDERLY_LABEL + " " + LONG_LIVED_LABEL)
+                Arguments.of(120, ELDERLY_LABEL + SPACE + LONG_LIVED_LABEL),
+                Arguments.of(130, ELDERLY_LABEL + SPACE + LONG_LIVED_LABEL)
         );
     }
 
