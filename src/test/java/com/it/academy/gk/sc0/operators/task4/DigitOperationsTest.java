@@ -11,27 +11,31 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.function.IntBinaryOperator;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.params.provider.Arguments.*;
 
 class DigitOperationsTest {
     private static String INVALID_DIGIT_NUMBER_MESSAGE;
 
     @BeforeAll
     public static void setUp() throws NoSuchFieldException, IllegalAccessException {
-        var invalidDigitNumberMessageField = DigitOperations.class.getDeclaredField("INVALID_DIGIT_NUMBER_MESSAGE");
+        var invalidDigitNumberMessageField = DigitOperations.class.getDeclaredField(
+                "INVALID_DIGIT_NUMBER_MESSAGE"
+        );
         invalidDigitNumberMessageField.setAccessible(true);
         INVALID_DIGIT_NUMBER_MESSAGE = (String) invalidDigitNumberMessageField.get(null);
     }
 
     static @NotNull Stream<Arguments> provideValidArgumentsForCalculateDigitSum() {
         return Stream.of(
-                Arguments.of(12, 3),
-                Arguments.of(111, 3),
-                Arguments.of(321, 6)
+                of(12, 3),
+                of(111, 3),
+                of(321, 6)
         );
     }
 
@@ -46,9 +50,9 @@ class DigitOperationsTest {
 
     static @NotNull Stream<Arguments> provideValidArgumentsForCalculateDigitProduct() {
         return Stream.of(
-                Arguments.of(12, 2),
-                Arguments.of(111, 1),
-                Arguments.of(321, 6)
+                of(12, 2),
+                of(111, 1),
+                of(321, 6)
         );
     }
 
@@ -63,9 +67,9 @@ class DigitOperationsTest {
 
     static @NotNull Stream<Arguments> provideValidArgumentsForCalculateNumberOfDigits() {
         return Stream.of(
-                Arguments.of(12, 2),
-                Arguments.of(111, 3),
-                Arguments.of(321, 3)
+                of(12, 2),
+                of(111, 3),
+                of(321, 3)
         );
     }
 
@@ -80,30 +84,12 @@ class DigitOperationsTest {
 
     static @NotNull Stream<Arguments> provideInvalidArgumentsAndMessage() {
         return Stream.of(
-                Arguments.of(
-                        (Executable) () -> DigitOperations.calculateDigitSum(0),
-                        INVALID_DIGIT_NUMBER_MESSAGE
-                ),
-                Arguments.of(
-                        (Executable) () -> DigitOperations.calculateDigitSum(9),
-                        INVALID_DIGIT_NUMBER_MESSAGE
-                ),
-                Arguments.of(
-                        (Executable) () -> DigitOperations.calculateDigitProduct(0),
-                        INVALID_DIGIT_NUMBER_MESSAGE
-                ),
-                Arguments.of(
-                        (Executable) () -> DigitOperations.calculateDigitProduct(9),
-                        INVALID_DIGIT_NUMBER_MESSAGE
-                ),
-                Arguments.of(
-                        (Executable) () -> DigitOperations.calculateNumberOfDigits(0),
-                        INVALID_DIGIT_NUMBER_MESSAGE
-                ),
-                Arguments.of(
-                        (Executable) () -> DigitOperations.calculateNumberOfDigits(9),
-                        INVALID_DIGIT_NUMBER_MESSAGE
-                )
+                of((Executable) () -> DigitOperations.calculateDigitSum(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                of((Executable) () -> DigitOperations.calculateDigitSum(9), INVALID_DIGIT_NUMBER_MESSAGE),
+                of((Executable) () -> DigitOperations.calculateDigitProduct(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                of((Executable) () -> DigitOperations.calculateDigitProduct(9), INVALID_DIGIT_NUMBER_MESSAGE),
+                of((Executable) () -> DigitOperations.calculateNumberOfDigits(0), INVALID_DIGIT_NUMBER_MESSAGE),
+                of((Executable) () -> DigitOperations.calculateNumberOfDigits(9), INVALID_DIGIT_NUMBER_MESSAGE)
         );
     }
 
