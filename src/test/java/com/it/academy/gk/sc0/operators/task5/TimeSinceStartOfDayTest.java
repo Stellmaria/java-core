@@ -1,6 +1,6 @@
 package com.it.academy.gk.sc0.operators.task5;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidMinuteException;
+import com.it.academy.gk.sc0.operators.task5.exception.InvalidMinuteException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,7 +12,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static com.it.academy.gk.sc0.operators.task5.TimeSinceStartOfDay.*;
+import static com.it.academy.gk.sc0.operators.task5.TimeSinceStartOfDay.calculateHours;
+import static com.it.academy.gk.sc0.operators.task5.TimeSinceStartOfDay.calculateMinutesSinceLastHour;
+import static com.it.academy.gk.sc0.operators.task5.TimeSinceStartOfDay.calculateTotalMinutes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,22 +23,23 @@ class TimeSinceStartOfDayTest {
     private static String RECEIVED;
     private static String SPACE;
 
-    /**
-     * Setup method executed before all tests in the class to initialize the static fields.
-     */
     @BeforeAll
-    public static void beforeAll() throws NoSuchFieldException, IllegalAccessException {
-        var invalidMinutesMessageField = TimeSinceStartOfDay.class.getDeclaredField("INVALID_MINUTES_MESSAGE");
-        invalidMinutesMessageField.setAccessible(true);
-        INVALID_MINUTES_MESSAGE = (String) invalidMinutesMessageField.get(null);
+    public static void setUp() throws NoSuchFieldException, IllegalAccessException {
+        INVALID_MINUTES_MESSAGE = getStaticFieldValue("INVALID_MINUTES_MESSAGE");
+        RECEIVED = getStaticFieldValue("RECEIVED");
+        SPACE = getStaticFieldValue("SPACE");
+    }
 
-        var receivedField = TimeSinceStartOfDay.class.getDeclaredField("RECEIVED");
-        receivedField.setAccessible(true);
-        RECEIVED = (String) receivedField.get(null);
+    private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        var field = TimeSinceStartOfDay.class.getDeclaredField(fieldName);
+        field.setAccessible(true);
 
-        var spaceField = TimeSinceStartOfDay.class.getDeclaredField("SPACE");
-        spaceField.setAccessible(true);
-        SPACE = (String) spaceField.get(null);
+        return (String) field.get(null);
+    }
+
+    @Contract(pure = true)
+    private static @NotNull String buildExceptionMessage(int minutes) {
+        return INVALID_MINUTES_MESSAGE + SPACE + RECEIVED + SPACE + minutes;
     }
 
     public static @NotNull Stream<Arguments> validMinutesAndHoursProvider() {
@@ -162,10 +165,5 @@ class TimeSinceStartOfDayTest {
         var actual = assertThrows(expectedExceptionType, executable).getMessage();
 
         assertEquals(expected, actual);
-    }
-
-    @Contract(pure = true)
-    private static @NotNull String buildExceptionMessage(int minutes) {
-        return INVALID_MINUTES_MESSAGE + SPACE + RECEIVED + SPACE + minutes;
     }
 }

@@ -1,22 +1,14 @@
 package com.it.academy.gk.sc0.operators.task5;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidMinuteException;
+import com.it.academy.gk.sc0.operators.task5.exception.InvalidMinuteException;
 import lombok.experimental.UtilityClass;
 
 /**
- * TimeSinceStartOfDay is a utility class
- * that provides methods for calculating hours and minutes since the start of the day based on the given minutes.
- *
- * <p>Example usage:</p>
- * <pre>
- *     int hours = TimeSinceStartOfDay.calculateHours(130);  // hours will be 2
- *     int minutes = TimeSinceStartOfDay.calculateMinutesSinceLastHour(130);  // minutes will be 10
- *     int totalMinutes = TimeSinceStartOfDay.calculateTotalMinutes(2, 10);  // totalMinutes will be 130
- * </pre>
+ * Utility class for calculating time since the start of the day.
  *
  * @author Anastasia Melnikova
- * @version 1.0
- * @since 2023-09-02
+ * @version 2.0
+ * @since 2024-06-25
  */
 @UtilityClass
 public final class TimeSinceStartOfDay {
@@ -47,11 +39,12 @@ public final class TimeSinceStartOfDay {
     private static final String SPACE = " ";
 
     /**
-     * Calculates the number of hours since the start of the day based on the given minutes.
+     * Calculates the number of hours since the start of the day based on the total minutes.
      *
-     * @param m the minutes since the start of the day. Must be between zero and the total minutes in a day.
-     * @return the number of hours.
-     * @throws InvalidMinuteException if the given minutes are invalid.
+     * @param m The total number of minutes since the start of the day.
+     * @return The number of hours since the start of the day.
+     * @throws InvalidMinuteException If the provided minutes are not within
+     *                                the valid range (0 to total minutes in a day).
      */
     public static int calculateHours(final int m) throws InvalidMinuteException {
         validateMinutes(m);
@@ -60,11 +53,14 @@ public final class TimeSinceStartOfDay {
     }
 
     /**
-     * Calculates the minutes since the last full hour based on the given minutes.
+     * Calculates the number of minutes since the start of the last hour.
      *
-     * @param m the minutes since the start of the day. Must be between zero and the total minutes in a day.
-     * @return the minutes since the last full hour.
-     * @throws InvalidMinuteException if the given minutes are invalid.
+     * @param m The total number of minutes since the start of the day.
+     * @return The number of minutes since the start of the last hour.
+     * @throws InvalidMinuteException If the provided minutes are not within
+     *                                the valid range (0 to total minutes in a day).
+     *                                This exception is thrown when the input minutes are less than 0 or
+     *                                greater than or equal to the total minutes in a day.
      */
     public static int calculateMinutesSinceLastHour(final int m) throws InvalidMinuteException {
         validateMinutes(m);
@@ -75,10 +71,11 @@ public final class TimeSinceStartOfDay {
     /**
      * Calculates the total number of minutes since the start of the day based on the given hours and minutes.
      *
-     * @param h the hours since the start of the day.
-     * @param m the minutes since the last full hour. Must be between 0 and 59.
-     * @return the total number of minutes since the start of the day.
-     * @throws InvalidMinuteException if the given minutes are invalid.
+     * @param h The number of hours since the start of the day.
+     * @param m The number of minutes since the start of the hour.
+     * @return The total number of minutes since the start of the day.
+     * @throws InvalidMinuteException If the provided minutes are not within
+     *                                the valid range (0 to total minutes in a day).
      */
     public static int calculateTotalMinutes(final int h, final int m) throws InvalidMinuteException {
         validateMinutes(m);
@@ -87,10 +84,13 @@ public final class TimeSinceStartOfDay {
     }
 
     /**
-     * Validates the given number of minutes.
+     * Validates the input minutes to ensure they are within the valid range.
      *
-     * @param m the number of minutes to validate.
-     * @throws InvalidMinuteException if the given minutes are not within the valid range.
+     * @param m The total number of minutes since the start of the day.
+     * @throws InvalidMinuteException If the provided minutes are not within
+     *                                the valid range (0 to total minutes in a day).
+     *                                This exception is thrown when the input minutes are less than 0 or
+     *                                greater than or equal to the total minutes in a day.
      */
     private static void validateMinutes(final int m) throws InvalidMinuteException {
         if (m < 0 || m >= MINUTES_IN_HOUR * HOURS_IN_DAY) {
@@ -98,4 +98,3 @@ public final class TimeSinceStartOfDay {
         }
     }
 }
-
