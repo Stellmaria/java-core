@@ -14,18 +14,17 @@ public class InvalidPlanetNameException extends Exception {
     /**
      * Constant string for the error message prefix.
      */
-    private static final String INVALID_PLANET_NAME = "Invalid planet name: ";
+    private static final String INVALID_PLANET_NAME_PREFIX = "Invalid planet name: ";
 
     /**
      * Constant string for the error message when the planet name is null or empty.
      */
-    public static final String NULL_PLANET_NAME = "Empty or null planet name.";
+    public static final String NULL_OR_EMPTY_PLANET_NAME = "Empty or null planet name.";
 
     /**
      * Constructor for InvalidPlanetNameException.
      *
      * @param planetName The name of the planet that caused the exception.
-     * @throws IllegalArgumentException If the planetName is null or empty.
      */
     public InvalidPlanetNameException(String planetName) {
         super(generateMessage(planetName));
@@ -36,13 +35,12 @@ public class InvalidPlanetNameException extends Exception {
      *
      * @param planetName The name of the planet.
      * @return The error message.
-     * @throws IllegalArgumentException If the planetName is null or empty.
      */
     private static @NotNull String generateMessage(String planetName) {
         if (planetName == null || planetName.trim().isEmpty()) {
-            return INVALID_PLANET_NAME + NULL_PLANET_NAME;
+            return INVALID_PLANET_NAME_PREFIX + NULL_OR_EMPTY_PLANET_NAME;
         } else {
-            return INVALID_PLANET_NAME + planetName;
+            return INVALID_PLANET_NAME_PREFIX + planetName;
         }
     }
 }

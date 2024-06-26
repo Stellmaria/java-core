@@ -7,10 +7,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.*;
 import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.findPlanetByNumber;
 import static com.it.academy.gk.sc0.operators.task8.SolarSystemPlanetFinder.findPlanetNumberByName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,34 +21,33 @@ class SolarSystemPlanetFinderTest {
     private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
         var field = InvalidPlanetNumberException.class.getDeclaredField(fieldName);
         field.setAccessible(true);
-
         return (String) field.get(null);
     }
 
     static @NotNull Stream<Arguments> invalidPlanetNumberProviderWithMessage() throws Exception {
-        var invalidPlanetNumber = getStaticFieldValue("INVALID_PLANET_NUMBER");
+        var invalidPlanetNumber = getStaticFieldValue("INVALID_PLANET_NUMBER_PREFIX");
         var mustBeBetween1And = getStaticFieldValue("MUST_BE_BETWEEN_1_AND");
         var dot = getStaticFieldValue("DOT");
         var totalPlanets = Planet.values().length;
 
         return Stream.of(
                 Arguments.of(0, String.format(
-                                "%s%d%s%s%d%s",
-                                invalidPlanetNumber, 0, dot, mustBeBetween1And, totalPlanets, dot
+                                "%s%d%s%s%s%d%s",
+                                invalidPlanetNumber, 0, dot, " ", mustBeBetween1And, totalPlanets, dot
                         )
                 ),
                 Arguments.of(
                         9,
                         String.format(
-                                "%s%d%s%s%d%s",
-                                invalidPlanetNumber, 9, dot, mustBeBetween1And, totalPlanets, dot
+                                "%s%d%s%s%s%d%s",
+                                invalidPlanetNumber, 9, dot, " ", mustBeBetween1And, totalPlanets, dot
                         )
                 ),
                 Arguments.of(
                         -1,
                         String.format(
-                                "%s%d%s%s%d%s",
-                                invalidPlanetNumber, -1, dot, mustBeBetween1And, totalPlanets, dot
+                                "%s%d%s%s%s%d%s",
+                                invalidPlanetNumber, -1, dot, " ", mustBeBetween1And, totalPlanets, dot
                         )
                 )
         );
@@ -102,6 +101,13 @@ class SolarSystemPlanetFinderTest {
     @MethodSource("invalidPlanetNumberProvider")
     @DisplayName("Invalid planet numbers")
     void testInvalidPlanetNumbers(final int planetNumber) {
+        assertThrows(InvalidPlanetNumberException.class, () -> findPlanetByNumber(planetNumber));
+    }
+
+    @ParameterizedTest(name = "Extremely invalid planet number {0} should throw InvalidPlanetNumberException")
+    @ValueSource(ints = {Integer.MIN_VALUE, Integer.MAX_VALUE})
+    @DisplayName("Extremely invalid planet numbers")
+    void testExtremelyInvalidPlanetNumbers(final int planetNumber) {
         assertThrows(InvalidPlanetNumberException.class, () -> findPlanetByNumber(planetNumber));
     }
 
@@ -161,5 +167,20 @@ class SolarSystemPlanetFinderTest {
                 .getMessage();
 
         assertEquals(expected, exception);
+    }
+
+    static @NotNull Stream<Arguments> extremelyInvalidPlanetNameProvider() {
+        return Stream.of(
+                Arguments.of((String) null),
+                Arguments.of("   "),
+                Arguments.of("\t\n")
+        );
+    }
+
+    @ParameterizedTest(name = "Extremely invalid planet name {0} should throw InvalidPlanetNameException")
+    @MethodSource("extremelyInvalidPlanetNameProvider")
+    @DisplayName("Extremely invalid planet names")
+    void testExtremelyInvalidPlanetNames(final String planetName) {
+        assertThrows(InvalidPlanetNameException.class, () -> findPlanetNumberByName(planetName));
     }
 }

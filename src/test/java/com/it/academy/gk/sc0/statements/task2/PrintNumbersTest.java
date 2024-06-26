@@ -31,11 +31,14 @@ class PrintNumbersTest {
     @Contract(pure = true)
     static @NotNull Stream<Arguments> printNumbersTask2Provider() {
         return Stream.of(
-                Arguments.of(5, 1, "5 4 3 2 1 "),
-                Arguments.of(5, 5, "5 "),
-                Arguments.of(-5, -9, "-5 -6 -7 -8 -9 "),
-                Arguments.of(0, 0, "0 "),
-                Arguments.of(10, 3, "10 9 8 7 6 5 4 3 ")
+                Arguments.of(5, 1, "5 4 3 2 1"),
+                Arguments.of(5, 5, "5"),
+                Arguments.of(-5, -9, "-5 -6 -7 -8 -9"),
+                Arguments.of(0, 0, "0"),
+                Arguments.of(10, 3, "10 9 8 7 6 5 4 3"),
+                Arguments.of(Integer.MAX_VALUE, Integer.MAX_VALUE - 3, Integer.MAX_VALUE + " " + (
+                        Integer.MAX_VALUE - 1) + " " + (Integer.MAX_VALUE - 2
+                ) + " " + (Integer.MAX_VALUE - 3))
         );
     }
 

@@ -3,6 +3,8 @@ package com.it.academy.gk.sc0.operators.task4;
 import com.it.academy.gk.sc0.operators.task9.exception.InvalidDigitNumberException;
 import lombok.experimental.UtilityClass;
 
+import java.util.function.IntBinaryOperator;
+
 /**
  * A utility class for performing operations on digits of a number.
  * The number should be either a two-digit or a three-digit number.
@@ -86,15 +88,13 @@ public final class DigitOperations {
      * @throws InvalidDigitNumberException If the number is not a two-digit or a three-digit number.
      */
     private static int performDigitOperation(final int number,
-                                             final DigitOperation operation,
+                                             final IntBinaryOperator operation,
                                              final int initialValue) {
         var result = initialValue;
         var temp = number;
 
         while (temp > 0) {
-            // Apply the operation to the result and the current digit
-            result = operation.apply(result, temp % BASE_10);
-            // Remove the last digit from the temporary number
+            result = operation.applyAsInt(result, temp % BASE_10);
             temp /= BASE_10;
         }
 

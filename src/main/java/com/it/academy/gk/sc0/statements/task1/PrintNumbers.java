@@ -1,9 +1,7 @@
 package com.it.academy.gk.sc0.statements.task1;
 
 import lombok.experimental.UtilityClass;
-
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A utility class for generating a string of numbers within a specified range.
@@ -17,7 +15,13 @@ public class PrintNumbers {
     /**
      * Error message for when the minimum value is greater than the maximum value.
      */
-    private static final String ERROR_MESSAGE_MIN_GREATER_THAN_MAX = "Min value must be less than or equal to max value";
+    private static final String ERROR_MESSAGE_MIN_GREATER_THAN_MAX =
+            "Min value must be less than or equal to max value";
+
+    /**
+     * Separator for numbers in the generated string.
+     */
+    private static final String SEPARATOR = " ";
 
     /**
      * Generates a string of numbers within the specified range, inclusive.
@@ -27,14 +31,19 @@ public class PrintNumbers {
      * @return A string of numbers separated by spaces.
      * @throws IllegalArgumentException If the minimum value is greater than the maximum value.
      */
-    public static String generateNumberString(final int minValue, final int maxValue) {
+    public static @NotNull String generateNumberString(final int minValue, final int maxValue) {
         validateRange(minValue, maxValue);
 
-        final var separator = " ";
+        var numberStringBuilder = new StringBuilder();
 
-        return IntStream.rangeClosed(minValue, maxValue)
-                .mapToObj(String::valueOf)
-                .collect(Collectors.joining(separator));
+        for (int i = minValue; i <= maxValue; i++) {
+            if (i > minValue) {
+                numberStringBuilder.append(SEPARATOR);
+            }
+            numberStringBuilder.append(i);
+        }
+
+        return numberStringBuilder.toString();
     }
 
     /**

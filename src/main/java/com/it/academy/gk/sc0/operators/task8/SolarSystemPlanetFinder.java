@@ -43,7 +43,7 @@ public final class SolarSystemPlanetFinder {
      * @return An Optional containing the planet name if found, otherwise an empty Optional.
      * @throws InvalidPlanetNumberException If the planet number is invalid.
      */
-    public static @NotNull Optional<String> findPlanetByNumber(final int planetNumber)
+    public static Optional<String> findPlanetByNumber(final int planetNumber)
             throws InvalidPlanetNumberException {
         if (planetNumber < 1 || planetNumber > planetByNumber.size()) {
             throw InvalidPlanetNumberException.createWith(planetNumber, planetByNumber.size());

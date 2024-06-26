@@ -65,22 +65,17 @@ public final class AgeClassifier {
      * @throws InvalidAgeException If the age is negative.
      */
     public static String classifyAge(final int age) throws InvalidAgeException {
-        String result;
-
         validateAge(age);
 
         if (age <= CHILD_UPPER_LIMIT) {
-            result = CHILD_LABEL;
+            return CHILD_LABEL;
         } else if (age <= ADULT_UPPER_LIMIT) {
-            result = ADULT_LABEL;
+            return ADULT_LABEL;
+        } else if (age < LONG_LIVED_LOWER_LIMIT) {
+            return ELDERLY_LABEL;
         } else {
-            result = ELDERLY_LABEL;
-            if (age >= LONG_LIVED_LOWER_LIMIT) {
-                result += SPACE + LONG_LIVED_LABEL;
-            }
+            return ELDERLY_LABEL + SPACE + LONG_LIVED_LABEL;
         }
-
-        return result;
     }
 
     /**
@@ -89,7 +84,7 @@ public final class AgeClassifier {
      * @param age The age to be validated.
      * @throws InvalidAgeException If the age is negative.
      */
-    public static void validateAge(final int age) throws InvalidAgeException {
+    private static void validateAge(final int age) throws InvalidAgeException {
         if (age < 0) {
             throw new InvalidAgeException(INVALID_AGE_MESSAGE);
         }

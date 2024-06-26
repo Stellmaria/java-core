@@ -63,23 +63,6 @@ class AppleDivisionTest {
         assertEquals(expected, actual);
     }
 
-    private static @NotNull Stream<Arguments> provideValidArgumentsForCalculateTotalApples() {
-        return Stream.of(
-                Arguments.of(5, 15, 15),
-                Arguments.of(4, 10, 8),
-                Arguments.of(3, 7, 6)
-        );
-    }
-
-    @DisplayName("Valid cases for calculateTotalApples")
-    @ParameterizedTest(name = "With students = {0}, apples = {1}, expected total apples = {2}")
-    @MethodSource("provideValidArgumentsForCalculateTotalApples")
-    void testValidCasesForCalculateTotalApples(final int n, final int k, final int expected) {
-        var actual = AppleDivision.calculateTotalApples(n, k);
-
-        assertEquals(expected, actual);
-    }
-
     private static @NotNull Stream<Arguments> provideInvalidStudentNumbers() {
         return Stream.of(
                 Arguments.of(0, 10),
@@ -123,5 +106,20 @@ class AppleDivisionTest {
         var exception = assertThrows(expectedException, () -> AppleDivision.calculateApplesPerStudent(n, k));
 
         assertEquals(expectedMessage, exception.getMessage());
+    }
+
+    private static @NotNull Stream<Arguments> provideInvalidNumbersForRemainingAndTotal() {
+        return Stream.of(
+                Arguments.of(0, 10),
+                Arguments.of(-1, 10),
+                Arguments.of(5, -1)
+        );
+    }
+
+    @DisplayName("Test invalid cases for calculateRemainingApples")
+    @ParameterizedTest(name = "For students = {0}, apples = {1}")
+    @MethodSource("provideInvalidNumbersForRemainingAndTotal")
+    void testInvalidCasesForCalculateRemainingApples(final int n, final int k) {
+        assertThrows(IllegalArgumentException.class, () -> AppleDivision.calculateRemainingApples(n, k));
     }
 }

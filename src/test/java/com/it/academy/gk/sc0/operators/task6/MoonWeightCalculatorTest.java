@@ -31,15 +31,16 @@ class MoonWeightCalculatorTest {
         return Stream.of(
                 Arguments.of(0.0, 0.0),
                 Arguments.of(100.0, 17.0),
-                Arguments.of(50.5, 8.585)
+                Arguments.of(50.5, 8.585),
+                Arguments.of(Double.MAX_VALUE, Double.MAX_VALUE * 0.17)
         );
     }
 
     @ParameterizedTest(name = "For Earth weight {0}, Moon weight should be {1}")
     @MethodSource("validWeightProvider")
     @DisplayName("Valid Earth weights")
-    void testCalculateMoonWeight(final double earthWeight, final double expected) throws NegativeWeightException {
-        var actual = calculateMoonWeight(earthWeight);
+    void testCalculateMoonWeight(final double earthWeight, final double expected) {
+        var actual = MoonWeightCalculator.calculateMoonWeight(earthWeight);
 
         assertEquals(expected, actual, 0.001);
     }
@@ -56,7 +57,7 @@ class MoonWeightCalculatorTest {
     @MethodSource("invalidWeightProvider")
     @DisplayName("Invalid Earth weights")
     void testNegativeWeights(final double earthWeight) {
-        assertThrows(NegativeWeightException.class, () -> calculateMoonWeight(earthWeight));
+        assertThrows(NegativeWeightException.class, () -> MoonWeightCalculator.calculateMoonWeight(earthWeight));
     }
 
     static @NotNull Stream<Arguments> provideInvalidWeightsAndExceptionMessage() {

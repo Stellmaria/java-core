@@ -12,24 +12,23 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class AppleDivision {
     /**
-     * Message for when the number of students is not greater than zero.
+     * A constant message for when the number of students is not greater than zero.
      */
-    private static final String MSG_STUDENTS_GT_ZERO =
-            "Number of students must be greater than zero or cannot be negative";
+    private static final String MSG_STUDENTS_GT_ZERO = "Number of students must be greater than zero";
 
     /**
-     * Message for when the number of apples is not greater than zero.
+     * A constant message for when the number of apples is not zero or greater.
      */
-    private static final String MSG_APPLES_NOT_NEGATIVE =
-            "Number of apples cannot be negative or must be greater than zero";
+    private static final String MSG_APPLES_NOT_NEGATIVE = "Number of apples must be zero or greater";
 
     /**
-     * Calculates the number of apples each student receives.
+     * Calculates the number of apples each student will receive.
      *
      * @param n the number of students
      * @param k the total number of apples
-     * @return the number of apples each student receives
-     * @throws IllegalArgumentException if n is not greater than zero or k is not greater than zero
+     * @return the number of apples per student
+     * @throws IllegalArgumentException if the number of students is not greater than zero or
+     *                                  if the number of apples is not zero or greater
      */
     public static int calculateApplesPerStudent(final int n, final int k) {
         validate(n, k);
@@ -43,7 +42,8 @@ public final class AppleDivision {
      * @param n the number of students
      * @param k the total number of apples
      * @return the remaining apples
-     * @throws IllegalArgumentException if n is not greater than zero or k is not greater than zero
+     * @throws IllegalArgumentException if the number of students is not greater than zero or
+     *                                  if the number of apples is not zero or greater
      */
     public static int calculateRemainingApples(final int n, final int k) {
         validate(n, k);
@@ -52,27 +52,12 @@ public final class AppleDivision {
     }
 
     /**
-     * Calculates the total number of apples.
-     *
-     * @param n the number of students
-     * @param k the total number of apples
-     * @return the total number of apples
-     * @throws IllegalArgumentException if n is not greater than zero or k is not greater than zero
-     */
-    public static int calculateTotalApples(final int n, final int k) {
-        validate(n, k);
-
-        var perStudent = calculateApplesPerStudent(n, k);
-
-        return perStudent * n;
-    }
-
-    /**
      * Validates the input parameters.
      *
      * @param n the number of students
      * @param k the total number of apples
-     * @throws IllegalArgumentException if n is not greater than zero or k is not greater than zero
+     * @throws IllegalArgumentException if the number of students is not greater than zero or
+     *                                  if the number of apples is not zero or greater
      */
     private static void validate(int n, int k) {
         if (n <= 0) {

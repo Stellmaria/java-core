@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 /**
  * This utility class provides methods to generate and print numbers within a given range.
  *
- * @author Anastasia Melnikova
  * @version 2.0
  * @since 2024-06-25
  */
@@ -22,9 +21,13 @@ public class PrintNumbers {
      * @return A string containing numbers from start to end, separated by spaces.
      * @throws IllegalArgumentException If the start number is greater than the end number.
      */
-    public static String generateNumbersTask1Star(final int start, final int end) {
+    public static String generateNumbersInRange(final int start, final int end) {
+        if (start > end) {
+            throw new IllegalArgumentException("Start number must not be greater than end number.");
+        }
+
         return IntStream.rangeClosed(start, end)
-                .mapToObj(Integer::toString) // map each number to a string using Integer::toString,
+                .mapToObj(Integer::toString)
                 .collect(Collectors.joining(" "));
     }
 }

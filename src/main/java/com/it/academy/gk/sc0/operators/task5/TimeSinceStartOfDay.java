@@ -26,17 +26,7 @@ public final class TimeSinceStartOfDay {
      * A constant holding the default message for invalid minutes.
      */
     private static final String INVALID_MINUTES_MESSAGE =
-            "The number of minutes should be between 0 and the total minutes in a day.";
-
-    /**
-     * A constant for the prefix "Received:" in validation messages.
-     */
-    private static final String RECEIVED = "Received:";
-
-    /**
-     * A constant for space used in validation messages.
-     */
-    private static final String SPACE = " ";
+            "The number of minutes should be between 0 and the total minutes in a day. Received: ";
 
     /**
      * Calculates the number of hours since the start of the day based on the total minutes.
@@ -94,7 +84,7 @@ public final class TimeSinceStartOfDay {
      */
     private static void validateMinutes(final int m) throws InvalidMinuteException {
         if (m < 0 || m >= MINUTES_IN_HOUR * HOURS_IN_DAY) {
-            throw new InvalidMinuteException(INVALID_MINUTES_MESSAGE + SPACE + RECEIVED + SPACE + m);
+            throw new InvalidMinuteException(INVALID_MINUTES_MESSAGE + m);
         }
     }
 }

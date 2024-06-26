@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static com.it.academy.gk.sc0.statements.task1.PrintNumbers.*;
+import static com.it.academy.gk.sc0.statements.task1.PrintNumbers.generateNumberString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -32,7 +32,8 @@ class PrintNumbersTest {
                 Arguments.of(5, 5, "5"),
                 Arguments.of(-5, -1, "-5 -4 -3 -2 -1"),
                 Arguments.of(0, 0, "0"),
-                Arguments.of(1, 1, "1")
+                Arguments.of(1, 1, "1"),
+                Arguments.of(-1, 1, "-1 0 1")
         );
     }
 
@@ -47,7 +48,8 @@ class PrintNumbersTest {
 
     private static @NotNull Stream<Arguments> printGenerateNumberStringWithInvalidRange() {
         return Stream.of(
-                Arguments.of(5, 1, ERROR_MESSAGE_MIN_GREATER_THAN_MAX)
+                Arguments.of(5, 1, ERROR_MESSAGE_MIN_GREATER_THAN_MAX),
+                Arguments.of(0, -1, ERROR_MESSAGE_MIN_GREATER_THAN_MAX)
         );
     }
 

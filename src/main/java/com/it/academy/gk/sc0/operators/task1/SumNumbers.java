@@ -3,6 +3,7 @@ package com.it.academy.gk.sc0.operators.task1;
 import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * A utility class for summing up an array of integers.
@@ -45,9 +46,7 @@ public final class SumNumbers {
      * @throws IllegalArgumentException if the input array is empty
      */
     private static void validate(final int[] numbers) {
-        if (numbers == null) {
-            throw new NullPointerException(EXPECTED_NON_NULL_ARGUMENT);
-        }
+        Objects.requireNonNull(numbers, EXPECTED_NON_NULL_ARGUMENT);
 
         if (numbers.length == 0) {
             throw new IllegalArgumentException(ARRAY_MUST_NOT_BE_EMPTY);

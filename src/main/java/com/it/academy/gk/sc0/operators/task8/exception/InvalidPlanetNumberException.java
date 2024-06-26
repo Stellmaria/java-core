@@ -1,5 +1,6 @@
 package com.it.academy.gk.sc0.operators.task8.exception;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -14,17 +15,17 @@ public class InvalidPlanetNumberException extends Exception {
     /**
      * Error message prefix for invalid planet number.
      */
-    public static final String INVALID_PLANET_NUMBER = "Invalid planet number: ";
+    private static final String INVALID_PLANET_NUMBER_PREFIX = "Invalid planet number: ";
 
     /**
      * Error message suffix indicating the range of valid planet numbers.
      */
-    public static final String MUST_BE_BETWEEN_1_AND = "Must be between 1 and ";
+    private static final String MUST_BE_BETWEEN_1_AND = "Must be between 1 and ";
 
     /**
      * Error message suffix for punctuation.
      */
-    public static final String DOT = ". ";
+    private static final String DOT = ".";
 
     /**
      * Private constructor for the exception class.
@@ -42,9 +43,10 @@ public class InvalidPlanetNumberException extends Exception {
      * @param totalPlanets The total number of planets.
      * @return An instance of InvalidPlanetNumberException with a formatted error message.
      */
+    @Contract("_, _ -> new")
     public static @NotNull InvalidPlanetNumberException createWith(int planetNumber, int totalPlanets) {
         return new InvalidPlanetNumberException(
-                INVALID_PLANET_NUMBER + planetNumber + DOT + MUST_BE_BETWEEN_1_AND + totalPlanets + DOT
+                INVALID_PLANET_NUMBER_PREFIX + planetNumber + DOT + " " + MUST_BE_BETWEEN_1_AND + totalPlanets + DOT
         );
     }
 }

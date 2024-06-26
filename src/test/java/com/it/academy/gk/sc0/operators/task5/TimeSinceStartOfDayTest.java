@@ -1,7 +1,6 @@
 package com.it.academy.gk.sc0.operators.task5;
 
 import com.it.academy.gk.sc0.operators.task5.exception.InvalidMinuteException;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -17,39 +16,24 @@ import static com.it.academy.gk.sc0.operators.task5.TimeSinceStartOfDay.calculat
 import static com.it.academy.gk.sc0.operators.task5.TimeSinceStartOfDay.calculateTotalMinutes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.params.provider.Arguments.of;
 
 class TimeSinceStartOfDayTest {
     private static String INVALID_MINUTES_MESSAGE;
-    private static String RECEIVED;
-    private static String SPACE;
 
     @BeforeAll
     public static void setUp() throws NoSuchFieldException, IllegalAccessException {
-        INVALID_MINUTES_MESSAGE = getStaticFieldValue("INVALID_MINUTES_MESSAGE");
-        RECEIVED = getStaticFieldValue("RECEIVED");
-        SPACE = getStaticFieldValue("SPACE");
-    }
-
-    private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
-        var field = TimeSinceStartOfDay.class.getDeclaredField(fieldName);
-        field.setAccessible(true);
-
-        return (String) field.get(null);
-    }
-
-    @Contract(pure = true)
-    private static @NotNull String buildExceptionMessage(int minutes) {
-        return INVALID_MINUTES_MESSAGE + SPACE + RECEIVED + SPACE + minutes;
+        var invalidMinutesMessage = TimeSinceStartOfDay.class.getDeclaredField("INVALID_MINUTES_MESSAGE");
+        invalidMinutesMessage.setAccessible(true);
+        INVALID_MINUTES_MESSAGE = (String) invalidMinutesMessage.get(null);
     }
 
     public static @NotNull Stream<Arguments> validMinutesAndHoursProvider() {
         return Stream.of(
-                of(0, 0),
-                of(59, 0),
-                of(60, 1),
-                of(119, 1),
-                of(1440 - 1, 23)
+                Arguments.of(0, 0),
+                Arguments.of(59, 0),
+                Arguments.of(60, 1),
+                Arguments.of(119, 1),
+                Arguments.of(1440 - 1, 23)
         );
     }
 
@@ -64,11 +48,11 @@ class TimeSinceStartOfDayTest {
 
     public static @NotNull Stream<Arguments> validMinutesAndMinutesSinceLastHourProvider() {
         return Stream.of(
-                of(0, 0),
-                of(59, 59),
-                of(60, 0),
-                of(119, 59),
-                of(1440 - 1, 59)
+                Arguments.of(0, 0),
+                Arguments.of(59, 59),
+                Arguments.of(60, 0),
+                Arguments.of(119, 59),
+                Arguments.of(1440 - 1, 59)
         );
     }
 
@@ -84,11 +68,11 @@ class TimeSinceStartOfDayTest {
 
     public static @NotNull Stream<Arguments> validHoursAndMinutesAndTotalMinutesProvider() {
         return Stream.of(
-                of(0, 0, 0),
-                of(0, 59, 59),
-                of(1, 0, 60),
-                of(1, 59, 119),
-                of(23, 59, 1440 - 1)
+                Arguments.of(0, 0, 0),
+                Arguments.of(0, 59, 59),
+                Arguments.of(1, 0, 60),
+                Arguments.of(1, 59, 119),
+                Arguments.of(23, 59, 1440 - 1)
         );
     }
 
@@ -105,14 +89,14 @@ class TimeSinceStartOfDayTest {
 
     static @NotNull Stream<Arguments> provideInvalidArgumentsAndExceptionType() {
         return Stream.of(
-                of((Executable) () -> calculateHours(-1), InvalidMinuteException.class),
-                of((Executable) () -> calculateHours(-59), InvalidMinuteException.class),
-                of((Executable) () -> calculateHours(1440), InvalidMinuteException.class),
-                of((Executable) () -> calculateHours(1500), InvalidMinuteException.class),
-                of((Executable) () -> calculateMinutesSinceLastHour(-1), InvalidMinuteException.class),
-                of((Executable) () -> calculateMinutesSinceLastHour(-59), InvalidMinuteException.class),
-                of((Executable) () -> calculateTotalMinutes(0, -1), InvalidMinuteException.class),
-                of((Executable) () -> calculateTotalMinutes(-1, -1), InvalidMinuteException.class)
+                Arguments.of((Executable) () -> calculateHours(-1), InvalidMinuteException.class),
+                Arguments.of((Executable) () -> calculateHours(-59), InvalidMinuteException.class),
+                Arguments.of((Executable) () -> calculateHours(1440), InvalidMinuteException.class),
+                Arguments.of((Executable) () -> calculateHours(1500), InvalidMinuteException.class),
+                Arguments.of((Executable) () -> calculateMinutesSinceLastHour(-1), InvalidMinuteException.class),
+                Arguments.of((Executable) () -> calculateMinutesSinceLastHour(-59), InvalidMinuteException.class),
+                Arguments.of((Executable) () -> calculateTotalMinutes(0, -1), InvalidMinuteException.class),
+                Arguments.of((Executable) () -> calculateTotalMinutes(-1, -1), InvalidMinuteException.class)
         );
     }
 
@@ -125,37 +109,36 @@ class TimeSinceStartOfDayTest {
 
     static @NotNull Stream<Arguments> provideInvalidArgumentsExceptionTypeAndMessage() {
         return Stream.of(
-                of(
+                Arguments.of(
                         (Executable) () -> calculateHours(-1),
-                        InvalidMinuteException.class, buildExceptionMessage(-1)
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "-1"
                 ),
-                of(
+                Arguments.of(
                         (Executable) () -> calculateHours(-59),
-                        InvalidMinuteException.class, buildExceptionMessage(-59)
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "-59"
                 ),
-                of(
+                Arguments.of(
                         (Executable) () -> calculateHours(1440),
-                        InvalidMinuteException.class, buildExceptionMessage(1440)
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "1440"
                 ),
-                of(
+                Arguments.of(
                         (Executable) () -> calculateHours(1500),
-                        InvalidMinuteException.class, buildExceptionMessage(1500)
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "1500"
                 ),
-                of(
+                Arguments.of(
                         (Executable) () -> calculateMinutesSinceLastHour(-1),
-                        InvalidMinuteException.class, buildExceptionMessage(-1)
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "-1"
                 ),
-                of(
+                Arguments.of(
                         (Executable) () -> calculateMinutesSinceLastHour(-59),
-                        InvalidMinuteException.class, buildExceptionMessage(-59)
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "-59"
                 ),
-                of(
+                Arguments.of(
                         (Executable) () -> calculateTotalMinutes(0, -1),
-                        InvalidMinuteException.class, buildExceptionMessage(-1)
-                ),
-                of(
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "-1"),
+                Arguments.of(
                         (Executable) () -> calculateTotalMinutes(-1, -1),
-                        InvalidMinuteException.class, buildExceptionMessage(-1)
+                        InvalidMinuteException.class, INVALID_MINUTES_MESSAGE + "-1"
                 )
         );
     }

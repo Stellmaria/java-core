@@ -36,7 +36,7 @@ public class PrintNumbers {
 
         // Create a stream of integers from 'start' down to 'end' (inclusive), separated by spaces
         return IntStream.iterate(start, i -> i >= end, i -> i - 1)
-                .mapToObj(i -> i + separator)
-                .collect(Collectors.joining());
+                .mapToObj(String::valueOf)
+                .collect(Collectors.joining(separator));
     }
 }
