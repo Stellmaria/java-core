@@ -1,34 +1,15 @@
 package com.it.academy.gk.sc0.operators.task4;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidDigitNumberException;
-import lombok.SneakyThrows;
+import com.it.academy.gk.sc0.operators.task9.exception.InvalidDigitNumberException;
 import lombok.experimental.UtilityClass;
 
 /**
- * DigitOperations is a utility class that provides methods for performing
- * operations on the digits of a two-digit or three-digit integer number.
- * It includes methods for calculating the sum, product, and number of digits.
- *
- * <p>Example usage:</p>
- * <pre>
- *     int number = 123;
- *     int sum = DigitOperations.calculateDigitSum(number);  // sum will be 6
- *     int product = DigitOperations.calculateDigitProduct(number);  // product will be 6
- *     int numberOfDigits = DigitOperations.calculateNumberOfDigits(number);  // numberOfDigits will be 3
- * </pre>
- *
- * <p>Example usage with exception handling:</p>
- * <pre>
- *     try {
- *         DigitOperations.calculateDigitSum(9);  // throws InvalidDigitNumberException
- *     } catch (InvalidDigitNumberException e) {
- *         System.out.println(e.getMessage());  // prints "The number should be either a two-digit or a three-digit number."
- *     }
- * </pre>
+ * A utility class for performing operations on digits of a number.
+ * The number should be either a two-digit or a three-digit number.
  *
  * @author Anastasia Melnikova
- * @version 1.0
- * @since 2023-09-02
+ * @version 2.0
+ * @since 2024-06-25
  */
 @UtilityClass
 public final class DigitOperations {
@@ -54,13 +35,13 @@ public final class DigitOperations {
             "The number should be either a two-digit or a three-digit number.";
 
     /**
-     * Calculates the sum of the digits of the given number.
+     * Calculates the sum of digits in a given number.
+     * The number should be either a two-digit or a three-digit number.
      *
-     * @param number the integer number.
-     * @return the sum of the digits.
-     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
+     * @param number The number to calculate the sum of digits for.
+     * @return The sum of digits in the given number.
+     * @throws InvalidDigitNumberException If the number is not a two-digit or a three-digit number.
      */
-    @SneakyThrows
     public static int calculateDigitSum(final int number) {
         validateNumber(number);
 
@@ -68,13 +49,13 @@ public final class DigitOperations {
     }
 
     /**
-     * Calculates the product of the digits of the given number.
+     * Calculates the product of digits in a given number.
+     * The number should be either a two-digit or a three-digit number.
      *
-     * @param number the integer number.
-     * @return the product of the digits.
-     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
+     * @param number The number to calculate the product of digits for.
+     * @return The product of digits in the given number.
+     * @throws InvalidDigitNumberException If the number is not a two-digit or a three-digit number.
      */
-    @SneakyThrows
     public static int calculateDigitProduct(final int number) {
         validateNumber(number);
 
@@ -82,13 +63,13 @@ public final class DigitOperations {
     }
 
     /**
-     * Calculates the number of digits in the given number.
+     * Calculates the number of digits in a given number.
+     * The number should be either a two-digit or a three-digit number.
      *
-     * @param number the integer number.
-     * @return the number of digits.
-     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
+     * @param number The number to calculate the number of digits for.
+     * @return The number of digits in the given number.
+     * @throws InvalidDigitNumberException If the number is not a two-digit or a three-digit number.
      */
-    @SneakyThrows
     public static int calculateNumberOfDigits(final int number) {
         validateNumber(number);
 
@@ -96,20 +77,24 @@ public final class DigitOperations {
     }
 
     /**
-     * Performs a digit operation on the given number using the provided DigitOperation functional interface.
-     * The operation is applied to each digit of the number.
+     * Performs a specific operation on each digit of a given number.
      *
-     * @param number       the integer number on which the operation will be performed.
-     * @param operation    the DigitOperation functional interface representing the operation.
-     * @param initialValue the initial value for the operation.
-     * @return the result of performing the operation on the digits of the number.
+     * @param number       The number to perform the operation on.
+     * @param operation    The operation to apply to each digit.
+     * @param initialValue The initial value to start the operation with.
+     * @return The result of the operation on all digits.
+     * @throws InvalidDigitNumberException If the number is not a two-digit or a three-digit number.
      */
-    private static int performDigitOperation(final int number, final DigitOperation operation, final int initialValue) {
+    private static int performDigitOperation(final int number,
+                                             final DigitOperation operation,
+                                             final int initialValue) {
         var result = initialValue;
         var temp = number;
 
         while (temp > 0) {
+            // Apply the operation to the result and the current digit
             result = operation.apply(result, temp % BASE_10);
+            // Remove the last digit from the temporary number
             temp /= BASE_10;
         }
 
@@ -117,13 +102,11 @@ public final class DigitOperations {
     }
 
     /**
-     * Validates if the given number is a two-digit or a three-digit number.
-     * Throws an exception if the validation fails.
+     * Validates the given number to ensure it is a two-digit or a three-digit number.
      *
-     * @param number the integer number to validate.
-     * @throws InvalidDigitNumberException if the number is not a valid two-digit or three-digit number.
+     * @param number The number to validate.
+     * @throws InvalidDigitNumberException If the number is not a two-digit or a three-digit number.
      */
-    @SneakyThrows
     private static void validateNumber(final int number) {
         if (number < MIN_TWO_DIGIT || number > MAX_THREE_DIGIT) {
             throw new InvalidDigitNumberException(INVALID_DIGIT_NUMBER_MESSAGE);

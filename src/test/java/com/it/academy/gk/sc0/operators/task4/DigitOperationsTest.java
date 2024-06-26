@@ -1,6 +1,6 @@
 package com.it.academy.gk.sc0.operators.task4;
 
-import com.it.academy.gk.sc0.operators.exception.InvalidDigitNumberException;
+import com.it.academy.gk.sc0.operators.task9.exception.InvalidDigitNumberException;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.lang.reflect.InvocationTargetException;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -129,7 +130,9 @@ class DigitOperationsTest {
         DigitOperation multiplication = (a, b) -> a * b;
         var resultForProduct = (int) method.invoke(null, 123, multiplication, 1);
 
-        assertEquals(6, resultForSum);
-        assertEquals(6, resultForProduct);
+        assertAll(
+                () -> assertEquals(6, resultForSum),
+                () -> assertEquals(6, resultForProduct)
+        );
     }
 }
