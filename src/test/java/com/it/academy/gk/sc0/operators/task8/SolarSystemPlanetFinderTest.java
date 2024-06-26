@@ -21,6 +21,7 @@ class SolarSystemPlanetFinderTest {
     private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
         var field = InvalidPlanetNumberException.class.getDeclaredField(fieldName);
         field.setAccessible(true);
+
         return (String) field.get(null);
     }
 
