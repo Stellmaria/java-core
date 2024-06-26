@@ -17,14 +17,16 @@ class AppleDivisionTest {
     private static String MSG_APPLES_NOT_NEGATIVE;
 
     @BeforeAll
-    public static void setupMessages() throws NoSuchFieldException, IllegalAccessException {
-        var studentsField = AppleDivision.class.getDeclaredField("MSG_STUDENTS_GT_ZERO");
-        studentsField.setAccessible(true);
-        MSG_STUDENTS_GT_ZERO = (String) studentsField.get(null);
+    public static void setUp() throws NoSuchFieldException, IllegalAccessException {
+        MSG_STUDENTS_GT_ZERO = getStaticFieldValue("MSG_STUDENTS_GT_ZERO");
+        MSG_APPLES_NOT_NEGATIVE = getStaticFieldValue("MSG_APPLES_NOT_NEGATIVE");
+    }
 
-        var applesField = AppleDivision.class.getDeclaredField("MSG_APPLES_NOT_NEGATIVE");
-        applesField.setAccessible(true);
-        MSG_APPLES_NOT_NEGATIVE = (String) applesField.get(null);
+    private static String getStaticFieldValue(String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        var field = AppleDivision.class.getDeclaredField(fieldName);
+        field.setAccessible(true);
+
+        return (String) field.get(null);
     }
 
     private static @NotNull Stream<Arguments> provideValidArgumentsForCalculateApplesPerStudent() {
