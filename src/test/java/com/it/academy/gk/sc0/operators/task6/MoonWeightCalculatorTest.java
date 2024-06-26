@@ -1,8 +1,8 @@
 package com.it.academy.gk.sc0.operators.task6;
 
-import com.it.academy.gk.sc0.operators.exception.NegativeWeightException;
+import com.it.academy.gk.sc0.operators.task6.exception.NegativeWeightException;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,13 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class MoonWeightCalculatorTest {
-    private static String NEGATIVE_WEIGHT_MESSAGE = "Weight cannot be negative.";
+    private static String NEGATIVE_WEIGHT_MESSAGE;
 
-    @BeforeEach
-    public void setUp() throws NoSuchFieldException, IllegalAccessException {
-        var negativeWeightMessageField = MoonWeightCalculator.class.getDeclaredField("NEGATIVE_WEIGHT_MESSAGE");
-        negativeWeightMessageField.setAccessible(true);
-        NEGATIVE_WEIGHT_MESSAGE = (String) negativeWeightMessageField.get(null);
+    @BeforeAll
+    public static void setUp() throws NoSuchFieldException, IllegalAccessException {
+        var invalidDigitNumberMessageField = MoonWeightCalculator.class.getDeclaredField(
+                "NEGATIVE_WEIGHT_MESSAGE"
+        );
+        invalidDigitNumberMessageField.setAccessible(true);
+        NEGATIVE_WEIGHT_MESSAGE = (String) invalidDigitNumberMessageField.get(null);
     }
 
     static @NotNull Stream<Arguments> validWeightProvider() {

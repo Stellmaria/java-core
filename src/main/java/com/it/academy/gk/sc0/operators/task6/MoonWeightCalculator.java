@@ -1,40 +1,36 @@
 package com.it.academy.gk.sc0.operators.task6;
 
-import com.it.academy.gk.sc0.operators.exception.NegativeWeightException;
+import com.it.academy.gk.sc0.operators.task6.exception.NegativeWeightException;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 /**
- * MoonWeightCalculator is a utility class that provides a method
- * for calculating the equivalent weight of an object on the Moon based on its weight on Earth.
- *
- * <p>Example usage:</p>
- * <pre>
- *     double moonWeight = MoonWeightCalculator.calculateMoonWeight(70);  // moonWeight will be 11.9
- * </pre>
+ * A utility class for calculating the weight of an object on the moon.
+ * This class provides a method to calculate the moon weight based on the earth weight.
+ * It also includes a validation method to ensure that the earth weight is not negative.
  *
  * @author Anastasia Melnikova
- * @version 1.0
- * @since 2023-09-02
+ * @version 2.0
+ * @since 2024-06-25
  */
 @UtilityClass
 public final class MoonWeightCalculator {
     /**
-     * A constant for the percentage of Earth's gravity that is exerted by the Moon.
+     * The percentage of the moon's gravity compared to Earth's gravity.
      */
     private static final double MOON_GRAVITY_PERCENTAGE = 0.17;
 
     /**
-     * A constant holding the default message for negative weight.
+     * The error message to be thrown when a negative weight is provided.
      */
     private static final String NEGATIVE_WEIGHT_MESSAGE = "Weight cannot be negative.";
 
     /**
-     * Calculates the equivalent weight of an object on the Moon based on its weight on Earth.
+     * Calculates the moon weight based on the earth weight.
      *
-     * @param earthWeight the weight of the object on Earth. Must be a positive number.
-     * @return the calculated weight of the object on the Moon.
-     * @throws NegativeWeightException if the weight is negative.
+     * @param earthWeight The weight of the object on Earth.
+     * @return The calculated moon weight.
+     * @throws NegativeWeightException If the earth weight is negative.
      */
     @SneakyThrows
     public static double calculateMoonWeight(final double earthWeight) {
@@ -44,10 +40,10 @@ public final class MoonWeightCalculator {
     }
 
     /**
-     * Validates the given weight to ensure it is a positive number.
+     * Validates the earth weight to ensure it is not negative.
      *
-     * @param weight the weight to validate.
-     * @throws NegativeWeightException if the weight is negative.
+     * @param weight The earth weight to be validated.
+     * @throws NegativeWeightException If the weight is negative.
      */
     @SneakyThrows
     private static void validateWeight(final double weight) {
@@ -56,4 +52,3 @@ public final class MoonWeightCalculator {
         }
     }
 }
-
