@@ -18,7 +18,6 @@ class HouseTest {
     @Test
     @DisplayName("Test for method isEnoughSpace() from class House.")
     void isEnoughSpace() {
-        // TODO:
         var expected = true;
 
         var actual = house.isEnoughSpace(

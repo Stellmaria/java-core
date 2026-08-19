@@ -11,35 +11,34 @@ public class Rub {
     /**
      * <h4>RU: Задание 1.</h4>
      * <p>Задать целое число в виде переменной, это число - сумма денег в рублях. Вывести это число на экран,
-     * добавив к нему слово "рублей в правильном падеже".</p><br>
+     * добавив к нему слово "рублей" в правильном падеже.</p><br>
      *
      * <h4>EN: Task 1.</h4>
      * <p>Set an integer as a variable, this number is the amount of money in rubles.
-     * Display this number on the screen, adding the word "rubles in the correct case" to it.</p><br>
+     * Display this number with the Russian word for rubles in the correct grammatical form.</p><br>
      *
-     * @param sum начальная сумма / initial amount
-     * @return сумма с правильным падежом / amount with the correct case.
+     * @param sum начальная сумма / initial amount.
+     * @return сумма с правильным падежом / amount with the correct grammatical form.
      */
-//    public String getSum(final int sum) {
-//        final var rubles = " рублей.";
-//        final var rubel = " рубль.";
-//        final var rubel1 = " рубля.";
-//        final var error = "Некорректная сумма ";
-//        final var stringBuilder = new StringBuilder();
-//        final var remainder10 = sum % Const.MINIMAL_TWO_DIGITAL_NUMBER * Const.MINIMAL_TWO_DIGITAL_NUMBER;
-//        final var remainder100 = sum % Const.MINIMAL_TWO_DIGITAL_NUMBER;
-//
-//        // TODO:
-//        if (remainder10 == 0 || (5 <= remainder10 && remainder10 <= 9)
-//            || (11 <= remainder100 && remainder100 <= 19)) {
-//            stringBuilder.append(sum).append(rubles);
-//        } else if (remainder100 == 1) {
-//            stringBuilder.append(sum).append(rubel);
-//        } else if (2 <= remainder100 && remainder100 <= 4) {
-//            stringBuilder.append(sum).append(rubel1);
-//        } else {
-//            stringBuilder.append(error).append(sum);
-//        }
-//        return stringBuilder.toString();
-//    }
+    public String getSum(final int sum) {
+        if (sum < 0) {
+            return "Некорректная сумма " + sum;
+        }
+
+        final int lastTwoDigits = sum % 100;
+        final int lastDigit = sum % 10;
+        final String suffix;
+
+        if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+            suffix = " рублей.";
+        } else if (lastDigit == 1) {
+            suffix = " рубль.";
+        } else if (lastDigit >= 2 && lastDigit <= 4) {
+            suffix = " рубля.";
+        } else {
+            suffix = " рублей.";
+        }
+
+        return sum + suffix;
+    }
 }

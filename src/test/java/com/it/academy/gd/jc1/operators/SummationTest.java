@@ -18,7 +18,6 @@ class SummationTest {
     @Test
     @DisplayName("Test for method sumMul() from class Summation.")
     void sumMul() {
-        // TODO:
         var expected = "Answer : 5";
 
         var actual = summation.sumMul(1, 2);
