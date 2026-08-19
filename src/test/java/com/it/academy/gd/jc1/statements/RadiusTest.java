@@ -18,7 +18,6 @@ class RadiusTest {
     @Test
     @DisplayName("Test for method isClosed() from class Radius.")
     void isClosed() {
-        // TODO:
         var expected = true;
 
         var actual = radius.isClosed(10, 5, 15);
